@@ -27,10 +27,11 @@ module.exports = function (app, daService) {
         {
             res.json(data);
         },
-                function (err)
-                {
-                    reportError(res, err.toString());
-                }
+        
+        function (err)
+        {
+            reportError(res, err.toString());
+        }
 
 
         );
@@ -39,8 +40,8 @@ module.exports = function (app, daService) {
     }
      
     
-    app.get('/getCategories', processGetCategories);
-    app.get('/getCategories*', processGetCategories);
+    app.get(['/getCategories','/getCategories*'], processGetCategories);
+     
 
 };
 
