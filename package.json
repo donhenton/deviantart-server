@@ -19,9 +19,11 @@
     "json3": "^3.3.2",
     "log4js": "^0.6.37",
     "method-override": "^2.3.6",
+    "moment": "^2.13.0",
     "morgan": "^1.7.0",
     "node-uuid": "^1.4.7",
     "postal": "^2.0.4",
+    "q": "^1.4.1",
     "request": "^2.72.0",
     "request-promise": "^3.0.0"
   },

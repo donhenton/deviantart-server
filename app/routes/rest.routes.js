@@ -1,15 +1,10 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
-
+var url = require("url");
 // Define the routes module' method
 module.exports = function (app, daService) {
 
- //dummyService is passed in express.js
-
- 
-
-
- 
+    //dummyService is passed in express.js
 
     var reportError = function (res, errorString)
     {
@@ -17,55 +12,36 @@ module.exports = function (app, daService) {
         res.json(daService.createError(errorString, "ErrorClass"));
     }
     
-    app.get('/test', function (req, res) {
+    
+    var processGetCategories = function (req, res) {
+        var url_parts = url.parse(req.url);
+        var path = url_parts.pathname.replace('/getCategories','');
+        console.log('replaced '+path);
+         
+        if (path === '' || !path)
+        {
+            path = "/";
+        }
+         
+        daService.getCategories(path).then(function (data)
+        {
+            res.json(data);
+        },
+                function (err)
+                {
+                    reportError(res, err.toString());
+                }
 
-        var id = req.params.id;
-        var resVar = {};
-        resVar.message = "got stuff "+  daService.getCredentials();
-        res.json(resVar);
-        // console.log("zzzrestaurant id " + restaurantId);
 
-//        daoService.getRestaurantById(restaurantId).then(
-//                function (restaurantFoundArray)
-//                {
-//
-//
-//                    var resVar = {};
-//                    resVar.biteMe = "get a job";
-//                    if (restaurantFoundArray.length == 0)
-//                    {
-//                        resVar = daoService.createError('Not Found',
-//                                "NotFoundClass");
-//                        res.status(404);
-//                        res.json(resVar);
-//                    }
-//                    else
-//                    {
-//                        resVar = restaurantFoundArray[0];
-//                        res.json(resVar);
-//
-//                    }
-//                },
-//                function (err)
-//                {
-//                    reportError(res, err.toString());
-//                }
-//        );
-    });
-    //@getAllRestaurants ****
-//    app.get('/restaurant', function (req, res) {
-//
-//        daoService.getAllRestaurants().then(function (items)
-//        {
-//            //console.log("items zzz "+items.length);
-//            res.json(items);
-//        }
-//        , function (err)
-//        {
-//            reportError(res, err.toString());
-//        });
-//    });
-//    
+        );
+
+
+    }
+     
+    
+    app.get('/getCategories', processGetCategories);
+    app.get('/getCategories*', processGetCategories);
+
 };
 
 
