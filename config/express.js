@@ -49,7 +49,7 @@ module.exports = function () {
 
     // Load the 'index' routing file
     
-    var deviantArtService = require('../app/services/deviantart.js')(config);
+    var deviantArtService = require('../app/services/deviantartService.js')(config);
     
     require('../app/routes/pages.routes.js')(app);
     require('../app/routes/rest.routes.js')(app,deviantArtService); 
