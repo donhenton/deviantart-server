@@ -49,10 +49,10 @@ module.exports = function () {
 
     // Load the 'index' routing file
     
-    var dummyService = require('../app/daos/dummy.js')(config);
+    var deviantArtService = require('../app/services/deviantart.js')(config);
     
     require('../app/routes/pages.routes.js')(app);
-    require('../app/routes/rest.routes.js')(app,dummyService); 
+    require('../app/routes/rest.routes.js')(app,deviantArtService); 
     
     
 

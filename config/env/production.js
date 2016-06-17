@@ -1,10 +1,14 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Set the 'production' environment configuration object
-module.exports = {
-	sessionSecret: 'productionSessionSecret',
-       // db: {url: "mongodb://mongouser:#######@ds029811.mongolab.com:29811/restaurant_collection"}
-       db: {url: process.env.MONGO_URI},
-       morgueDb: {url: process.env.MONGO_MORGUE_URI}
-};
+// this is the deviant art client id and secret 
+// the dev copy is not saved in git and must be recreated
+//module.exports = {
+//    client_id: 4,
+//    client_secret: "client_secret"
+//};
+
+module.exports =  {
+     client_id: process.env.DA_CLIENT_ID,
+     client_secret: process.env.DA_CLIENT_SECRET
+ };

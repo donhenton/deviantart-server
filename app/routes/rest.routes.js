@@ -2,7 +2,7 @@
 'use strict';
 
 // Define the routes module' method
-module.exports = function (app, daoService) {
+module.exports = function (app, daService) {
 
  //dummyService is passed in express.js
 
@@ -14,14 +14,14 @@ module.exports = function (app, daoService) {
     var reportError = function (res, errorString)
     {
         res.status(500);
-        res.json(daoService.createError(errorString, "ErrorClass"));
+        res.json(daService.createError(errorString, "ErrorClass"));
     }
     
-    app.get('/rest/thing/:id', function (req, res) {
+    app.get('/test', function (req, res) {
 
         var id = req.params.id;
         var resVar = {};
-        resVar.message = "your id is "+id;
+        resVar.message = "got stuff "+  daService.getCredentials();
         res.json(resVar);
         // console.log("zzzrestaurant id " + restaurantId);
 

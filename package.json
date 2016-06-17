@@ -20,7 +20,10 @@
     "log4js": "^0.6.37",
     "method-override": "^2.3.6",
     "morgan": "^1.7.0",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "postal": "^2.0.4",
+    "request": "^2.72.0",
+    "request-promise": "^3.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
