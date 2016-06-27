@@ -390,9 +390,6 @@ nav.topMenu {
     .btn.btn-red:hover {
       background-color: #d64120; }
 
-body {
-  z-index: 0; }
-
 section#pageContainer {
   margin: 0px;
   font-size: 16px;
@@ -426,3 +423,6 @@ section#pageContainer {
     clear: both; }
   section#pageContainer footer {
     text-align: center; }
+
+body {
+  z-index: 0; }
