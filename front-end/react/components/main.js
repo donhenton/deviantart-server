@@ -19,7 +19,7 @@ export default class Main extends Component {
       
       
          <div id="listContainer">
-             aaaddanother job
+             don't get a job, hang out at Bob's
          </div>
       
        
