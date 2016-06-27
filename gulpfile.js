@@ -95,18 +95,21 @@ gulp.task('react-build', function () {
  * task for reloading for backend, eg route changes
  * takes 3-4 seconds, will also pick up public css and js
  * but is slower for refresh compared to frontend task for css and public js
+ * this run will NOT fire for front end react changes
+ * that is done via frontend-watch
+ * 
  */
 gulp.task('backend', function () {
 
     livereload.listen();
-    console.log("zzzz "+path.dirname('.gulpfile.js'))
+   
     nodemon(
             {
                 script: 'server.js',
                 verbose: true,
-                ext: 'js ejs',
+                ext: 'js ejs', //in the watched section
                 watch: ['./app'],
-               // ignore: ['./front-end/*','./public_html/js/*'],
+               // ignore: ['./front-end/*','./public_html/js/*'], in the watched section
                 tasks: function (changedFiles)
                 {
                     var tasks = [];
