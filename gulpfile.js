@@ -40,7 +40,7 @@ gulp.task('sass', function () {
             .pipe(gulp.dest('./public_html/css/'))
             .on('finish', function ( ) {
                 gutil.log("processing change in css");
-                //   livereload.reload(pageURL);
+                   livereload.reload(pageURL);
             });
 
 });
@@ -95,10 +95,7 @@ gulp.task('react-backend', function () {
                     changedFiles.forEach(function (file)
                     {
                         gutil.log(path.basename(file));
-                        if (path.extname(file) === '.jsx' && !~tasks.indexOf('jsx'))
-                        {
-                            tasks.push('build-react');
-                        }
+                        
                         //
 
                     });
@@ -137,20 +134,19 @@ gulp.task('backend', function () {
     nodemon(
             {
                 script: 'server.js',
-                 
-                // watch: ['*.js'],
-                ext: 'js css ejs',
-                ignore: ['./gulpfile.js'],
+                ext: 'js ejs',
+                ignore: ['./gulpfile.js','./front-end/**/*.js','./public_html/js/**/*.js'],
                 tasks: function (changedFiles)
                 {
                     var tasks = [];
                     changedFiles.forEach(function (file)
                     {
-                        gutil.log(path.basename(file));
-                        if (path.extname(file) === '.scss' && !~tasks.indexOf('sass'))
+                        gutil.log("file "+ path.dirname(file)+" "+/views/.test(path.dirname(file)) );
+                        if (path.extname(file) === '.js' && /react/.test(path.dirname(file))    && !~tasks.indexOf('react'))
                         {
-                            tasks.push('sass');
+                          console.log("react js file")
                         }
+                         
                         //
 
                     });
