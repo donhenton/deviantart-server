@@ -65,7 +65,7 @@ module.exports = function () {
      */
 
     // Configure static file serving
-    app.use(express.static('./public'));
+    app.use(express.static('./public_html'));
     
     /* error handlers must be located at end */
     var clientErrorProcessor =  require('../app/filters/clientErrorProcessor');
