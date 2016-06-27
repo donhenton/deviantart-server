@@ -1,18 +1,10 @@
-import 'rc-tree/assets/index.css';
+//import 'rc-tree/assets/index.css';
 import React from 'react';
-import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Tree, {TreeNode} from 'rc-tree';
 
-export default class CategoryTree extends Component {
 
-    constructor()
-    {
-        super();
-         
-          
-    }
- generateTreeNodes(treeNode) {
+function generateTreeNodes(treeNode) {
   const arr = [];
   const key = treeNode.props.eventKey;
   for (let i = 0; i < 3; i++) {
@@ -21,7 +13,7 @@ export default class CategoryTree extends Component {
   return arr;
 }
 
- setLeaf(treeData, curKey, level) {
+function setLeaf(treeData, curKey, level) {
   const loopLeaf = (data, lev) => {
     const l = lev - 1;
     data.forEach((item) => {
@@ -39,7 +31,7 @@ export default class CategoryTree extends Component {
   loopLeaf(treeData, level + 1);
 }
 
- getNewTreeData(treeData, curKey, child, level) {
+function getNewTreeData(treeData, curKey, child, level) {
   const loop = (data) => {
     if (level < 1 || curKey.length - 3 > level * 2) return;
     data.forEach((item) => {
@@ -56,11 +48,14 @@ export default class CategoryTree extends Component {
   setLeaf(treeData, curKey, level);
 }
 
-  componentWillMount()
-  {
-    // this.state.treeData = {};    
-     
-  }
+const categoryTree = React.createClass({
+  propTypes: {},
+  getInitialState() {
+    return {
+      treeData: [],
+      checkedKeys: [],
+    };
+  },
   componentDidMount() {
     setTimeout(() => {
       this.setState({
@@ -72,16 +67,16 @@ export default class CategoryTree extends Component {
         checkedKeys: ['0-0'],
       });
     }, 100);
-  } 
+  },
   onSelect(info) {
     console.log('selected', info);
-  } 
+  },
   onCheck(checkedKeys) {
     console.log(checkedKeys);
     this.setState({
       checkedKeys,
     });
-  } 
+  },
   onLoadData(treeNode) {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -91,7 +86,7 @@ export default class CategoryTree extends Component {
         resolve();
       }, 500);
     });
-  } 
+  },
   render() {
     const loop = (data) => {
       return data.map((item) => {
@@ -101,12 +96,8 @@ export default class CategoryTree extends Component {
         return <TreeNode title={item.name} key={item.key} isLeaf={item.isLeaf} disabled={item.key === '0-0-0' ? true : false} />;
       });
     };
-    
-    if (this.state)
-    {
-        const treeNodes = loop(this.state.treeData);
+    const treeNodes = loop(this.state.treeData);
     return (
-            
       <div>
         <h2>dynamic render</h2>
         <Tree onSelect={this.onSelect}
@@ -116,12 +107,8 @@ export default class CategoryTree extends Component {
         </Tree>
       </div>
     );
-    }
-    else
-    {
-        return <div></div>
-    }
-  } 
- 
+  },
+});
 
-    }
+
+module.exports = categoryTree;
