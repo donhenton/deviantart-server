@@ -6,7 +6,7 @@ module.exports = function (err, req, res, next) {
     if (typeof err === "object" && err["fromErrorClient"])
     {
       
-        // res.status(500).send(newMessage); //this sends it out to the page itself
+        ////// res.status(500).send(newMessage); //this sends it out to the page itself
         err.clientMessage = err.error + " (clientErrorHandler addition)";
 
     } 

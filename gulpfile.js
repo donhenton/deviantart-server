@@ -15,11 +15,12 @@ var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var reactify = require('reactify');
 
-
+var notify = require("./build_utils/build_utils").notify;
+var targetLocation = './public_html/'
 var appDependencies = require('./package.json').dependencies;
-var buildDir = '.';
-var publicDir = buildDir + '/public';
-global._publicDir = publicDir;
+var REACT_FILES = [ './front-end/react/**/*.js'];
+var SASS_FILES = [ './sass/**/*.scss']; 
+ 
 
 /* livereload loads this page you only get one  
  * 
@@ -28,12 +29,13 @@ global._publicDir = publicDir;
  */
 var pageURL = 'http://localhost:3000';
 
-/**
- * 
- * task for pre compiling sass
- */
-gulp.task('sass', function () {
-    gulp.src('./sass/**/*.scss')
+
+var sassProcess =
+        
+            
+            function () {
+                
+             return gulp.src(SASS_FILES)
             .pipe(sass().on('error', sass.logError))
             .pipe(concat('style.css'))
             // .pipe(uglifycss())
@@ -43,85 +45,52 @@ gulp.task('sass', function () {
                    livereload.reload(pageURL);
             });
 
+}
+         
+
+gulp.task('sass', function () {
+    sassProcess();
+
 });
 
+ 
 
-gulp.task('build-react', function () {
+
+ function Bundle() {
+
     
-    var reactBundler = browserify({
-        entries: ['./front-end/react/app.js'],
-        transform: ["babelify", {"presets": ["es2015","react"]}],
+    
+    var Bundler = browserify({
+        entries: './front-end/react/index.js',
+        transform: [["babelify", {"presets": ["es2015","react"]}]],
         extensions: ['.js'],
         debug: true,
-        
         cache: {},
         packageCache: {},
         fullPaths: true
-    });
-    function reactBundle() {
-        return reactBundler
-                .bundle()
-                .on('error', reportError);
+    });  
+    return Bundler
+            .bundle()
+            .on('error', notify);
+}
 
-    }
-    reactBundle()
+gulp.task('react-build', function () {
+    Bundle()
             .pipe(source('bundle.js'))
-            //.pipe(streamify(uglify()))
-            .pipe(gulp.dest('public/js/react'));
-    
-    
-    
-    
-});
-
-
-gulp.task('react-backend', function () {
-
-    livereload.listen();
-    var reactPageUrl = 'http://localhost:3000/restaurantReact.doc';
-    
-
-    nodemon(
-            {
-                script: 'server.js',
-                 
-                // watch: ['*.js'],
-                ext: 'js css ejs jsx',
-                ignore: ['./gulpfile.js'],
-                tasks: function (changedFiles)
-                {
-                    var tasks = [];
-                  
-                    changedFiles.forEach(function (file)
-                    {
-                        gutil.log(path.basename(file));
-                        
-                        //
-
-                    });
-
-                    return tasks;
-
-                }
-
-            }).on('restart', function ()
-    {
-        gutil.log('react restarted!');
-        livereload.reload(reactPageUrl);
-        livereload.reload(reactPageUrl);
-         
-    });
+        //    .pipe(gulpif(argv.production, streamify(uglify())))
+       //     .pipe(gulpif(argv.production, rename({suffix: '.min'})))
+            .pipe(gulp.dest(targetLocation+'/js/'))
+            .on('finish', function ( ) {
+                gutil.log("build bundle end");
+                 livereload.reload(pageURL);
+            });
+    ;
 });
 
 
 
-
-
-
-
-
-
- 
+/////////
+///////////////////////////////////////////////////////////////////////////////
 /**
  * task for reloading for backend, eg route changes
  * takes 3-4 seconds, will also pick up public css and js
@@ -130,21 +99,23 @@ gulp.task('react-backend', function () {
 gulp.task('backend', function () {
 
     livereload.listen();
-
+    console.log("zzzz "+path.dirname('.gulpfile.js'))
     nodemon(
             {
                 script: 'server.js',
+                verbose: true,
                 ext: 'js ejs',
-                ignore: ['./gulpfile.js','./front-end/**/*.js','./public_html/js/**/*.js'],
+                watch: ['./app'],
+               // ignore: ['./front-end/*','./public_html/js/*'],
                 tasks: function (changedFiles)
                 {
                     var tasks = [];
                     changedFiles.forEach(function (file)
                     {
-                        gutil.log("file "+ path.dirname(file)+" "+/views/.test(path.dirname(file)) );
+                        //gutil.log("file "+ path.dirname(file)+" "+/views/.test(path.dirname(file)) );
                         if (path.extname(file) === '.js' && /react/.test(path.dirname(file))    && !~tasks.indexOf('react'))
                         {
-                          console.log("react js file")
+                          //console.log("react js file")
                         }
                          
                         //
@@ -171,37 +142,34 @@ gulp.task('backend', function () {
  * involve server reboot, so will be faster on refresh
  */
 
-var watchItems = ['./views/**/*.ejs', './public/**/*.js', './public/**/*.css'];
 
-/*
- * start server
- */
-gulp.task('server-start', function (cb) {
-    exec('node ./server.js', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
-});
+
+ 
 
 gulp.task('frontend-watch', function () {
 
-    livereload.listen();
+    watch(SASS_FILES, function (events, done) {
 
-    watch(watchItems, function (events, done) {
-
-
-        console.log("processing change in watched items");
-        livereload.reload(pageURL);
-
+        sassProcess()
+                .on('finish', function ( ) {
+                    gutil.log("processing change in css");
+                    livereload.reload(pageURL);
+                });
 
     });
+
+    watch(REACT_FILES, function (events, done) {
+
+        gulp.start('react-build');
+    });
+
+    
 
  
 
 });
 
-gulp.task('frontend', ['server-start', 'frontend-watch']);
+gulp.task('default', ['backend', 'frontend-watch']);
 
 /* end fronend task ---------------------------------------- */
 
