@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Tree, {TreeNode} from 'rc-tree';
+import deviantService from './../services/deviantService';
+import postal from 'postal';
 
 
 function generateTreeNodes(treeNode) {
@@ -57,16 +59,48 @@ const categoryTree = React.createClass({
     };
   },
   componentDidMount() {
+      
+      var me = this;
+      
+//       postal.subscribe({
+//            channel: "deviant-system",
+//            topic: "categoryData",
+//            callback: function (data, envelope) {
+//                
+//                var leafMarked = data.categories.map((cat) => 
+//                        {
+//                            
+//                     var item = {};
+//                     Object.assign(item,cat)
+//             
+//                     item.isLeaf = !cat.has_subcategory;
+//                     return item;
+//                            
+//                })
+//                
+//                
+//                
+//                me.setState({treeData: leafMarked})
+//            }
+//        });  
+      
+      
+      
     setTimeout(() => {
       this.setState({
         treeData: [
-          {name: 'pNode 01', key: '0-0'},
+          {name: 'pNode 01', key: '0-0',children:[{'name':'fred','key':'0-0-4'}]},
           {name: 'pNode 02', key: '0-1'},
           {name: 'pNode 03', key: '0-2', isLeaf: true},
         ],
         checkedKeys: ['0-0'],
       });
     }, 100);
+
+    deviantService.getCategories(null);
+
+
+
   },
   onSelect(info) {
     console.log('selected', info);
@@ -78,6 +112,8 @@ const categoryTree = React.createClass({
     });
   },
   onLoadData(treeNode) {
+      
+      console.log(treeNode.props.key)
     return new Promise((resolve) => {
       setTimeout(() => {
         const treeData = [...this.state.treeData];

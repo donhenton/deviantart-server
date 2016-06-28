@@ -15,8 +15,8 @@ module.exports = function (app, daService) {
     
     var processGetCategories = function (req, res) {
         var url_parts = url.parse(req.url);
-        var path = url_parts.pathname.replace('/getCategories','');
-       // console.log('replaced '+path);
+        var path = url_parts.pathname.replace('/deviant/getCategories','');
+         console.log('replaced '+path);
          
         if (path === '' || !path)
         {
@@ -40,7 +40,7 @@ module.exports = function (app, daService) {
     }
      
     
-    app.get(['/getCategories','/getCategories*'], processGetCategories);
+    app.get(['/deviant/getCategories','/deviant/getCategories*'], processGetCategories);
      
 
 };

@@ -22,13 +22,13 @@ module.exports = function (conf) {
         }
         var currentTime = moment();
         var diff = Math.abs(currentTime.diff(lastUpdateTime,'seconds'));
-        console.log("diff is "+diff)
+        //console.log("diff is "+diff)
         if (diff > 3500)
         {
             
             return false;
         }
-        console.log("diff "+diff);
+        //console.log("diff "+diff);
         return true;
          
     }
