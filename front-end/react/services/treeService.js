@@ -71,6 +71,7 @@ addKeys:  function(categoryData,data)
                 currentTreeNode.key= k;
                 currentTreeNode.children = [];
                 currentTreeNode.name = newStore[k].title;
+                currentTreeNode.has_subcategory = newStore[k].has_subcategory;
                 pNode.children.push(currentTreeNode);
                 parentNodes.push(currentTreeNode);
                 break;
@@ -94,6 +95,7 @@ addKeys:  function(categoryData,data)
              currentTreeNode.key= k;
              currentTreeNode.children = [];
              currentTreeNode.name = newStore[k].title;
+             currentTreeNode.has_subcategory = newStore[k].has_subcategory;
              treeData.push(currentTreeNode);
              parentNodes.push(currentTreeNode);
               

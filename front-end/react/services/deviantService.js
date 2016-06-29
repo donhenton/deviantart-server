@@ -44,16 +44,6 @@ class DeviantService
         {
             var data = JSON.parse(dataAsString)
              
-//            var simpleData = data.categories.map((cat)=>{
-//                
-//                var s = {};
-//                s.name = cat.title;
-//                s.key = cat.catpath;
-//                s.catpath = cat.catpath;
-//                s.has_subcategory = cat.has_subcategory;
-//                 return s;
-//                
-//            })
             
             var processedData = treeService.addKeys(data,me.baseData);
             
@@ -62,7 +52,7 @@ class DeviantService
             postal.publish({
                 channel: "deviant-system",
                 topic: "categoryData" ,
-                data: {label: categoryLabel, categories: processedData} 
+                data: {label: categoryLabel, fullData: processedData} 
             });
         }) 
         .catch(function(err) {

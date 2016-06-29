@@ -27,18 +27,8 @@ const categoryTree = React.createClass({
              topic: "categoryData",
              callback: function (data, envelope) {
                  
-                 var leafMarked = data.categories.treeData.map((cat) => 
-                         {
-                             
-                      var item = {};
-                      Object.assign(item,cat)
-              
-                      item.isLeaf = (item.children.length == 0);
-                      return item;
-                             
-                 })
 
-                 me.setState({treeData: leafMarked})
+                 me.setState({treeData: data.fullData.treeData, store: data.fullData.store})
              }
          });  
       
@@ -59,31 +49,18 @@ const categoryTree = React.createClass({
     });
   },
   onLoadData(treeNode) {
-      console.log("current Request "+treeNode.props.eventKey);
+     // console.log("current Request "+treeNode.props.eventKey);
       var me = this;
+
       var retVal = deviantService.getCategories(treeNode.props.eventKey,false);
       
       retVal.then(function(data)
       {
-          me.setState({treeData: data.treeData});
+          me.setState({treeData: data.treeData,store: data.store});
       });
+           
+      return retVal;        
       
-      
-      return retVal;
-      
-      
-      
-      
-      
-//       
-//    return new Promise((resolve) => {
-//      setTimeout(() => {
-//        const treeData = [...this.state.treeData];
-//        getNewTreeData(treeData, treeNode.props.eventKey, generateTreeNodes(treeNode), 2);
-//        this.setState({treeData});
-//        resolve();
-//      }, 500);
-//    });
   },
   render() {
     const loop = (data) => {
@@ -91,7 +68,7 @@ const categoryTree = React.createClass({
         if (item.children) {
           return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
         }
-        return <TreeNode title={item.name} key={item.key} isLeaf={item.isLeaf}  />;
+        return <TreeNode title={item.name} key={item.key} isLeaf={(item.children.length==0)}  />;
       });
     };
     const treeNodes = loop(this.state.treeData);
