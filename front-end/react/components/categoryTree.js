@@ -65,10 +65,13 @@ const categoryTree = React.createClass({
   render() {
     const loop = (data) => {
       return data.map((item) => {
-        if (item.children) {
+         // console.log(item.key + " has "+item.has_subcategory)
+          
+          
+        if (item.children.length > 0) {
           return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
         }
-        return <TreeNode title={item.name} key={item.key} isLeaf={(item.children.length==0)}  />;
+        return <TreeNode title={item.name} key={item.key} isLeaf={!(item.has_subcategory)}  />;
       });
     };
     const treeNodes = loop(this.state.treeData);
