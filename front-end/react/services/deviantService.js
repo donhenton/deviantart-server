@@ -30,10 +30,11 @@ class DeviantService
          
             if (me.cache[categoryLabel])
             {
-               // var processedData = me.cache[categoryLabel];
+                
                 return new Promise((resolve) => {
-                        resolve();
-                        return me.baseData;
+                         
+                        resolve(me.baseData);
+                       
                     });
             }
             else
