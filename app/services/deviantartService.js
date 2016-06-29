@@ -93,11 +93,60 @@ module.exports = function (conf) {
         e["errorClass"] = classVar;
         return e;
     };
-    daoService.getCategories = function(path)
+    
+    
+    daoService.searchTags = function(searchString)
     {
-        var deferredResult = Q.defer();
         var success = function(validatedAccessToken)
         {
+            var deferredResult = Q.defer();
+            var options = {
+            method: 'GET',
+            uri: baseURI+'/browse/tags/search',
+            json: true,
+            gzip: true,
+            headers:
+                    {
+                        'User-Agent': 'Request-Promise'
+                    },
+            qs:
+                    {
+                        tag_name: searchString,
+                        access_token: validatedAccessToken
+                    }
+
+            };
+            rp(options)
+                .then(function (body) {
+                    //console.log("category stuff " + typeof body);
+                     deferredResult.resolve(body);
+                    
+                })
+                .catch(function (err) {
+
+                   // console.log("error in  categories service\n\n\n" + err.message);
+                    deferredResult.reject(err);
+                    
+                });
+            
+            
+            return deferredResult.promise;
+            
+        }//end success
+        
+        
+        
+         return getCredentials().then(success, console.error);
+    }
+    
+    
+    
+    daoService.getCategories = function(path)
+    {
+        
+        var success = function(validatedAccessToken)
+        {
+           var deferredResult = Q.defer();
            var options = {
             method: 'POST',
             uri: baseURI+'/browse/categorytree',

@@ -24,24 +24,46 @@ module.exports = function (app, daService) {
         }
          
         daService.getCategories(path).then(function (data)
-        {
-            res.json(data);
-        },
-        
-        function (err)
-        {
-            reportError(res, err.toString());
-        }
+            {
+                res.json(data);
+            },
+
+            function (err)
+            {
+                reportError(res, err.toString());
+            }
 
 
         );
 
 
     }
+    
+    var processTagSearch = function(req,res)
+    {
+        
+        var tagName = req.query.tag_name;
+      //  tagName = tagName.replace(/ +?/g, '');
+         
+        daService.searchTags(tagName).then(function (data)
+            {
+                res.json(data);
+            },
+
+            function (err)
+            {
+                reportError(res, err.toString());
+            }
+
+
+        ); 
+         
+         
+    }
      
     
     app.get(['/deviant/getCategories','/deviant/getCategories*'], processGetCategories);
-     
+    app.get(['/deviant/tagSearch' ], processTagSearch); 
 
 };
 
