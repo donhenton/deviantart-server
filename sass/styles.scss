@@ -26,7 +26,63 @@ $box-width: 500px;
     
 }
 
- 
+
+.tagSearchContainer
+{
+    width: 500px;
+    position: relative;
+     
+    
+    .tagSearchInput
+        {
+             
+            float:left;
+            background-color:#FFF;
+            min-height:30px;
+            margin-top: 1px;
+            height:30px;
+            width:400px;
+            font-family:graphikExtralight,Helvetica,Arial,sans-serif;
+            font-size:1.8em;
+            font-weight:100;
+            border: none;
+             
+        }
+        
+      .search
+      {
+           float: right;
+            font-size:30px;
+            margin-right: 10px;
+      }
+        
+     .entryBoxContainer
+        {
+            background-color: white;
+            height: 35px;
+            border: thin solid $green-color; 
+             
+
+        }   
+    .tagSearchList
+    {
+        margin-top: 3px;
+        border: 1px solid #ccc;
+        top: 33px;
+        width: 430px;
+        position: absolute;
+        z-index: 5;
+        background-color: white;
+        
+    }
+    
+    .waitIndicator
+    {
+         margin-left: 10px;
+    }
+    
+    
+}
 
 
 
