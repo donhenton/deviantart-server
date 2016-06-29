@@ -463,5 +463,10 @@ body {
     position: absolute;
     z-index: 5;
     background-color: white; }
+    .tagSearchContainer .tagSearchList .tagSearchItem {
+      border-bottom: 1px solid #ccc;
+      padding: 5px;
+      font-size: 20px;
+      cursor: pointer; }
   .tagSearchContainer .waitIndicator {
     margin-left: 10px; }

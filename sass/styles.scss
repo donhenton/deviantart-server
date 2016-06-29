@@ -8,9 +8,9 @@
 
 
 body {
-    
-     z-index: 0;
-     
+
+    z-index: 0;
+
 }
 
 
@@ -18,12 +18,12 @@ $box-width: 500px;
 
 .categoryTree
 {
-    
+
     overflow: auto;
     height: 300px;
     border: $blue-color double;
     width: 80%;
-    
+
 }
 
 
@@ -31,39 +31,41 @@ $box-width: 500px;
 {
     width: 500px;
     position: relative;
-     
-    
-    .tagSearchInput
-        {
-             
-            float:left;
-            background-color:#FFF;
-            min-height:30px;
-            margin-top: 1px;
-            height:30px;
-            width:400px;
-            font-family:graphikExtralight,Helvetica,Arial,sans-serif;
-            font-size:1.8em;
-            font-weight:100;
-            border: none;
-             
-        }
-        
-      .search
-      {
-           float: right;
-            font-size:30px;
-            margin-right: 10px;
-      }
-        
-     .entryBoxContainer
-        {
-            background-color: white;
-            height: 35px;
-            border: thin solid $green-color; 
-             
 
-        }   
+
+    .tagSearchInput
+    {
+
+        float:left;
+        background-color:#FFF;
+        min-height:30px;
+        margin-top: 1px;
+        height:30px;
+        width:400px;
+        font-family:graphikExtralight,Helvetica,Arial,sans-serif;
+        font-size:1.8em;
+        font-weight:100;
+        border: none;
+
+    }
+
+
+
+    .search
+    {
+        float: right;
+        font-size:30px;
+        margin-right: 10px;
+    }
+
+    .entryBoxContainer
+    {
+        background-color: white;
+        height: 35px;
+        border: thin solid $green-color; 
+
+
+    }   
     .tagSearchList
     {
         margin-top: 3px;
@@ -73,15 +75,25 @@ $box-width: 500px;
         position: absolute;
         z-index: 5;
         background-color: white;
-        
+
+
+        .tagSearchItem
+        {
+            border-bottom: 1px solid #ccc;
+            
+            padding: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
     }
-    
+
     .waitIndicator
     {
-         margin-left: 10px;
+        margin-left: 10px;
     }
-    
-    
+
+
 }
 
 
