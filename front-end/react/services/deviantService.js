@@ -17,14 +17,13 @@ class DeviantService
     
     /**
      * labels include slashes
-     * resolvePromise 
+     * 
      */
-    getCategories(categoryLabel,resolvePromise)
+    getCategories(categoryLabel)
     {
         var me = this;
         
-        if (!resolvePromise)
-        {
+         
             if (me.cache[categoryLabel])
             {
                 var processedData = me.cache[categoryLabel];
@@ -45,42 +44,9 @@ class DeviantService
                     return processedData;
                 });
             }
-            
-            
-            
-        }
+ 
         
-        
-        this.proxyService.getCategories(categoryLabel)
-        .then(function(dataAsString)
-        {
-            var processedData = null;
-            if (me.cache[categoryLabel])
-            {
-                processedData = me.cache[categoryLabel];
-            }
-            else
-            {
-                var data = JSON.parse(dataAsString)
-                processedData = treeService.addKeys(data,me.baseData);            
-                me.baseData = processedData;
-                me.cache[categoryLabel]= me.baseData;
-            }
-            
-            
-            postal.publish({
-                channel: "deviant-system",
-                topic: "categoryData" ,
-                data: {label: categoryLabel, fullData: processedData} 
-            });
-        }) 
-        .catch(function(err) {
-
-            //"400 - {"message":"key: name Restaurant Name cannot be blank,key: zipCode Zipcode cannot be blank,key: state State cannot be blank,key: city City cannot be blank","errorClass":"com.dhenton9000.restaurant.service.impl.ValidatorFailureException"}"
-
-
-            console.log("error "+err.message)
-        })
+         
           
     }
     

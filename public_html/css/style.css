@@ -426,3 +426,9 @@ section#pageContainer {
 
 body {
   z-index: 0; }
+
+.categoryTree {
+  overflow: auto;
+  height: 300px;
+  border: #16174f double;
+  width: 80%; }
