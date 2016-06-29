@@ -31,9 +31,15 @@ class DeviantService
             if (me.cache[categoryLabel])
             {
                 
-                return new Promise((resolve) => {
-                         
-                        resolve(me.baseData);
+                return new Promise((resolve,reject) => {
+                        if (me.baseData)
+                        {
+                            resolve(me.baseData);
+                        }
+                        else
+                        {
+                            reject(Error("nothing in cache despite what you think"))
+                        }
                        
                     });
             }
