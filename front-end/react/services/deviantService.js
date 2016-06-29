@@ -22,14 +22,18 @@ class DeviantService
     getCategories(categoryLabel)
     {
         var me = this;
+        if (!categoryLabel)
+        {
+            categoryLabel = "/"
+        }
         
          
             if (me.cache[categoryLabel])
             {
-                var processedData = me.cache[categoryLabel];
+               // var processedData = me.cache[categoryLabel];
                 return new Promise((resolve) => {
                         resolve();
-                        return processedData;
+                        return me.baseData;
                     });
             }
             else
@@ -40,8 +44,8 @@ class DeviantService
                     var dData = JSON.parse(data)
                     var processedData =  treeService.addKeys(dData,me.baseData);
                     me.baseData = processedData;
-                    me.cache[categoryLabel] =me.baseData
-                    return processedData;
+                    me.cache[categoryLabel] = 'occupied'
+                    return me.baseData;
                 });
             }
  

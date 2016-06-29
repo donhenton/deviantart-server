@@ -1,18 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-
- 
 import Main from './../components/main';
-import TestPage from './../pages/testPage';
-//import ListCommDemo from './../components/pages/listCommDemo';
-//import ListContainerRow from './../components/listdemo/listContainerRow'; 
-//import ListContainerNoRow from './../components/listdemo/listContainerNoRow';
- 
+import CategoryPage from './../pages/categoryPage';
+import TagSearchPage from './../pages/tagSearchPage'; 
 
 export const createRoutes = () => (
   <Route path="/" component={Main} >
-    <IndexRoute component={TestPage} />
-     
+    <IndexRoute component={CategoryPage} />
+     <Route path="tagSearch" component={TagSearchPage} />
     
   </Route>
 );

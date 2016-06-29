@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-
+import { Link } from 'react-router';
 export default class Main extends Component {
         
   constructor()
@@ -11,7 +11,7 @@ export default class Main extends Component {
         
   render() {
     return (
-      <section id="pageContainer">
+      <div>
       
       <header>
 
@@ -25,12 +25,11 @@ export default class Main extends Component {
 
 
 
-                        <li><aside>Credits<span className="ui-icon ui-icon-circle-triangle-s"></span></aside>
-                            <ul>
-                                <li><a href="/app/home.html">Home</a></li>
-                                <li><a href="/app/credits">Credits</a></li>
-                            </ul>
-                        </li>
+                         
+                                <li><Link to="/">Category Tree</Link></li>
+                                <li><Link to="/tagSearch">Tag Search</Link></li>
+                          
+                        
                     </ul>    
 
 
@@ -49,7 +48,7 @@ export default class Main extends Component {
             </section>
     
     
-      </section>
+      </div>
       
     );
   }
