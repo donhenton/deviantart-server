@@ -26,8 +26,8 @@ export default class Main extends Component {
 
 
                          
-                                <li><Link to="/">Category Tree</Link></li>
-                                <li><Link to="/tagSearch">Tag Search</Link></li>
+                                <li><Link to="/">Tag Search </Link></li>
+                                <li><Link to="/categoryTree"> Category Tree</Link></li>
                           
                         
                     </ul>    

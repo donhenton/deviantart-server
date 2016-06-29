@@ -68,12 +68,12 @@
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url("https://t.alipayobjects.com/images/T1.ANfXhXtXXXXXXXX.png");
+  background-image: url("images/tree-icons.png");
 }
 .rc-tree li span.rc-tree-icon_loading {
   margin-right: 2px;
   vertical-align: top;
-  background: url(https://t.alipayobjects.com/images/rmsweb/T1YxhiXgJbXXXXXXXX.gif) no-repeat scroll 0 0 transparent;
+  background: url("images/wait-small.gif") no-repeat scroll 0 0 transparent;
 }
 .rc-tree li span.rc-tree-switcher.rc-tree-roots_open {
   background-position: -93px -56px;

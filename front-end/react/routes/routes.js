@@ -6,8 +6,8 @@ import TagSearchPage from './../pages/tagSearchPage';
 
 export const createRoutes = () => (
   <Route path="/" component={Main} >
-    <IndexRoute component={CategoryPage} />
-     <Route path="tagSearch" component={TagSearchPage} />
+    <IndexRoute component={TagSearchPage} />
+     <Route path="categoryTree" component={CategoryPage} />
     
   </Route>
 );

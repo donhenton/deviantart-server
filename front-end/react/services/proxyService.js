@@ -7,7 +7,7 @@ export default class ProxyService
     {
             
              this.rootURL = baseURL;
-           
+           //the local node app eg http://localhost:3000/deviant
     }
     
     /**
@@ -30,6 +30,13 @@ export default class ProxyService
     }
     
     
+    searchTags(tagName)
+    {
+ 
+        
+          
+        return rp(this.rootURL+"/tagSearch?tag_name="+tagName);
+    }
     
     
     

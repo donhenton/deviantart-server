@@ -14,6 +14,23 @@ class DeviantService
              
     }
 
+
+    searchTag(searchTag)
+    {
+        var me = this;
+        return this.proxyService.searchTags(searchTag)
+              .then(function(data)
+              {
+                  var dData = JSON.parse(data)
+                  var newData = dData.results.map((t)=>{
+
+                      return {value: t.tag_name, label: t.tag_name}
+                  })
+                  return newData;
+              });
+        
+        
+    }
     
     /**
      * labels include slashes
