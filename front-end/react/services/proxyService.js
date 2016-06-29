@@ -7,8 +7,7 @@ export default class ProxyService
     {
             
              this.rootURL = baseURL;
-        
-             
+           
     }
     
     /**
@@ -24,6 +23,8 @@ export default class ProxyService
              
             categoryPath = categoryLabel;
         }
+        
+        
           
         return rp(this.rootURL+"/getCategories"+categoryPath);
     }

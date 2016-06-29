@@ -7,13 +7,10 @@ class DeviantService
 
     constructor()
     {
-            var baseURL = 'http://'+location.hostname+":"+ location.port+'/deviant';
-            this.proxyService = 
-                    new ProxyService(baseURL);
-            
-            
-            console.log("base "+baseURL)
+        var baseURL = 'http://'+location.hostname+":"+ location.port+'/deviant';
+        this.proxyService =    new ProxyService(baseURL);
         this.baseData = null;
+        this.cache = {};
              
     }
 
@@ -28,26 +25,48 @@ class DeviantService
         
         if (!resolvePromise)
         {
-            return this.proxyService.getCategories(categoryLabel)
-                    .then(function(data)
+            if (me.cache[categoryLabel])
             {
-                var dData = JSON.parse(data)
-                var processedData =  treeService.addKeys(dData,me.baseData);
-                 me.baseData = processedData;
-                return processedData;
-            });
+                var processedData = me.cache[categoryLabel];
+                return new Promise((resolve) => {
+                        resolve();
+                        return processedData;
+                    });
+            }
+            else
+            {
+                return this.proxyService.getCategories(categoryLabel)
+                    .then(function(data)
+                {
+                    var dData = JSON.parse(data)
+                    var processedData =  treeService.addKeys(dData,me.baseData);
+                    me.baseData = processedData;
+                    me.cache[categoryLabel] =me.baseData
+                    return processedData;
+                });
+            }
+            
+            
+            
         }
         
         
         this.proxyService.getCategories(categoryLabel)
         .then(function(dataAsString)
         {
-            var data = JSON.parse(dataAsString)
-             
+            var processedData = null;
+            if (me.cache[categoryLabel])
+            {
+                processedData = me.cache[categoryLabel];
+            }
+            else
+            {
+                var data = JSON.parse(dataAsString)
+                processedData = treeService.addKeys(data,me.baseData);            
+                me.baseData = processedData;
+                me.cache[categoryLabel]= me.baseData;
+            }
             
-            var processedData = treeService.addKeys(data,me.baseData);
-            
-            me.baseData = processedData;
             
             postal.publish({
                 channel: "deviant-system",
