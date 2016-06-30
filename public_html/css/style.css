@@ -268,7 +268,7 @@ nav.topMenu {
           color: #f6f1ed;
           opacity: 1; }
         nav.topMenu ul li aside span.ui-icon {
-          display: inline-table;
+          display: inline;
           margin-right: 5px;
           float: right; }
       nav.topMenu ul li a {

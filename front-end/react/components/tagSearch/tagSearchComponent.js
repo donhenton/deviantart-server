@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import deviantService from './../../services/deviantService';
-
+import ReactDOM from 'react-dom';
 export default class TagSearchPage extends Component  
 {
     
@@ -13,8 +13,27 @@ export default class TagSearchPage extends Component
   
   componentWillMount()
   {
-      this.state = {'value': "",options: [], downloading: false}
+      this.state = {'value': "",options: [], downloading: false};
+      window.document.addEventListener('click', this.handleDocumentClick.bind(this));
+      
   }
+  
+  componentWillUnmount () {
+    window.document.removeEventListener('click', this.handleDocumentClick)
+  }
+  
+  handleDocumentClick(evt) {
+//    const area = ReactDOM.findDOMNode(this.refs.area);
+//
+//    if (!area.contains(evt.target)) {
+         // this.props.onClickOutside(evt)
+         console.log("clearing dropdown")
+         this.setState({value: "", options: [],downloading: false})
+         
+    //}
+  }
+  
+  
         
   renderOptions()
   {
