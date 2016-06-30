@@ -1,6 +1,9 @@
 import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router';
+import deviantService from './../services/stateful/imageLoader';
+
+
 export default class Main extends Component {
         
   constructor()

@@ -24,21 +24,13 @@ export default class ImageComponent extends Component
   
   componentWillMount()
   {
-      this.state = {'tag': null};
+      this.state = {'tag': null,imagePageData: null};
       var me = this;
       
       
       
       //data:  {tag: tagName}
-       postal.subscribe({
-                channel: "deviant-system",
-                        topic: "select-tag",
-                        callback: function (data, envelope) {
-                              
-                                me.setState({'tag': data.tag});
-                             
-                        }
-               });
+
  
   }
   

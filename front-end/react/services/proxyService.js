@@ -39,6 +39,18 @@ export default class ProxyService
     }
     
     
+    getTagImages(tag,offset,limit)
+    {
+        return rp(this.rootURL+"/tagImages?tag="+tag
+                  +"&offset="+offset
+                  +"&limit="+limit
+                    
+                    
+                    
+                    );
+    }
+    
+    
     
 }
 

@@ -1,6 +1,6 @@
 import ProxyService from './proxyService';
 import postal from 'postal';
-import treeService from './treeService';
+import treeService from './processing/treeService';
 
 class DeviantService
     {
@@ -78,7 +78,10 @@ class DeviantService
           
     }
     
-    
+     getTagImages(tag,offset,limit)
+     {
+         return this.proxyService.getTagImages(tag,offset,limit)
+     }
     
     
     
