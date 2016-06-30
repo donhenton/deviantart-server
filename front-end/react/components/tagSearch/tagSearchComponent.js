@@ -2,6 +2,10 @@ import React from 'react';
 import { Component } from 'react';
 import deviantService from './../../services/deviantService';
 import ReactDOM from 'react-dom';
+import postal from 'postal';
+
+
+
 export default class TagSearchPage extends Component  
 {
     
@@ -23,16 +27,28 @@ export default class TagSearchPage extends Component
   }
   
   handleDocumentClick(evt) {
-//    const area = ReactDOM.findDOMNode(this.refs.area);
-//
-//    if (!area.contains(evt.target)) {
-         // this.props.onClickOutside(evt)
-         console.log("clearing dropdown")
-         this.setState({value: "", options: [],downloading: false})
+ 
+         var classVar = $(evt.target).attr('class');
+         //click on a tag search list item doesn't reset state
+         if (classVar === 'tagSearchItem' || classVar === 'tagSearchInput')
+         {
+             return;
+         }
          
-    //}
+         this.resetState();
+         
+     
   }
   
+  onTagClick(tagName)
+  {
+      console.log("clicked "+tagName)
+      postal.publish({
+               channel: "deviant-system",
+               topic: "select-tag" ,
+               data:  {tag: tagName}
+            });
+  }
   
         
   renderOptions()
@@ -40,10 +56,11 @@ export default class TagSearchPage extends Component
       
        let opts = [];
        let idx = 0;
+       let me = this;
       
       this.state.options.map((o) => {
           
-          opts.push (<div className="tagSearchItem" key={idx}>{o.label}</div>)
+          opts.push (<div className="tagSearchItem" onClick={me.onTagClick.bind(me,o.value)} key={idx}>{o.label}</div>)
           idx ++ ;
           
       })
@@ -54,7 +71,7 @@ export default class TagSearchPage extends Component
   getCSSForList(cssBase)
   {
       var css = cssBase + " "
-      if (this.state.options.length === 0)
+      if (this.state.value.length===0 && this.state.options.length === 0)
       {
          css = css + "hidden" 
       }
@@ -70,12 +87,21 @@ export default class TagSearchPage extends Component
       }
       return css;
   }
+  
+  
+  resetState()
+  {
+      
+      this.setState({value: "", options: [],downloading: false})
+ 
+  }
+  
   onKeyUp(e)
   {
        
       if (e.keyCode == 27)
       {
-           this.setState({value: "", options: [],downloading: false})
+           this.resetState();
       }
       
   }
@@ -112,7 +138,7 @@ export default class TagSearchPage extends Component
     
  
     getOptions(searchTag) {
-            console.log("search for '"+searchTag+"'")
+           // console.log("search for '"+searchTag+"'")
             var me = this;
             if (searchTag && searchTag.length >=3)
             {
