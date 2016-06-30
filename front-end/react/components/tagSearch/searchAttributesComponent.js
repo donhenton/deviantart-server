@@ -54,7 +54,7 @@ export default class SearchAttributesComponent extends Component
       var me = this;
     return (
        
-        <div className="imageContainer">
+        <div className="searchAttributes">
              Selected Tag: {me.state.tag}
             
        </div>

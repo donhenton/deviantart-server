@@ -80,7 +80,7 @@ $box-width: 500px;
         .tagSearchItem
         {
             border-bottom: 1px solid #ccc;
-            
+
             padding: 5px;
             font-size: 20px;
             cursor: pointer;
@@ -96,5 +96,33 @@ $box-width: 500px;
 
 }
 
+//http://alijafarian.com/responsive-image-grids-using-css/
+.imageContainer
+{
+    -moz-column-count: 4;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 0px;
+    column-count: 4;
+    column-gap: 0px;
+    width: 550px;
+    border: thin solid brown;
+    
+    .deviationThumb
+    {
 
+
+        
+
+
+        img
+        {
+            margin: 5px;
+            width: 100%;
+
+        }
+
+
+    }
+}
 

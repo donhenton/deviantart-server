@@ -470,3 +470,16 @@ body {
       cursor: pointer; }
   .tagSearchContainer .waitIndicator {
     margin-left: 10px; }
+
+.imageContainer {
+  -moz-column-count: 4;
+  -moz-column-gap: 0px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 0px;
+  column-count: 4;
+  column-gap: 0px;
+  width: 550px;
+  border: thin solid brown; }
+  .imageContainer .deviationThumb img {
+    margin: 5px;
+    width: 100%; }
