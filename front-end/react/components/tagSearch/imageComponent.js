@@ -60,12 +60,19 @@ export default class ImageComponent extends Component
       if (this.state.imagePageData && this.state.imagePageData.length > 0) 
       {
         newImages =  this.state.imagePageData.map((imgData) => {
-
+            if (imgData.smallestThumb && imgData.smallestThumb.src)
+            {
             return ( 
                     <span  key={imgData.deviationid} className="deviationThumb">
                     <img src={imgData.smallestThumb.src} />
                     </span>
                     )
+            }
+            else
+            {
+                return null;
+            }
+        
 
         })
       }

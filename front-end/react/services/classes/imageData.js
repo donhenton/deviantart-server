@@ -48,27 +48,52 @@ export default class ImageData
                
                this.imageData.results.map((imageHit) => {
                    
-                   let listItem = {};
-                   listItem["deviationid"] = imageHit.deviationid;
-                   listItem["userid"] = imageHit.author.userid;
-                   listItem['preview'] = imageHit.preview.src;
-                   listItem['actualImage'] = imageHit.content.src;
-                   listItem["category"] = imageHit.category;
-                   listItem['categoryPath'] = imageHit.category_path;
-                   
-            
-                   let thumbs = imageHit.thumbs;
-                   thumbs = thumbs.sort(function(a,b)
+                   let listItem = null;
+                   if (imageHit.content && imageHit.content.src  
+                           && imageHit.preview && imageHit.preview.src)
                    {
-                       return a.height > b.height;
-                   })
-                   listItem['thumbs'] = thumbs;
+                        listItem = {};
+
+                        listItem["deviationid"] = imageHit.deviationid;
+                        listItem["userid"] = imageHit.author.userid;
+                         listItem['preview'] = null;
+                        listItem['actualImage'] = null;
+
+
+                        listItem['preview'] = imageHit.preview.src;
+
+                        listItem['actualImage'] = imageHit.content.src;
+
+
+                        listItem["category"] = imageHit.category;
+                        listItem['categoryPath'] = imageHit.category_path;
+
+
+                        let thumbs = imageHit.thumbs;
+                        thumbs = thumbs.sort(function(a,b)
+                        {
+                            return a.height > b.height;
+                        })
+                        listItem['thumbs'] = thumbs;
+
+                       listItem['smallestThumb'] = thumbs[0]
+                  }
                   
-                  listItem['smallestThumb'] = thumbs[0]
-                   
                    
                    return listItem;
                })
+               
+               
+                this.listData = this.listData.filter((o)=>{ 
+                  if (o)
+                      return true;
+                  else
+                      return false;
+
+
+                  })
+               
+               
            }
            
            getListData()
