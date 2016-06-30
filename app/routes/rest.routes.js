@@ -43,7 +43,7 @@ module.exports = function (app, daService) {
     {
         
         var tagName = req.query.tag_name;
-      //  tagName = tagName.replace(/ +?/g, '');
+ 
          
         daService.searchTags(tagName).then(function (data)
             {
@@ -60,10 +60,36 @@ module.exports = function (app, daService) {
          
          
     }
+    
+    var processTagImages = function(req,res)
+    {
+        
+      //  https://www.deviantart.com/api/v1/oauth2/browse/tags
+       var tag  = req.query.tag ;
+       var limit = req.query.limit;
+       var offset = req.query.offset;
+       
+     
+         
+        daService.getTagImages(tag,offset,limit).then(function (data)
+            {
+                res.json(data);
+            },
+
+            function (err)
+            {
+                reportError(res, err.toString());
+            }
+
+
+        ); 
+        
+    }
      
     
     app.get(['/deviant/getCategories','/deviant/getCategories*'], processGetCategories);
     app.get(['/deviant/tagSearch' ], processTagSearch); 
+    app.get(['/deviant/tagImages' ], processTagImages); 
 
 };
 
