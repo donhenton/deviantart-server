@@ -15,6 +15,7 @@ export default class ImageList extends Component
       super();
       this.currentCounter = 0;
       this.loadTargetCount = 0; 
+      this.imageRefs=[];
   }
   
   
@@ -56,24 +57,37 @@ export default class ImageList extends Component
      
   }
  
-  handleImageErrored() {
-     console.log("image error")
+  handleImageErrored(e) {
+     console.log("image error "+$(e.target).id);
+     $(e.target).hide();
      this.currentCounter ++;
      this.counterCompleteCheck();
   }
   
+  computeImageRef(ref)
+  {
+      //css selector in this case img#image-key-5
+       this.imageRefs.push(ref);
+  }
+  
+  
+  
   renderImages()
   {
       var newImages = null;
+      this.imageRefs = [];
+      let me = this;
+      let idx = 0;
       
       if (this.props.imagePageData && this.props.imagePageData.length > 0) 
       {
         newImages =  this.props.imagePageData.map((imgData) => {
             if (imgData.smallestThumb && imgData.smallestThumb.src)
             {
+             idx++;
             return ( 
                     <span  key={imgData.deviationid} className="deviationThumb">
-                    <img onLoad={this.handleImageLoaded.bind(this)}
+                    <img id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
                          onError={this.handleImageErrored.bind(this)}  src={imgData.smallestThumb.src} />
                     </span>
                     )
@@ -101,7 +115,7 @@ export default class ImageList extends Component
   render() {
       var me = this;
     return (
-                <div>
+                <div className="imageListControl">
                  <WaitIndicator isProcessing={this.state.isProcessing} />
                  <div className={me.getListContainerCSS()}>
                       {this.renderImages()}
