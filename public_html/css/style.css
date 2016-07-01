@@ -122,6 +122,12 @@ h4 {
 .hide {
   display: none; }
 
+.visible-visible {
+  visibility: visible; }
+
+.visible-hidden {
+  visibility: hidden; }
+
 .relative {
   position: relative; }
 
@@ -483,7 +489,7 @@ body {
     -webkit-column-gap: 0px;
     column-count: 6;
     column-gap: 0px;
-    width: 97%;
+    width: 750px;
     margin: 0 auto; }
     .imageComponentContainer .imageListContainer .deviationThumb img {
       margin: 5px;

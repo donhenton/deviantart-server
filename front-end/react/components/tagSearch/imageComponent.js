@@ -26,7 +26,7 @@ export default class ImageComponent extends Component
   
   componentWillMount()
   {
-      this.state = {'tag': null,imagePageData: null};
+      this.state = {'tag': null,imagePageData: null,finishedLoading: false};
       var me = this;
       postal.subscribe({
                 channel: "deviant-system",
@@ -38,7 +38,7 @@ export default class ImageComponent extends Component
                                         .then(function(data )
                                 {
                                     me.loadTargetCount = data.length-1;
-                                    me.setState({imagePageData: data})
+                                    me.setState({imagePageData: data,finishedLoading: false})
                                 }).catch(function(err)
                                 {
                                     throw new Error(err.message);
@@ -55,11 +55,13 @@ export default class ImageComponent extends Component
   
   counterCompleteCheck()
   {
+      console.log('current '+this.currentCounter+" target "+this.loadTargetCount)
       if (this.currentCounter == this.loadTargetCount)
       {
           console.log("hit complete!!!!!!!!!!!!")
           this.loadTargetCount = 0;
           this.currentCounter = 0;
+          this.setState({finishedLoading: true});
       }
   }
   
@@ -104,12 +106,19 @@ export default class ImageComponent extends Component
       return newImages;
   }
  
+  getComponentContainerCSS()
+  {
+      let css = "imageComponentContainer  visible-hidden"
+      if (this.state.finishedLoading)
+          css = "imageComponentContainer visible-visible";
+      return css;
+  }
         
   render() {
       var me = this;
     return (
        
-        <div className="imageComponentContainer">
+        <div className={me.getComponentContainerCSS()}>
        
             <div className="imageListContainer">
                  {this.renderImages()}
