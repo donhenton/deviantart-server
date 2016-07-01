@@ -28,8 +28,8 @@ export default class ImageComponent extends Component
                         topic: "select-tag",
                         callback: function (data, envelope) {
                               
-                                me.setState({'tag': data.tag});
-                                me.moveToPage('MORE',data.tag);
+                                me.setState({'tag': data.tag,offset: 0});
+                                me.moveToPage('MORE',data.tag,0);
                              
                         }
                });
@@ -43,12 +43,12 @@ export default class ImageComponent extends Component
   navClick(type)
   {
            
-          this.moveToPage(type,this.state.tag);
+          this.moveToPage(type,this.state.tag,this.state.offset);
  
   }
   
   
-  moveToPage(type,tag)
+  moveToPage(type,tag,offsetStart)
   {
       let me = this;
       me.setState({isProcessing:true});
@@ -56,14 +56,14 @@ export default class ImageComponent extends Component
        
       if (type === 'MORE')
       {
-           offset = offset + this.state.offset;
+           offset = offset + offsetStart;
            
       }
       
       if (type === 'PREVIOUS')
       {
           
-           offset = this.state.offset - 2*(imageCount-1)
+           offset = offsetStart - 2*(imageCount-1)
            if (offset < 0)
            {
                offset = 0;
@@ -87,7 +87,7 @@ export default class ImageComponent extends Component
   
   getButtonCSS(type)
   {
-      let css = "btn btn-primary btn-small";
+      let css = "btn btn-primary";
       if (!this.state.imagePageData)
       {
           return  css + " hidden";
@@ -120,8 +120,8 @@ export default class ImageComponent extends Component
     return (
        <div className="displayComponent">
             <div className="row pagingControls">
-                    <button  onClick={me.navClick.bind(this,"MORE")}    className={me.getButtonCSS('MORE')}>More</button>
-                    <button  onClick={me.navClick.bind(this,"PREVIOUS")} className={me.getButtonCSS('PREVIOUS')}>Previous</button>
+                     <button  onClick={me.navClick.bind(this,"PREVIOUS")} className={me.getButtonCSS('PREVIOUS')}>Previous</button>
+                   <button  onClick={me.navClick.bind(this,"MORE")}    className={me.getButtonCSS('MORE')}>More</button>
                     <span>({this.state.offset})</span>
                   </div>
              <div className="imageComponentContainer">
