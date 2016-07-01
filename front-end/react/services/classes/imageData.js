@@ -58,7 +58,7 @@ export default class ImageData
                         listItem["userid"] = imageHit.author.userid;
                          listItem['preview'] = null;
                         listItem['actualImage'] = null;
-
+                        listItem['url'] = imageHit.url;
 
                         listItem['preview'] = imageHit.preview.src;
 

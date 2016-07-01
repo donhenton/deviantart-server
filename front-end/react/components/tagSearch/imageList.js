@@ -87,8 +87,10 @@ export default class ImageList extends Component
              idx++;
             return ( 
                     <span  key={imgData.deviationid} className="deviationThumb">
+                    <a target="_new" href={imgData.url}>
                     <img id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
                          onError={this.handleImageErrored.bind(this)}  src={imgData.smallestThumb.src} />
+                    </a>
                     </span>
                     )
             }
