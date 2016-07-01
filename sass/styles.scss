@@ -29,7 +29,7 @@ $box-width: 500px;
 
 .tagSearchContainer
 {
-    width: 500px;
+    width: 400px;
     position: relative;
 
 
@@ -41,7 +41,7 @@ $box-width: 500px;
         min-height:30px;
         margin-top: 1px;
         height:30px;
-        width:400px;
+        width:300px;
         font-family:graphikExtralight,Helvetica,Arial,sans-serif;
         font-size:1.8em;
         font-weight:100;
@@ -71,7 +71,7 @@ $box-width: 500px;
         margin-top: 3px;
         border: 1px solid #ccc;
         top: 33px;
-        width: 430px;
+        width: 330px;
         position: absolute;
         z-index: 5;
         background-color: white;
@@ -98,18 +98,23 @@ $box-width: 500px;
 
 .imageComponentContainer
 {
-
+    height: 510px;
+    padding: 10px;
+    overflow: auto;
+    border: thin solid $red-color;
 //http://alijafarian.com/responsive-image-grids-using-css/
 .imageListContainer
 {
-    -moz-column-count: 4;
+    -moz-column-count: 6;
     -moz-column-gap: 0px;
-    -webkit-column-count: 4;
+    -webkit-column-count: 6;
     -webkit-column-gap: 0px;
-    column-count: 4;
+    column-count: 6;
     column-gap: 0px;
-    width: 550px;
-    border: thin solid brown;
+    width: 97%;
+    margin: 0 auto;
+     
+    
     
     .deviationThumb
     {
