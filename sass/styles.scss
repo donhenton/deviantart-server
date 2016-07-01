@@ -96,8 +96,11 @@ $box-width: 500px;
 
 }
 
+.imageComponentContainer
+{
+
 //http://alijafarian.com/responsive-image-grids-using-css/
-.imageContainer
+.imageListContainer
 {
     -moz-column-count: 4;
     -moz-column-gap: 0px;
@@ -126,3 +129,4 @@ $box-width: 500px;
     }
 }
 
+}

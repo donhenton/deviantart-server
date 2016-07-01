@@ -471,7 +471,7 @@ body {
   .tagSearchContainer .waitIndicator {
     margin-left: 10px; }
 
-.imageContainer {
+.imageComponentContainer .imageListContainer {
   -moz-column-count: 4;
   -moz-column-gap: 0px;
   -webkit-column-count: 4;
@@ -480,6 +480,6 @@ body {
   column-gap: 0px;
   width: 550px;
   border: thin solid brown; }
-  .imageContainer .deviationThumb img {
+  .imageComponentContainer .imageListContainer .deviationThumb img {
     margin: 5px;
     width: 100%; }
