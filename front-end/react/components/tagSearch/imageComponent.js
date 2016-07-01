@@ -34,12 +34,12 @@ export default class ImageComponent extends Component
                         topic: "select-tag",
                         callback: function (data, envelope) {
                               
-                                me.setState({'tag': data.tag});
+                                me.setState({'tag': data.tag,isProcessing:true});
                                 imageLoader.getPage(data.tag,0, imageCount)
                                         .then(function(data )
                                 {
                                     me.loadTargetCount = data.length-1;
-                                    me.setState({imagePageData: data,isProcessing: true})
+                                    me.setState({imagePageData: data})
                                 }).catch(function(err)
                                 {
                                     throw new Error(err.message);
@@ -109,23 +109,29 @@ export default class ImageComponent extends Component
  
   getListContainerCSS()
   {
-      let css = "imageListContainer visible-visible";
+      let css = "imageListContainer row visible-visible";
       if (this.state.isProcessing)
-          css =  "imageListContainer  visible-hidden";
+          css =  "imageListContainer row visible-hidden";
       return css;
   }
         
   render() {
       var me = this;
     return (
-       
-        <div className="imageComponentContainer">
-            
-            <WaitIndicator isProcessing={this.state.isProcessing} />
-            <div className={me.getListContainerCSS()}>
-                 {this.renderImages()}
+       <div className="pagingComponent">
+            <div className="row">
+                    <button className="btn btn-primary">Page</button>
+                  </div>
+             <div className="imageComponentContainer">
 
-           </div>
+                 <WaitIndicator isProcessing={this.state.isProcessing} />
+
+                 <div className={me.getListContainerCSS()}>
+                      {this.renderImages()}
+
+                </div>
+
+             </div>
         </div>
         
     );
