@@ -5,6 +5,7 @@ import deviantService from './../../services/deviantService';
 import imageLoader from './../../services/imageLoader';
 import ReactDOM from 'react-dom';
 import postal from 'postal';
+import WaitIndicator from './../waitIndicator';
 
 
 export const imageCount = 25;
@@ -26,7 +27,7 @@ export default class ImageComponent extends Component
   
   componentWillMount()
   {
-      this.state = {'tag': null,imagePageData: null,finishedLoading: false};
+      this.state = {'tag': null,imagePageData: null,isProcessing: false};
       var me = this;
       postal.subscribe({
                 channel: "deviant-system",
@@ -38,7 +39,7 @@ export default class ImageComponent extends Component
                                         .then(function(data )
                                 {
                                     me.loadTargetCount = data.length-1;
-                                    me.setState({imagePageData: data,finishedLoading: false})
+                                    me.setState({imagePageData: data,isProcessing: true})
                                 }).catch(function(err)
                                 {
                                     throw new Error(err.message);
@@ -61,7 +62,7 @@ export default class ImageComponent extends Component
           console.log("hit complete!!!!!!!!!!!!")
           this.loadTargetCount = 0;
           this.currentCounter = 0;
-          this.setState({finishedLoading: true});
+          this.setState({isProcessing: false});
       }
   }
   
@@ -106,11 +107,11 @@ export default class ImageComponent extends Component
       return newImages;
   }
  
-  getComponentContainerCSS()
+  getListContainerCSS()
   {
-      let css = "imageComponentContainer  visible-hidden"
-      if (this.state.finishedLoading)
-          css = "imageComponentContainer visible-visible";
+      let css = "imageListContainer visible-visible";
+      if (this.state.isProcessing)
+          css =  "imageListContainer  visible-hidden";
       return css;
   }
         
@@ -118,9 +119,10 @@ export default class ImageComponent extends Component
       var me = this;
     return (
        
-        <div className={me.getComponentContainerCSS()}>
-       
-            <div className="imageListContainer">
+        <div className="imageComponentContainer">
+            
+            <WaitIndicator isProcessing={this.state.isProcessing} />
+            <div className={me.getListContainerCSS()}>
                  {this.renderImages()}
 
            </div>
