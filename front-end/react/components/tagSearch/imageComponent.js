@@ -56,9 +56,10 @@ export default class ImageComponent extends Component
   render() {
       var me = this;
     return (
-       <div className="pagingComponent">
-            <div className="row">
-                    <button className="btn btn-primary">Page</button>
+       <div className="displayComponent">
+            <div className="row pagingControls">
+                    <button className="btn btn-primary">More</button>
+                    <button className="btn btn-primary">Previous</button>
                   </div>
              <div className="imageComponentContainer">
 
