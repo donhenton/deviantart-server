@@ -26,7 +26,7 @@ class ImageLoader
         {
             let parseData = JSON.parse(data);
             let imageData = new ImageData(parseData);
-            return imageData.getListData();;
+            return imageData.getPageData();;
             
         }).catch(function(err)
         {

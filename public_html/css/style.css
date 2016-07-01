@@ -479,6 +479,11 @@ body {
     top: -40px;
     left: 300; }
 
+.displayComponent .pagingControls {
+  margin-bottom: 10px; }
+  .displayComponent .pagingControls button {
+    margin: 10px; }
+
 .displayComponent .imageComponentContainer {
   height: 410px;
   padding: 10px;

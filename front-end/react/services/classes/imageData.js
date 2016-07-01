@@ -56,15 +56,11 @@ export default class ImageData
 
                         listItem["deviationid"] = imageHit.deviationid;
                         listItem["userid"] = imageHit.author.userid;
-                         listItem['preview'] = null;
+                        listItem['preview'] = null;
                         listItem['actualImage'] = null;
                         listItem['url'] = imageHit.url;
-
                         listItem['preview'] = imageHit.preview.src;
-
                         listItem['actualImage'] = imageHit.content.src;
-
-
                         listItem["category"] = imageHit.category;
                         listItem['categoryPath'] = imageHit.category_path;
 
@@ -98,8 +94,14 @@ export default class ImageData
            
            getListData()
            {
-               return this.clone(this.listData);
+                return this.clone(this.listData);
            }
-           
+           getPageData()
+           {
+                let pageData = {listData: this.clone(this.listData) };
+                pageData['hasMore'] = this.imageData.has_more;
+                pageData['nextOffset'] = this.imageData.next_offset;
+                return pageData;
+           }
           
 }
