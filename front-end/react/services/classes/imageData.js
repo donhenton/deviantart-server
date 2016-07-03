@@ -62,7 +62,7 @@ export default class ImageData
                         listItem['preview'] = imageHit.preview.src;
                         listItem['actualImage'] = imageHit.content.src;
                         listItem["category"] = imageHit.category;
-                        listItem['categoryPath'] = imageHit.category_path;
+                        listItem['categoryPath'] = "/"+imageHit.category_path;
 
 
                         let thumbs = imageHit.thumbs;

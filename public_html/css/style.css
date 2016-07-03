@@ -437,7 +437,7 @@ body {
   overflow: auto;
   height: 300px;
   border: #16174f double;
-  width: 80%; }
+  width: 100%; }
 
 .tagSearchContainer {
   width: 400px;
@@ -498,7 +498,11 @@ body {
     column-gap: 0px;
     width: 750px;
     margin: 0 auto; }
-    .displayComponent .imageComponentContainer .imageListContainer .deviationThumb img {
+    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryHit {
+      opacity: 1; }
+    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryMiss {
+      opacity: 0.5; }
+    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
       margin: 5px;
       width: 100%; }
 
@@ -506,7 +510,6 @@ body {
   background: url("images/spiffygif_96x96.gif") 50% 50% no-repeat;
   width: 765px;
   height: 410px;
-  border: thin solid red;
   position: absolute;
   top: 27%;
   left: 33%;

@@ -33,17 +33,29 @@ export default class ImageList extends Component
   
   componentWillMount()
   {
-       this.state = {isProcessing: false};
-       
+       let me = this;
+       this.state = {isProcessing: false,categories: []};
+       postal.subscribe({
+                channel: "deviant-system",
+                        topic: "select-category",
+                        callback: function (data, envelope) {
+                              
+                              console.log("categories are "+JSON.stringify(data.categories))
+                                me.setState({'categories': data.categories});
+                                 
+                             
+                        }
+               });
+      
  
   }
   
   counterCompleteCheck()
   {
-      console.log('current '+this.currentCounter+" target "+this.loadTargetCount)
+     // console.log('current '+this.currentCounter+" target "+this.loadTargetCount)
       if (this.currentCounter == this.loadTargetCount)
       {
-          console.log("hit complete!!!!!!!!!!!!")
+         // console.log("hit complete!!!!!!!!!!!!")
           this.loadTargetCount = 0;
           this.currentCounter = 0;
           this.setState({isProcessing: false});
@@ -58,8 +70,8 @@ export default class ImageList extends Component
   }
  
   handleImageErrored(e) {
-     console.log("image error "+$(e.target).id);
-     $(e.target).hide();
+     //console.log("image error ");
+     $(e.target).closest('span.deviantThumb').hide();
      this.currentCounter ++;
      this.counterCompleteCheck();
   }
@@ -70,6 +82,36 @@ export default class ImageList extends Component
        this.imageRefs.push(ref);
   }
   
+  computeImageCSS(imgData)
+  {
+      var css = "deviantThumb"
+      if (this.state.categories.length)
+      {
+          var hit = false;
+          for (var i1 = 0;i1<this.state.categories.length;i1++)
+          {
+              let test = this.state.categories[i1];
+              if (imgData.categoryPath.indexOf(test) == 0)
+              {
+                  hit = true;
+                  break;
+              }
+          }
+          
+           
+          if (hit)
+          {
+              css = css + " categoryHit"
+          }
+          else
+          {
+              css = css + " categoryMiss"
+          }
+      }
+      
+      
+      return css;
+  }
   
   
   renderImages()
@@ -85,8 +127,10 @@ export default class ImageList extends Component
             if (imgData.smallestThumb && imgData.smallestThumb.src)
             {
              idx++;
+             var css = me.computeImageCSS(imgData)
             return ( 
-                    <span  key={imgData.deviationid} className="deviationThumb">
+                    <span  key={imgData.deviationid} className={css}>
+                     
                     <a target="_new" href={imgData.url}>
                     <img id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
                          onError={this.handleImageErrored.bind(this)}  src={imgData.smallestThumb.src} />

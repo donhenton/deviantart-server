@@ -4,6 +4,8 @@ import deviantService from './../services/deviantService';
 import TagSearchComponent from './../components/tagSearch/tagSearchComponent';
 import SearchAttributes from './../components/tagSearch/searchAttributesComponent';
 import ImageComponent from './../components/tagSearch/imageComponent';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import CategoryTree from './../components/categoryTree'
 
 export default class TagSearchPage extends Component {
         
@@ -30,7 +32,26 @@ export default class TagSearchPage extends Component {
                     <TagSearchComponent />
                 </div>
 
-
+                <div className="row">
+               <Tabs>
+               
+                <TabList>
+                    <Tab>Categories</Tab>
+                    <Tab>Morgue File</Tab>
+                </TabList>
+        
+        
+                <TabPanel>
+                    <CategoryTree />
+                </TabPanel>
+                <TabPanel>
+                     <h2>Hello from Morgue</h2>
+                </TabPanel>
+               
+               </Tabs>
+                </div>
+                
+                
            </div>
            <div className="columnRight">
 

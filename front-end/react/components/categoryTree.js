@@ -3,11 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Tree, {TreeNode} from 'rc-tree';
 import deviantService from './../services/deviantService';
-
-
- 
-
- 
+import postal from 'postal';
 
 const categoryTree = React.createClass({
   propTypes: {},
@@ -30,10 +26,17 @@ const categoryTree = React.createClass({
 
   },
   onSelect(info) {
-    console.log('selected', info);
+    //console.log('selected', info);
   },
   onCheck(checkedKeys) {
-    console.log(checkedKeys);
+   // console.log(checkedKeys);
+    postal.publish({
+               channel: "deviant-system",
+               topic: "select-category" ,
+               data:  {categories: checkedKeys}
+            });
+    
+    
     this.setState({
       checkedKeys,
     });
@@ -66,16 +69,16 @@ const categoryTree = React.createClass({
     };
     const treeNodes = loop(this.state.treeData);
     return (
-        <div className="columnLeft">
-            <h2>Deviant Art Categories</h2>
+        
+            
             <div className="categoryTree">
-                <Tree onSelect={this.onSelect}
+                <Tree checkStrictly={true} onSelect={this.onSelect}
                       checkable onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
                       loadData={this.onLoadData}>
                   {treeNodes}
                 </Tree>
             </div>
-        </div>
+         
     );
   },
 });
