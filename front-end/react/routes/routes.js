@@ -1,13 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Main from './../components/main';
-import CategoryPage from './../pages/categoryPage';
+ 
 import TagSearchPage from './../pages/tagSearchPage'; 
+import MorgueFoldersPage from './../pages/morgueFoldersPage';
 
 export const createRoutes = () => (
   <Route path="/" component={Main} >
     <IndexRoute component={TagSearchPage} />
-     <Route path="categoryTree" component={CategoryPage} />
+    <Route path="morgueFolders" component={MorgueFoldersPage} />  
     
   </Route>
 );

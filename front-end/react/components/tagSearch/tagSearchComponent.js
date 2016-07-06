@@ -12,23 +12,29 @@ export default class TagSearchPage extends Component
    constructor()
   {
       super();
+      
+      
+      this.handleDocumentClick = this.handleClick.bind(this)
        
   }
   
   componentWillMount()
   {
-      this.state = {'value': "",options: [], downloading: false};
-      window.document.addEventListener('click', this.handleDocumentClick.bind(this));
+      this.state = {'value': "",options: [], downloading: false,initialized: false};
+      console.log("adding handler")
+      window.document.addEventListener('click', this.handleDocumentClick,true);
       
   }
   
   componentWillUnmount () {
-    window.document.removeEventListener('click', this.handleDocumentClick)
+      console.log("removing handler")
+    window.document.removeEventListener('click', this.handleDocumentClick,true)
   }
   
-  handleDocumentClick(evt) {
+  handleClick(evt) {
  
          var classVar = $(evt.target).attr('class');
+         console.log("handle doc click ")
          //click on a tag search list item doesn't reset state
          if (classVar === 'tagSearchItem' || classVar === 'tagSearchInput')
          {

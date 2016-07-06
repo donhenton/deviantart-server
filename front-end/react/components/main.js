@@ -25,17 +25,11 @@ export default class Main extends Component {
 
                     <ul>
 
-
-                <li><aside>Credits</aside>
-                            <ul>
-                                <li><a href="/app/home.html">Home</a></li>
-                                <li><a href="/app/credits">Credits</a></li>
-                            </ul>
-                        </li>
-
+ 
                          
-                                <li><Link to="/">Tag Search </Link></li>
-                                <li><Link to="/categoryTree"> Category Tree</Link></li>
+                                
+                                <li><Link to="/morgueFolders">Morgue Folders</Link></li>
+                                <li><Link to="/">Home</Link></li>
                           
                         
                     </ul>    
