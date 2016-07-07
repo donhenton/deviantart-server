@@ -72,8 +72,8 @@ const categoryTree = React.createClass({
         
             
             <div className="categoryTree">
-                <Tree checkStrictly={true} onSelect={this.onSelect}
-                      checkable onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
+                <Tree checkStrictly={true} onSelect={this.onSelect} showLine={true}
+                      checkable={true} onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
                       loadData={this.onLoadData}>
                   {treeNodes}
                 </Tree>
