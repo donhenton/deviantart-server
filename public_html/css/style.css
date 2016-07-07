@@ -149,6 +149,16 @@ h4 {
 .space-right {
   margin-right: 10px; }
 
+.column50Left {
+  width: 50%;
+  float: left;
+  padding: 10px; }
+
+.column50Right {
+  width: 50%;
+  float: right;
+  padding: 10px; }
+
 .columnLeft {
   width: 30%;
   float: left;
@@ -432,7 +442,8 @@ section#pageContainer {
 
 .folderTree .f-tree {
   margin: 20px;
-  padding: 5px; }
+  padding: 5px;
+  height: 300px; }
   .folderTree .f-tree li {
     padding-left: 20px;
     padding-top: 15px;
@@ -440,11 +451,23 @@ section#pageContainer {
     white-space: nowrap;
     margin: 0px;
     outline: 0; }
-    .folderTree .f-tree li span.f-tree-switcher, .folderTree .f-tree li span.f-tree-checkbox, .folderTree .f-tree li span.f-tree-iconEle {
-      line-height: 16px;
+    .folderTree .f-tree li span.f-tree-switcher, .folderTree .f-tree li span.f-tree-checkbox {
+      line-height: 24px;
       margin-right: 2px;
-      width: 16px;
-      height: 16px;
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      border: 0 none;
+      cursor: pointer;
+      outline: none;
+      top: -8px;
+      position: relative; }
+    .folderTree .f-tree li span.f-tree-iconEle {
+      line-height: 24px;
+      margin-right: 2px;
+      width: 24px;
+      height: 24px;
       display: inline-block;
       vertical-align: middle;
       border: 0 none;

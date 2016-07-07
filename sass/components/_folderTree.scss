@@ -4,6 +4,8 @@
     .f-tree {
         margin: 20px;
         padding: 5px;
+        height: 300px;
+         
 
 
         li {
@@ -17,14 +19,35 @@
             span
             {
 
-                &.f-tree-switcher,
+               
+                 &.f-tree-switcher,
                 &.f-tree-checkbox,
+                {
+                    line-height: 24px;
+                    margin-right: 2px;
+                    width: 24px;
+                    height: 24px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    border: 0 none;
+                    cursor: pointer;
+                    outline: none;
+                    top: -8px;
+                    position: relative;
+                    
+                    
+                }
+                
+                
+                
+                
+                
                 &.f-tree-iconEle {
 
-                    line-height: 16px;
+                    line-height: 24px;
                     margin-right: 2px;
-                    width: 16px;
-                    height: 16px;
+                    width: 24px;
+                    height: 24px;
                     display: inline-block;
                     vertical-align: middle;
                     border: 0 none;

@@ -53,11 +53,18 @@ export default class MorgueFoldersPage extends Component {
       
     return (
        
-         <div className="folderTree">
-                <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} showLine={true}  onSelect={this.onSelect.bind(this)} checkable={false}>
-                  {folderNodes}
-                </Tree>
+         <div>
+            <div className="column50Left">
+               <div className="folderTree">
+                      <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} showLine={true}  onSelect={this.onSelect.bind(this)} checkable={false}>
+                        {folderNodes}
+                      </Tree>
+               </div>
+           </div>
+            <div>
+
             </div>
+        </div>
     );
   }
 }
