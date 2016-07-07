@@ -1,0 +1,195 @@
+.folderTree
+{
+
+    .f-tree {
+        margin: 20px;
+        padding: 5px;
+       
+
+        li {
+            padding-left: 20px;
+            padding-top: 15px;
+            list-style: none;
+            white-space: nowrap;
+            margin: 0px;
+            outline: 0;
+
+            span
+            {
+
+                &.f-tree-switcher,
+                &.f-tree-checkbox,
+                &.f-tree-iconEle {
+
+                    line-height: 16px;
+                    margin-right: 2px;
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    border: 0 none;
+                    cursor: pointer;
+                    outline: none;
+                }
+
+                &.f-tree-title
+                {
+                    font-size: 25px;
+ 
+                }
+                &.f-tree-switcher 
+                {
+                    
+                     
+                    &.f-tree-center_open:before
+                    { 
+                    
+                    font-family: "foundation-icons";
+                    position: relative;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 36px;
+                    font-variant: normal;
+                    left: -40px;
+                    top: 8px;
+                    text-transform: none;
+                    //line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                     //display: inline-block;
+                     content: "\f176";
+                    text-decoration: inherit; 
+                    }
+                    
+                    &.f-tree-center_close:before
+                    { 
+                    
+                    font-family: "foundation-icons";
+                    position: relative;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 36px;
+                    font-variant: normal;
+                    left: -40px;
+                    top: 8px;
+                    text-transform: none;
+                    //line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                     //display: inline-block;
+                     content: "\f199";
+                    text-decoration: inherit; 
+                    }
+                     
+                }
+                 &.f-tree-iconEle:before {
+                    font-family: "foundation-icons";
+                    position: relative;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 36px;
+                    font-variant: normal;
+                    left: -25px;
+                    text-transform: none;
+                    //line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                     //display: inline-block;
+                     content: "\f150";
+                    text-decoration: inherit; 
+                   
+                 }
+
+            }
+
+
+
+            a {
+                display: inline-block;
+                padding:   0;
+                margin: 0;
+                cursor: pointer;
+                height: 12px;
+                text-decoration: none;
+                vertical-align: top;
+            }
+
+
+
+            &.drag-over > a[draggable] {
+                background-color: #316ac5;
+                color: white;
+                border: 1px #316ac5 solid;
+                opacity: 0.8;
+            }
+
+            &.drag-over-gap-top > a[draggable] {
+                border-top: 2px blue solid;
+            }
+
+            &.drag-over-gap-bottom > a[draggable] {
+                border-bottom: 2px blue solid;
+            }
+
+            &.filter-node > a {
+                color: #a60000!important;
+                font-weight: bold!important;
+            }
+
+            a[draggable],
+            a[draggable="true"] {
+                color: #333;
+                -moz-user-select: none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                /* Required to make elements draggable in old WebKit */
+                -khtml-user-drag: element;
+                -webkit-user-drag: element;
+            }
+
+
+            ul {
+                margin: 0;
+                padding: 0;
+               
+                &.f-tree-line {
+                    background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
+                }
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+} //folderTree
+
+
+/*
+
+.rc-tree li 
+.rc-tree li span.rc-tree-switcher,
+.rc-tree li span.rc-tree-checkbox,
+.rc-tree li span.rc-tree-iconEle {
+  line-height: 16px;
+  margin-right: 2px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-image: url("images/tree-icons.png");
+}
+
+
+*/
