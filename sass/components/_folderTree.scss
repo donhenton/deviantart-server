@@ -4,7 +4,7 @@
     .f-tree {
         margin: 20px;
         padding: 5px;
-       
+
 
         li {
             padding-left: 20px;
@@ -35,67 +35,65 @@
                 &.f-tree-title
                 {
                     font-size: 25px;
- 
+                    padding: 5px;
+
                 }
                 &.f-tree-switcher 
                 {
-                    
-                     
+
+                    &.f-tree-center_open:before,
+                        &.f-tree-center_close:before 
+                        {
+                        font-family: "foundation-icons";
+                        position: relative;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 24px;
+                        font-variant: normal;
+                        text-transform: none;
+                        -webkit-font-smoothing: antialiased;
+                        text-decoration: inherit; 
+
+                    }
+
+
                     &.f-tree-center_open:before
-                    { 
-                    
-                    font-family: "foundation-icons";
-                    position: relative;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 36px;
-                    font-variant: normal;
-                    left: -40px;
-                    top: 8px;
-                    text-transform: none;
-                    //line-height: 1;
-                    -webkit-font-smoothing: antialiased;
-                     //display: inline-block;
-                     content: "\f176";
-                    text-decoration: inherit; 
+                        { 
+
+
+                        left: -40px;
+                        top: 8px;
+
+                        content: "\f176";
+
                     }
-                    
+
                     &.f-tree-center_close:before
-                    { 
-                    
-                    font-family: "foundation-icons";
-                    position: relative;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 36px;
-                    font-variant: normal;
-                    left: -40px;
-                    top: 8px;
-                    text-transform: none;
-                    //line-height: 1;
-                    -webkit-font-smoothing: antialiased;
-                     //display: inline-block;
-                     content: "\f199";
-                    text-decoration: inherit; 
+                        {                        
+                        left: -40px;
+                        top: 8px;
+                        content: "\f199";
+
                     }
-                     
+
                 }
-                 &.f-tree-iconEle:before {
+
+                &.f-tree-iconEle:before {
                     font-family: "foundation-icons";
                     position: relative;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 36px;
                     font-variant: normal;
-                    left: -25px;
                     text-transform: none;
-                    //line-height: 1;
                     -webkit-font-smoothing: antialiased;
-                     //display: inline-block;
-                     content: "\f150";
                     text-decoration: inherit; 
-                   
-                 }
+                    left: -25px;
+
+                    content: "\f150";
+
+                }
+
 
             }
 
@@ -103,12 +101,32 @@
 
             a {
                 display: inline-block;
-                padding:   0;
-                margin: 0;
                 cursor: pointer;
-                height: 12px;
+                height: 30px;
                 text-decoration: none;
-                vertical-align: top;
+               // vertical-align: top;
+
+                &:before,
+                    .grouping:after {
+                    content: " ";
+                    display: table; 
+                }
+                &:after {
+                    clear: both; 
+                }
+
+
+                &.f-tree-node-selected
+                {
+                     
+                    span.f-tree-title
+                    {
+                        background-color: $green-color;
+                        color: white;
+                    }
+
+
+                }
             }
 
 
@@ -150,7 +168,7 @@
             ul {
                 margin: 0;
                 padding: 0;
-               
+
                 &.f-tree-line {
                     background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y;
                 }

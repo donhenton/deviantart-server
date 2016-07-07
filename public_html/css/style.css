@@ -451,33 +451,26 @@ section#pageContainer {
       cursor: pointer;
       outline: none; }
     .folderTree .f-tree li span.f-tree-title {
-      font-size: 25px; }
+      font-size: 25px;
+      padding: 5px; }
+    .folderTree .f-tree li span.f-tree-switcher.f-tree-center_open:before, .folderTree .f-tree li span.f-tree-switcher.f-tree-center_close:before {
+      font-family: "foundation-icons";
+      position: relative;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+      text-decoration: inherit; }
     .folderTree .f-tree li span.f-tree-switcher.f-tree-center_open:before {
-      font-family: "foundation-icons";
-      position: relative;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 36px;
-      font-variant: normal;
       left: -40px;
       top: 8px;
-      text-transform: none;
-      -webkit-font-smoothing: antialiased;
-      content: "\f176";
-      text-decoration: inherit; }
+      content: "\f176"; }
     .folderTree .f-tree li span.f-tree-switcher.f-tree-center_close:before {
-      font-family: "foundation-icons";
-      position: relative;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 36px;
-      font-variant: normal;
       left: -40px;
       top: 8px;
-      text-transform: none;
-      -webkit-font-smoothing: antialiased;
-      content: "\f199";
-      text-decoration: inherit; }
+      content: "\f199"; }
     .folderTree .f-tree li span.f-tree-iconEle:before {
       font-family: "foundation-icons";
       position: relative;
@@ -485,19 +478,25 @@ section#pageContainer {
       font-weight: normal;
       font-size: 36px;
       font-variant: normal;
-      left: -25px;
       text-transform: none;
       -webkit-font-smoothing: antialiased;
-      content: "\f150";
-      text-decoration: inherit; }
+      text-decoration: inherit;
+      left: -25px;
+      content: "\f150"; }
     .folderTree .f-tree li a {
       display: inline-block;
-      padding: 0;
-      margin: 0;
       cursor: pointer;
-      height: 12px;
-      text-decoration: none;
-      vertical-align: top; }
+      height: 30px;
+      text-decoration: none; }
+      .folderTree .f-tree li a:before,
+      .folderTree .f-tree li a .grouping:after {
+        content: " ";
+        display: table; }
+      .folderTree .f-tree li a:after {
+        clear: both; }
+      .folderTree .f-tree li a.f-tree-node-selected span.f-tree-title {
+        background-color: #667467;
+        color: white; }
     .folderTree .f-tree li.drag-over > a[draggable] {
       background-color: #316ac5;
       color: white;
