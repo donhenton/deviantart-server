@@ -443,7 +443,8 @@ section#pageContainer {
 .folderTree .f-tree {
   margin: 20px;
   padding: 5px;
-  height: 300px; }
+  height: 300px;
+  overflow: auto; }
   .folderTree .f-tree li {
     padding-left: 20px;
     padding-top: 15px;

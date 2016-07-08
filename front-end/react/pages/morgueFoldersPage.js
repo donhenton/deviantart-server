@@ -10,26 +10,31 @@ export default class MorgueFoldersPage extends Component {
   {
       super();
       this.treeRef = null;
+      this.folderData = null;
+      this.folderIdx = {};
   }
   
  
     componentWillMount()
   {
-      let folderData = storageService.getFolderData();
-      this.state = {'value': "", parentKey: null, folderData: folderData, downloading: false};
+      this.folderData = storageService.getFolderData();
+      this.state = { selecteKey: "", selectedFolderName: "", folderData: this.folderData};
       
       
   }
   
   onSelect(selectedKeys,ev)
   {
-      console.log("fred "+JSON.stringify(selectedKeys)+" "+this.treeRef.selectedKeys)
-      
-      this.setState({parentKey: selectedKeys[0]})
+      let idxObj = storageService.getIndex(); 
+      let folderName = idxObj[selectedKeys[0]].name   
+      this.setState({selectedKey: selectedKeys[0], selectedFolderName: folderName})
       
   }
   
-   
+  mapFolderNameChange(ev)
+  {
+      this.setState({selectedFolderName: ev.target.value})
+  }
    
         
         
@@ -38,13 +43,11 @@ export default class MorgueFoldersPage extends Component {
       
       const loop = (data) => {
       return data.map((item) => {
-         // console.log(item.key + " has "+item.has_subcategory)
-          
-          
+        
         if (item.children.length > 0) {
           return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
         }
-        return <TreeNode title={item.name} key={item.key} isLeaf={!(item.has_subcategory)}  />;
+        return <TreeNode title={item.name} key={item.key} isLeaf={(item.children.length===0)}  />;
       });
     };
     const folderNodes = loop(this.state.folderData);
@@ -56,12 +59,35 @@ export default class MorgueFoldersPage extends Component {
          <div>
             <div className="column50Left">
                <div className="folderTree">
-                      <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} showLine={true}  onSelect={this.onSelect.bind(this)} checkable={false}>
+                      <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} showLine={true} defaultExpandAll={true} onSelect={this.onSelect.bind(this)} checkable={false}>
                         {folderNodes}
                       </Tree>
                </div>
            </div>
-            <div>
+            <div className="column50Right">
+            
+                <div className="form well">
+                  <table className="table table-striped">
+                    <tbody>
+                      <tr>
+                      <td><label>Key:</label></td><td  colSpan="2">{this.state.selectedKey}</td> 
+                      
+                      </tr>
+                      <tr>
+                        <th>
+                        <label for="folderName">Folder Name:</label>
+                        </th>
+                        <td>
+                        <input type="text" onChange={me.mapFolderNameChange} value={this.state.selectedFolderName} size="35" id="folderName" />
+                        </td>
+                        <td>
+                        <button className="btn btn-primary">Save</button>
+                        </td>
+                     </tr>
+                   </tbody>
+               </table>
+               
+                </div>
 
             </div>
         </div>

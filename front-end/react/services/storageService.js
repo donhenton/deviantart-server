@@ -4,64 +4,92 @@
  * and open the template in the editor.
  */
 import storage from 'localStorage';
+        const LOCALSTORAGE_KEY = "deviant-storage"
+        class StorageService
+        {
 
 
-const LOCALSTORAGE_KEY = "deviant-storage"
-class StorageService
-{
-    
+        constructor()
+        {
+            storage.setItem(LOCALSTORAGE_KEY, JSON.stringify({}))
+            this.data = null;
+            this.fetchData();
+            this.getIndex();
+            
 
-    constructor( )
-    {
-           storage.setItem(LOCALSTORAGE_KEY, JSON.stringify({})) 
-             
-    }
-    
-    
-    
-    getFolderData()
-    {
+        }
         
-        let data = [
+        flatten(data)
+        {
+            var accum = {}
+            var me = this;
+            
+            function recurse(children,parentKeyString)
             {
-                
-                'key': '/bonzo',
+                    for (var i= 0;i< children.length;i++)
+                    {
+                        children[i].key = parentKeyString + "/"+i;
+                        accum[children[i].key] = {name: children[i].name,children: children[i].children};
+                        if (children[i].children.length > 0)
+                        {
+                            
+                            recurse(children[i].children,children[i].key)
+                        } 
+                      }//end for loop
+  
+            }
+            
+            recurse(data,"")
+            return accum;
+         }
+
+        getIndex()
+        {
+            return this.flatten(this.getFolderData());
+        }
+        
+        getFolderData()
+        {
+            return this.data;
+        }
+
+        fetchData()
+        {
+
+        let tempData = [
+        {
+
+        'key': '/1',
                 'name':'bonzo the clown',
                 children: []
-            },
-            
-            {
-                
-                'key': '/stooges',
+        },
+        {
+
+        'key': '/2',
                 'name':'3 stooges',
                 children: [
-                    {'key': '/stooges/manny',  'name': 'Manny', children: []},
-                    {'key': '/stooges/moe',    'name': 'Moe',   children: []},
-                    {'key': '/stooges/jack',   'name': 'Jack',  children: [    {'key': '/stooges/jack/dog',  'name': 'Jack Dog', children: []}  ]} 
-                    
+                {'key': '/2/0', 'name': 'Manny', children: []},
+                {'key': '/2/1', 'name': 'Moe', children: []},
+                {'key': '/2/2', 'name': 'Jack', children: [    {'key': '/2/2/0', 'name': 'Jack Dog', children: []}  ]}
+
                 ]
-            },
-             {
-                
-                'key': '/eggs',
+        },
+        {
+
+        'key': '/3',
                 'name':'Eggs',
-                children: []
-            },
-        
-        
-        
-        
-        
+        children: []
+        },
         ]
-        
-        
-        
-        
-        return data;
-    }
-    
-    
-    
-}
+
+
+
+                 
+                this.data =  [{key: '/0','name': 'root', children: tempData}];
+        }
+
+
+
+        }
 let _storage = new StorageService();
-export default _storage;
+        export default _storage;
