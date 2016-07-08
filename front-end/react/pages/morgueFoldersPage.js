@@ -58,6 +58,7 @@ export default class MorgueFoldersPage extends Component {
        
          <div>
             <div className="column50Left">
+            <h2>Morgue Folders</h2>
                <div className="folderTree">
                       <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} showLine={true} defaultExpandAll={true} onSelect={this.onSelect.bind(this)} checkable={false}>
                         {folderNodes}
@@ -65,12 +66,12 @@ export default class MorgueFoldersPage extends Component {
                </div>
            </div>
             <div className="column50Right">
-            
+                
                 <div className="form well">
                   <table className="table table-striped">
                     <tbody>
                       <tr>
-                      <td><label>Key:</label></td><td  colSpan="2">{this.state.selectedKey}</td> 
+                      <th><label>Key:</label></th><td  colSpan="2">{this.state.selectedKey}</td> 
                       
                       </tr>
                       <tr>

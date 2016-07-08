@@ -18,7 +18,7 @@ export default class Main extends Component {
       
       <header>
 
-                <figure className="logo"><a href="/">React Stuff</a><br/></figure> 
+                <figure className="logo"><a href="/">Deviant Art Morgue Files</a><br/></figure> 
  
                 <nav className="topMenu grouping">
 

@@ -11,14 +11,19 @@ import storage from 'localStorage';
 
         constructor()
         {
-            storage.setItem(LOCALSTORAGE_KEY, JSON.stringify({}))
+            
             this.data = null;
             this.fetchData();
             this.getIndex();
-            
+           // storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.data))
 
         }
         
+        
+        /**
+         * create the flatten key index
+         * reset all keys to use the child array index eg /0/1/2
+         */
         flatten(data)
         {
             var accum = {}
@@ -52,8 +57,17 @@ import storage from 'localStorage';
         {
             return this.data;
         }
-
+        
+        /**
+         * get the data from local storage
+         */
         fetchData()
+        {
+             
+            this.data = JSON.parse(storage.getItem(LOCALSTORAGE_KEY));
+        }
+
+        sampleData()
         {
 
         let tempData = [

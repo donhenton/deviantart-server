@@ -6,6 +6,7 @@
         padding: 5px;
         height: 300px;
         overflow: auto;
+        border: double $blue-color;
          
 
 
@@ -110,6 +111,7 @@
                     font-size: 36px;
                     font-variant: normal;
                     text-transform: none;
+                    color: $green-color;
                     -webkit-font-smoothing: antialiased;
                     text-decoration: inherit; 
                     left: -25px;
@@ -145,7 +147,7 @@
                      
                     span.f-tree-title
                     {
-                        background-color: $green-color;
+                        background-color: $red-color;
                         color: white;
                     }
 

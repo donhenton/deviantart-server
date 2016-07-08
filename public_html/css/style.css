@@ -430,7 +430,7 @@ section#pageContainer {
     height: 90px;
     width: 100%; }
   section#pageContainer section#main {
-    width: 1200px;
+    width: 1400px;
     border: 5px double #16174f;
     margin: -15px auto 5px auto;
     background-color: white;
@@ -444,7 +444,8 @@ section#pageContainer {
   margin: 20px;
   padding: 5px;
   height: 300px;
-  overflow: auto; }
+  overflow: auto;
+  border: double #16174f; }
   .folderTree .f-tree li {
     padding-left: 20px;
     padding-top: 15px;
@@ -503,6 +504,7 @@ section#pageContainer {
       font-size: 36px;
       font-variant: normal;
       text-transform: none;
+      color: #667467;
       -webkit-font-smoothing: antialiased;
       text-decoration: inherit;
       left: -25px;
@@ -519,7 +521,7 @@ section#pageContainer {
       .folderTree .f-tree li a:after {
         clear: both; }
       .folderTree .f-tree li a.f-tree-node-selected span.f-tree-title {
-        background-color: #667467;
+        background-color: #963019;
         color: white; }
     .folderTree .f-tree li.drag-over > a[draggable] {
       background-color: #316ac5;
