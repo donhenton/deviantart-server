@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Tree, {TreeNode} from 'rc-tree'; 
 import storageService from './../services/storageService'
 import MorgueFolderTree from './../components/morgueFolder/morgueFolderTree'
 import postal from 'postal'
@@ -29,19 +28,14 @@ export default class MorgueFoldersPage extends Component {
                         callback: function (data, envelope) {
                               
                            console.log("receiving "+data.selectedKey)   
-                           me.onSelect([data.selectedKey],null)      
+                           me.setState({selectedKey:data.selectedKey, selectedFolderName: "",actionMode: "CHOOSE"})    
                              
                         }
                });
       
   }
   
-  onSelect(selectedKeys,ev)
-  {
-      console.log("selected onSelect "+selectedKeys[0])
-      this.setState({selectedKey: selectedKeys[0], selectedFolderName: "",actionMode: "CHOOSE"})
-      
-  }
+   
   
   mapFolderNameChange(ev)
   {
@@ -213,35 +207,14 @@ export default class MorgueFoldersPage extends Component {
         
   render() {
       var me = this;
-      
-      const loop = (data) => {
-      return data.map((item) => {
-        
-        if (item.children.length > 0) {
-          return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
-        }
-        return <TreeNode title={item.name} key={item.key} isLeaf={(item.children.length===0)}  />;
-      });
-    };
-    const folderNodes = loop(this.state.folderData);
-      
-      
+           
       
     return (
        
          <div>
             <div className="column50Left">
             <h2>Morgue Folders</h2>
-               <div className="folderTree">
-                      <Tree prefixCls="f-tree" ref={(r) => me.treeRef = r} 
-                           showLine={true} defaultExpandAll={true} 
-                           onSelect={this.onSelect.bind(this)} 
-                           selectedKeys={this.state.selectedKey.length > 1 ? [this.state.selectedKey]: []}
-                           checkable={false}>
-                        {folderNodes}
-                      </Tree>
-               </div>
-       
+                
        
                <MorgueFolderTree folderData={this.state.folderData} />
        

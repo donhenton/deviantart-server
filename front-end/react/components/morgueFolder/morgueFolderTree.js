@@ -53,7 +53,7 @@ render() {
                     <Tree prefixCls = "f-tree" ref = {(r) => me.treeRef = r}
                     showLine = {true} defaultExpandAll = {true}
                     onSelect = {this.onSelect.bind(this)}
-                    selectedKeys = {this.state.selectedKey.length > 1 ? [this.state.selectedKey]: []}
+                    selectedKeys = {(this.state.selectedKey && this.state.selectedKey.length > 1 )? [this.state.selectedKey]: []}
                     checkable = {false}>
                     {folderNodes}
                     </Tree>
