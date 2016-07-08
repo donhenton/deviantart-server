@@ -3,6 +3,8 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Tree, {TreeNode} from 'rc-tree'; 
 import storageService from './../services/storageService'
+import MorgueFolderTree from './../components/morgueFolder/morgueFolderTree'
+import postal from 'postal'
 
 export default class MorgueFoldersPage extends Component {
         
@@ -17,15 +19,26 @@ export default class MorgueFoldersPage extends Component {
  
     componentWillMount()
   {
+      let me = this;
       this.folderData = storageService.getFolderData();
       this.state = { selectedKey: "", selectedFolderName: "", folderData: this.folderData, actionMode: "INIT"};
-      
+      postal.subscribe({
+          
+                        channel: "deviant-system-folder-tree",
+                        topic: "select-folder" ,
+                        callback: function (data, envelope) {
+                              
+                           console.log("receiving "+data.selectedKey)   
+                           me.onSelect([data.selectedKey],null)      
+                             
+                        }
+               });
       
   }
   
   onSelect(selectedKeys,ev)
   {
-      
+      console.log("selected onSelect "+selectedKeys[0])
       this.setState({selectedKey: selectedKeys[0], selectedFolderName: "",actionMode: "CHOOSE"})
       
   }
@@ -228,6 +241,12 @@ export default class MorgueFoldersPage extends Component {
                         {folderNodes}
                       </Tree>
                </div>
+       
+       
+               <MorgueFolderTree folderData={this.state.folderData} />
+       
+       
+       
            </div>
             <div className="column50Right">
                 
