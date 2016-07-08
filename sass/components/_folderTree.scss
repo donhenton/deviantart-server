@@ -73,6 +73,7 @@
                         position: relative;
                         font-style: normal;
                         font-weight: normal;
+                        color: $blue-color;
                         font-size: 24px;
                         font-variant: normal;
                         text-transform: none;
@@ -213,27 +214,24 @@
 
 } //folderTree
 
-
-/*
-
-.rc-tree li 
-.rc-tree li span.rc-tree-switcher,
-.rc-tree li span.rc-tree-checkbox,
-.rc-tree li span.rc-tree-iconEle {
-  line-height: 16px;
-  margin-right: 2px;
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  border: 0 none;
-  cursor: pointer;
-  outline: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-image: url("images/tree-icons.png");
+.folderForm
+{
+    
+    
+    #saveEdit
+    {
+        &:disabled
+        {
+            opacity: 0.5;
+            cursor: default;
+            color: inherit;
+            background-color:inherit;
+        }
+        
+        
+    }
+    
+    
+    
+    
 }
-
-
-*/

@@ -34,7 +34,8 @@ import storage from 'localStorage';
                     for (var i= 0;i< children.length;i++)
                     {
                         children[i].key = parentKeyString + "/"+i;
-                        accum[children[i].key] = {name: children[i].name,children: children[i].children};
+                       // accum[children[i].key] = {name: children[i].name,children: children[i].children};
+                       accum[children[i].key] = children[i];
                         if (children[i].children.length > 0)
                         {
                             
@@ -56,6 +57,25 @@ import storage from 'localStorage';
         getFolderData()
         {
             return this.data;
+        }
+        
+        saveEdit(key,name)
+        {
+            let index = this.getIndex();
+            let target = index[key];
+            target.name = name;
+            storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+            return this.getFolderData();
+              
+        }
+        
+        addFolder(parentKey, name)
+        {
+             let index = this.getIndex();
+             let target = index[key];
+             target.children.push({name: name, key:"bonzo",children:[]})        
+             storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             return this.getFolderData();
         }
         
         /**

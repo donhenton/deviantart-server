@@ -483,6 +483,7 @@ section#pageContainer {
       position: relative;
       font-style: normal;
       font-weight: normal;
+      color: #16174f;
       font-size: 24px;
       font-variant: normal;
       text-transform: none;
@@ -552,29 +553,12 @@ section#pageContainer {
       .folderTree .f-tree li ul.f-tree-line {
         background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y; }
 
-/*
+.folderForm #saveEdit:disabled {
+  opacity: 0.5;
+  cursor: default;
+  color: inherit;
+  background-color: inherit; }
 
-.rc-tree li 
-.rc-tree li span.rc-tree-switcher,
-.rc-tree li span.rc-tree-checkbox,
-.rc-tree li span.rc-tree-iconEle {
-  line-height: 16px;
-  margin-right: 2px;
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  border: 0 none;
-  cursor: pointer;
-  outline: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-image: url("images/tree-icons.png");
-}
-
-
-*/
 body {
   z-index: 0; }
 
