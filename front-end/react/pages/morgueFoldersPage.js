@@ -27,7 +27,7 @@ export default class MorgueFoldersPage extends Component {
                         topic: "select-folder" ,
                         callback: function (data, envelope) {
                               
-                           console.log("receiving "+data.selectedKey)   
+                          // console.log("receiving "+data.selectedKey)   
                            me.setState({selectedKey:data.selectedKey, selectedFolderName: "",actionMode: "CHOOSE"})    
                              
                         }
@@ -216,7 +216,7 @@ export default class MorgueFoldersPage extends Component {
             <h2>Morgue Folders</h2>
                 
        
-               <MorgueFolderTree folderData={this.state.folderData} />
+               <MorgueFolderTree selectedKey={this.state.selectedKey} folderData={this.state.folderData} />
        
        
        

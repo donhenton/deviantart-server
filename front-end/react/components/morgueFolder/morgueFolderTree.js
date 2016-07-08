@@ -14,19 +14,26 @@ constructor()
 
 
 componentWillReceiveProps(nextProps) {
-  this.setState({folderData: nextProps.folderData});
+  this.setState({folderData: nextProps.folderData,selectedKey: nextProps.selectedKey });
 
 }
 componentWillMount()
 { 
-      this.state = { selectedKey: "", folderData: this.props.folderData};
+      this.state = { selectedKey: this.props.selectedKey, folderData: this.props.folderData};
 
 }
 onSelect(selectedKeys, ev)
 {
 
+    if (selectedKeys.length == 0)
+    {
+        // you are clicking on the already selected node
+        return;
+    }
+    
+
     this.setState({selectedKey: selectedKeys[0]})
-    console.log("sending out message "+selectedKeys[0])
+   // console.log("sending out message "+selectedKeys[0])
      postal.publish({
                channel: "deviant-system-folder-tree",
                topic: "select-folder" ,
