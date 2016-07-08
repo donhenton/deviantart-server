@@ -217,8 +217,8 @@
 .folderForm
 {
     
-    
-    #saveEdit
+    /*
+    #addFolder,#editFolder,#folderInput
     {
         &:disabled
         {
@@ -230,8 +230,17 @@
         
         
     }
-    
-    
+    */
+    #folderName
+    {
+        &:disabled
+        {
+            opacity: 0.5;
+            cursor: default;
+            color: inherit;
+            background-color:inherit;
+        }
+    }
     
     
 }

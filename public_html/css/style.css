@@ -430,7 +430,7 @@ section#pageContainer {
     height: 90px;
     width: 100%; }
   section#pageContainer section#main {
-    width: 1400px;
+    width: 1200px;
     border: 5px double #16174f;
     margin: -15px auto 5px auto;
     background-color: white;
@@ -553,11 +553,26 @@ section#pageContainer {
       .folderTree .f-tree li ul.f-tree-line {
         background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y; }
 
-.folderForm #saveEdit:disabled {
-  opacity: 0.5;
-  cursor: default;
-  color: inherit;
-  background-color: inherit; }
+.folderForm {
+  /*
+    #addFolder,#editFolder,#folderInput
+    {
+        &:disabled
+        {
+            opacity: 0.5;
+            cursor: default;
+            color: inherit;
+            background-color:inherit;
+        }
+        
+        
+    }
+    */ }
+  .folderForm #folderName:disabled {
+    opacity: 0.5;
+    cursor: default;
+    color: inherit;
+    background-color: inherit; }
 
 body {
   z-index: 0; }

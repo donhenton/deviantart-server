@@ -18,16 +18,15 @@ export default class MorgueFoldersPage extends Component {
     componentWillMount()
   {
       this.folderData = storageService.getFolderData();
-      this.state = { selectedKey: "", selectedFolderName: "", folderData: this.folderData, actionMode: "ADD"};
+      this.state = { selectedKey: "", selectedFolderName: "", folderData: this.folderData, actionMode: "INIT"};
       
       
   }
   
   onSelect(selectedKeys,ev)
   {
-      let idxObj = storageService.getIndex(); 
-      let folderName = idxObj[selectedKeys[0]].name   
-      this.setState({selectedKey: selectedKeys[0], selectedFolderName: folderName})
+      
+      this.setState({selectedKey: selectedKeys[0], selectedFolderName: "",actionMode: "CHOOSE"})
       
   }
   
@@ -36,44 +35,117 @@ export default class MorgueFoldersPage extends Component {
       this.setState({selectedFolderName: ev.target.value})
   }
    
-  saveEdit(e)
+  editFolder(e)
   {
       e.preventDefault();
-      let newFolderData = storageService.saveEdit(this.state.selectedKey, this.state.selectedFolderName)
-      this.setState({folderData: newFolderData})
-      console.log('hit form '+this.state.selectedFolderName)
+      if (this.state.actionMode === 'CHOOSE')
+     {
+         let idxObj = storageService.getIndex(); 
+         let folderName = idxObj[this.state.selectedKey].name   
+         this.setState({actionMode: "EDIT", selectedFolderName: folderName})
+         
+     }
+     if (this.state.actionMode === 'EDIT')
+     {
+        let newFolderData = storageService.saveEdit(this.state.selectedKey, this.state.selectedFolderName)
+        this.setState({folderData: newFolderData,selectedFolderName: "", actionMode:"CHOOSE"})
+      //console.log('hit form '+this.state.selectedFolderName)
+     }
+      
   }
   
-  addOrCancelFolder(e)
+  addFolder(e)
   {
       e.preventDefault();
-      if(this.state.actionMode === "ADD")
-      {
-          let newFolderData = storageService.addFolder(this.state.selectedKey, this.state.selectedFolderName)
-          this.setState({folderData: newFolderData})
+      //if(this.state.actionMode === "ADD")
+      //{
+      //    let newFolderData = storageService.addFolder(this.state.selectedKey, this.state.selectedFolderName)
+      //    this.setState({folderData: newFolderData})
           
           
-      }
-      if(this.state.actionMode === "EDIT")
-      {
+     // }
+     // if(this.state.actionMode === "EDIT")
+      //{
           //you are canceling an edit
-          this.setState({ selectedKey: "", selectedFolderName: "", actionMode: "ADD"})
+      //    this.setState({ selectedKey: "", selectedFolderName: "", actionMode: "ADD"})
           
           
-      }
-      
+     // }
+     if (this.state.actionMode === 'CHOOSE')
+     {
+         
+         this.setState({actionMode: "ADD", selectedFolderName: ""})
+     }
+     if (this.state.actionMode === 'EDIT' || this.state.actionMode === 'ADD')
+     {
+         // this is a cancel request
+         this.setState({actionMode: "CHOOSE",  selectedFolderName: ""})
+     } 
       
   }
   
-  getAddText()
+ 
+  
+  getButtonText(type)
   {
      let t = "Add";
-     if (this.state.actionMode === 'EDIT')
-         t = 'Cancel';
-     
+     if (this.state.actionMode === 'CHOOSE')
+     {
+         if (type ==="EDIT")
+         {
+             t = "Edit"
+         }
+         
+     }
+     if (this.state.actionMode === 'ADD' || this.state.actionMode === 'EDIT')
+     {
+         if (type === "EDIT")
+         {
+             t = 'Save'
+             
+         }
+         else
+         {
+             t = 'Cancel'
+         }
+         
+     }    
+      
      return t;
       
   }    
+  
+  
+  disableItem(type)
+  {
+      var disable = false;
+      if (this.state.actionMode === "INIT")
+      {
+           return true;
+      }
+      
+      if (type==="EDIT")
+      {
+           
+          
+      }
+      if (type==="ADD")
+      {
+          
+          
+      }
+      if(type==="INPUT")
+      {
+          if (this.state.actionMode === "CHOOSE")
+          {
+              disable = true;
+          }
+          
+      }   
+      
+      return disable;
+          
+  }
         
         
   render() {
@@ -109,11 +181,11 @@ export default class MorgueFoldersPage extends Component {
            </div>
             <div className="column50Right">
                 
-                <form className="form well folderForm">
-                  <table className="table table-striped">
+                <form className={this.state.actionMode==='INIT'? 'form well folderForm hidden' : "form well folderForm" }  >
+                  <table  className='table table-striped'>
                     <tbody>
                       <tr>
-                      <th><label>Key:</label></th><td  colSpan="3">{this.state.selectedKey}</td> 
+                      <th><label>Key:</label></th><td  colSpan="3">{this.state.selectedKey +" ("+this.state.actionMode+")"}</td> 
                       
                       </tr>
                       <tr>
@@ -121,14 +193,15 @@ export default class MorgueFoldersPage extends Component {
                         <label for="folderName">Folder Name:</label>
                         </th>
                         <td>
-                        <input type="text"  onChange={me.mapFolderNameChange.bind(me)} value={this.state.selectedFolderName} size="35" id="folderName" />
+                        <input id="folderInput" type="text" disabled={me.disableItem('INPUT')} onChange={me.mapFolderNameChange.bind(me)} value={this.state.selectedFolderName} size="35" id="folderName" />
                         </td>
                         <td>
-                        <button id="saveEdit" disabled={this.state.actionMode =='ADD'}  type="button" onClick={this.saveEdit.bind(me)} className="btn btn-primary">Save</button>
+                        <button id="saveFolder" disabled={me.disableItem('EDIT')}   type="button" onClick={this.editFolder.bind(me)} className="btn btn-primary">
+                        {me.getButtonText('EDIT')}</button>
                         </td>
                 <td>
-                        <button id="addFolder" type="button" onClick={this.addOrCancelFolder.bind(me)}  className="btn btn-primary">
-                        {me.getAddText()}</button>
+                        <button id="addFolder" disabled={me.disableItem('ADD')} type="button" onClick={this.addFolder.bind(me)}  className="btn btn-primary">
+                        {me.getButtonText('ADD')}</button>
                         </td>
                      </tr>
                    </tbody>
