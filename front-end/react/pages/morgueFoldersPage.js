@@ -40,6 +40,7 @@ export default class MorgueFoldersPage extends Component {
       e.preventDefault();
       if (this.state.actionMode === 'CHOOSE')
      {
+         //you are requesting an edit
          let idxObj = storageService.getIndex(); 
          let folderName = idxObj[this.state.selectedKey].name   
          this.setState({actionMode: "EDIT", selectedFolderName: folderName})
@@ -47,7 +48,15 @@ export default class MorgueFoldersPage extends Component {
      }
      if (this.state.actionMode === 'EDIT')
      {
+        //you are saving an edit, the button says save
         let newFolderData = storageService.saveEdit(this.state.selectedKey, this.state.selectedFolderName)
+        this.setState({folderData: newFolderData,selectedFolderName: "", actionMode:"CHOOSE"})
+      //console.log('hit form '+this.state.selectedFolderName)
+     }
+     if (this.state.actionMode === 'ADD')
+     {
+        //you are saving an add, the button says save
+        let newFolderData = storageService.addFolder(this.state.selectedKey, this.state.selectedFolderName)
         this.setState({folderData: newFolderData,selectedFolderName: "", actionMode:"CHOOSE"})
       //console.log('hit form '+this.state.selectedFolderName)
      }
@@ -57,23 +66,10 @@ export default class MorgueFoldersPage extends Component {
   addFolder(e)
   {
       e.preventDefault();
-      //if(this.state.actionMode === "ADD")
-      //{
-      //    let newFolderData = storageService.addFolder(this.state.selectedKey, this.state.selectedFolderName)
-      //    this.setState({folderData: newFolderData})
-          
-          
-     // }
-     // if(this.state.actionMode === "EDIT")
-      //{
-          //you are canceling an edit
-      //    this.setState({ selectedKey: "", selectedFolderName: "", actionMode: "ADD"})
-          
-          
-     // }
+       
      if (this.state.actionMode === 'CHOOSE')
      {
-         
+         //requesting an add 
          this.setState({actionMode: "ADD", selectedFolderName: ""})
      }
      if (this.state.actionMode === 'EDIT' || this.state.actionMode === 'ADD')

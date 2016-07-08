@@ -72,7 +72,7 @@ import storage from 'localStorage';
         addFolder(parentKey, name)
         {
              let index = this.getIndex();
-             let target = index[key];
+             let target = index[parentKey];
              target.children.push({name: name, key:"bonzo",children:[]})        
              storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
              this.getIndex();
