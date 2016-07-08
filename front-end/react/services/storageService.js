@@ -103,9 +103,7 @@ import storage from 'localStorage';
              let containingArray = index[parentKey].children;
             // console.log("will delete "+containingArray[deleteIndex].name)
              containingArray.splice(deleteIndex,1)
-             
-             
-             //storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
              this.getIndex();
              return this.getFolderData();
         }

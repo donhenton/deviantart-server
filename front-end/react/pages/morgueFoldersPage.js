@@ -82,9 +82,9 @@ export default class MorgueFoldersPage extends Component {
   
   deleteFolder(e)
   {
-       e.preventDefault();
+      e.preventDefault();
       let newFolderData = storageService.deleteFolder(this.state.selectedKey)
-        this.setState({folderData: newFolderData,selectedFolderName: "", actionMode:"CHOOSE"})
+      this.setState({ selectedKey: "",folderData: newFolderData,selectedFolderName: "", actionMode:"INIT"})
       
   }
  
@@ -149,6 +149,33 @@ export default class MorgueFoldersPage extends Component {
       return disable;
           
   }
+  
+  getCSSForButton(type)
+  {
+      let css = "";
+      if (type === 'DELETE')
+      {
+          css = "btn btn-red space-left"
+          if (this.state.selectedKey === "/0")
+          {
+             css = css + " hidden"
+          }
+      }
+      else
+      {
+          css  = "btn btn-primary space-right"
+          if (this.state.selectedKey === "/0" && this.state.actionMode === 'CHOOSE')
+          {
+             css = css + " hidden"
+          }
+      }
+      
+      
+      
+      
+      
+      return css;
+  }
         
         
   render() {
@@ -202,13 +229,13 @@ export default class MorgueFoldersPage extends Component {
                    </tbody>
                </table>
                        <div className="row">
-                        <button id="saveFolder" disabled={me.disableItem('EDIT')}   type="button" onClick={this.editFolder.bind(me)} className="btn btn-primary space-right">
+                        <button id="saveFolder" disabled={me.disableItem('EDIT')}   type="button" onClick={this.editFolder.bind(me)} className={me.getCSSForButton('EDIT')}>
                         {me.getButtonText('EDIT')}</button>
                          
                         <button id="addFolder" disabled={me.disableItem('ADD')} type="button" onClick={this.addFolder.bind(me)}  className="btn btn-primary space-right">
                         {me.getButtonText('ADD')}</button>
                          
-                        <button id="deleteFolder"   type="button" onClick={this.deleteFolder.bind(me)}  className="btn btn-red space-left">
+                        <button id="deleteFolder"   type="button" onClick={this.deleteFolder.bind(me)}  className={me.getCSSForButton('DELETE')}>
                         Delete</button>
                          </div>
                 
