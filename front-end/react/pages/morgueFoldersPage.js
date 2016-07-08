@@ -80,6 +80,13 @@ export default class MorgueFoldersPage extends Component {
       
   }
   
+  deleteFolder(e)
+  {
+       e.preventDefault();
+      let newFolderData = storageService.deleteFolder(this.state.selectedKey)
+        this.setState({folderData: newFolderData,selectedFolderName: "", actionMode:"CHOOSE"})
+      
+  }
  
   
   getButtonText(type)
@@ -181,7 +188,7 @@ export default class MorgueFoldersPage extends Component {
                   <table  className='table table-striped'>
                     <tbody>
                       <tr>
-                      <th><label>Key:</label></th><td  colSpan="3">{this.state.selectedKey +" ("+this.state.actionMode+")"}</td> 
+                      <th><label>Key:</label></th><td>{this.state.selectedKey +" ("+this.state.actionMode+")"}</td> 
                       
                       </tr>
                       <tr>
@@ -189,19 +196,22 @@ export default class MorgueFoldersPage extends Component {
                         <label for="folderName">Folder Name:</label>
                         </th>
                         <td>
-                        <input id="folderInput" type="text" disabled={me.disableItem('INPUT')} onChange={me.mapFolderNameChange.bind(me)} value={this.state.selectedFolderName} size="35" id="folderName" />
+                        <input id="folderInput"   type="text" disabled={me.disableItem('INPUT')} onChange={me.mapFolderNameChange.bind(me)} value={this.state.selectedFolderName} size="35" id="folderName" />
                         </td>
-                        <td>
-                        <button id="saveFolder" disabled={me.disableItem('EDIT')}   type="button" onClick={this.editFolder.bind(me)} className="btn btn-primary">
-                        {me.getButtonText('EDIT')}</button>
-                        </td>
-                <td>
-                        <button id="addFolder" disabled={me.disableItem('ADD')} type="button" onClick={this.addFolder.bind(me)}  className="btn btn-primary">
-                        {me.getButtonText('ADD')}</button>
-                        </td>
-                     </tr>
+                           </tr>
                    </tbody>
                </table>
+                       <div className="row">
+                        <button id="saveFolder" disabled={me.disableItem('EDIT')}   type="button" onClick={this.editFolder.bind(me)} className="btn btn-primary space-right">
+                        {me.getButtonText('EDIT')}</button>
+                         
+                        <button id="addFolder" disabled={me.disableItem('ADD')} type="button" onClick={this.addFolder.bind(me)}  className="btn btn-primary space-right">
+                        {me.getButtonText('ADD')}</button>
+                         
+                        <button id="deleteFolder"   type="button" onClick={this.deleteFolder.bind(me)}  className="btn btn-red space-left">
+                        Delete</button>
+                         </div>
+                
                
                 </form>
 

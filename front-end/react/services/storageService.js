@@ -79,6 +79,37 @@ import storage from 'localStorage';
              return this.getFolderData();
         }
         
+        deleteFolder(key)
+        {
+            var keyparts = key.split("/");
+            keyparts = keyparts.slice(1)
+            if (keyparts.length == 1)
+            {
+                console.log("cannot delete the root")
+                return this.getFolderData();
+            }
+           
+            var parentKey = "";
+            for (var i=0;i<keyparts.length-1;i++)
+            {
+                parentKey = parentKey +"/"+ keyparts[i]
+                
+            }
+            
+             let deleteIndexString = keyparts[keyparts.length-1];
+             let deleteIndex = parseInt(deleteIndexString)
+             console.log("parent key "+ parentKey+" key "+key+ " deleteIndex "+ deleteIndex)
+             let index = this.getIndex();
+             let containingArray = index[parentKey].children;
+            // console.log("will delete "+containingArray[deleteIndex].name)
+             containingArray.splice(deleteIndex,1)
+             
+             
+             //storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             this.getIndex();
+             return this.getFolderData();
+        }
+        
         /**
          * get the data from local storage
          */
