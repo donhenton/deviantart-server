@@ -98,7 +98,7 @@ import storage from 'localStorage';
             
              let deleteIndexString = keyparts[keyparts.length-1];
              let deleteIndex = parseInt(deleteIndexString)
-             console.log("parent key "+ parentKey+" key "+key+ " deleteIndex "+ deleteIndex)
+             //console.log("parent key "+ parentKey+" key "+key+ " deleteIndex "+ deleteIndex)
              let index = this.getIndex();
              let containingArray = index[parentKey].children;
             // console.log("will delete "+containingArray[deleteIndex].name)
