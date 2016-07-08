@@ -75,6 +75,7 @@ import storage from 'localStorage';
              let target = index[key];
              target.children.push({name: name, key:"bonzo",children:[]})        
              storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             this.getIndex();
              return this.getFolderData();
         }
         

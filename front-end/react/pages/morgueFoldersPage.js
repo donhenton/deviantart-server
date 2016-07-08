@@ -27,7 +27,7 @@ export default class MorgueFoldersPage extends Component {
   {
       let idxObj = storageService.getIndex(); 
       let folderName = idxObj[selectedKeys[0]].name   
-      this.setState({selectedKey: selectedKeys[0], selectedFolderName: folderName,actionMode:"EDIT"})
+      this.setState({selectedKey: selectedKeys[0], selectedFolderName: folderName})
       
   }
   
@@ -49,7 +49,8 @@ export default class MorgueFoldersPage extends Component {
       e.preventDefault();
       if(this.state.actionMode === "ADD")
       {
-          
+          let newFolderData = storageService.addFolder(this.state.selectedKey, this.state.selectedFolderName)
+          this.setState({folderData: newFolderData})
           
           
       }
@@ -126,7 +127,8 @@ export default class MorgueFoldersPage extends Component {
                         <button id="saveEdit" disabled={this.state.actionMode =='ADD'}  type="button" onClick={this.saveEdit.bind(me)} className="btn btn-primary">Save</button>
                         </td>
                 <td>
-                        <button id="addFolder" type="button" onClick={this.addOrCancelFolder.bind(me)}  className="btn btn-primary"> {me.getAddText()}</button>
+                        <button id="addFolder" type="button" onClick={this.addOrCancelFolder.bind(me)}  className="btn btn-primary">
+                        {me.getAddText()}</button>
                         </td>
                      </tr>
                    </tbody>
