@@ -89,28 +89,17 @@ export default class MorgueFoldersPage extends Component {
   
   deleteFolder(e)
   {
-      e.preventDefault();
-      let idxObj = storageService.getIndex(); 
-      let folderData = idxObj[this.state.selectedKey]
-      if (folderData.children.length > 0)
-      {
-          var retVal = confirm("WARNING: Deleting will remove all children and contents!\n Do you want to continue?");
-          if (retVal === true)
-          {
-               let newFolderData = storageService.deleteFolder(this.state.selectedKey)
-               this.setState({ selectedKey: "",folderData: newFolderData,selectedFolderName: "", actionMode:"INIT"})
-          }
-          
-          
-      }
-      else
-      {
-          
-          let newFolderData = storageService.deleteFolder(this.state.selectedKey)
-          this.setState({ selectedKey: "",folderData: newFolderData,selectedFolderName: "", actionMode:"INIT"})
-          
-          
-      }
+        e.preventDefault();
+        let idxObj = storageService.getIndex(); 
+        let folderData = idxObj[this.state.selectedKey]
+       
+        var retVal = confirm("WARNING: Deleting will remove all children and contents!\n Do you want to continue?");
+        if (retVal === true)
+        {
+             let newFolderData = storageService.deleteFolder(this.state.selectedKey)
+             this.setState({ selectedKey: "",folderData: newFolderData,selectedFolderName: "", actionMode:"INIT"})
+        }
+       
       
       
   }
@@ -196,11 +185,7 @@ export default class MorgueFoldersPage extends Component {
              css = css + " hidden"
           }
       }
-      
-      
-      
-      
-      
+     
       return css;
   }
         

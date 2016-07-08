@@ -4,6 +4,16 @@ import ReactDOM from 'react-dom';
 import Tree, {TreeNode} from 'rc-tree'; 
 import postal from 'postal';
 
+/**
+ * display component for folders
+ * PROPERTIES
+ * 
+ * 
+ * selectedKey the key of the current node if one is selected if not ""
+ * folderData the data used to construct the tree
+ * 
+ * 
+ */
 export default class MorgueFolderTree extends Component {
 
 constructor()
