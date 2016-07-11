@@ -30,6 +30,9 @@ $box-width: 500px;
 
 .searchContainer
 {
+    
+    
+    
     .targetFolder
     {
         margin-right: 20px;
@@ -140,24 +143,26 @@ $box-width: 500px;
         }
     }
     
-    
+    width: 300px;
     
 .imageComponentContainer
 {
     height: 410px;
+    position: relative;
+    width: 500px;
     padding: 10px;
     overflow: auto;
     border: thin solid $red-color;
     //http://alijafarian.com/responsive-image-grids-using-css/
     .imageListContainer
     {
-        -moz-column-count: 6;
+        -moz-column-count: 4;
         -moz-column-gap: 0px;
-        -webkit-column-count: 6;
+        -webkit-column-count: 4;
         -webkit-column-gap: 0px;
-        column-count: 6;
+        column-count: 4;
         column-gap: 0px;
-        width: 750px;
+        width: 100%;
         margin: 0 auto;
 
     

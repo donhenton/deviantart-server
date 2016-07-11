@@ -119,7 +119,7 @@ export default class ImageComponent extends Component
       var me = this;
     return (
        <div className="displayComponent">
-            <div className="row pagingControls">
+            <div className="pagingControls">
                      <button  onClick={me.navClick.bind(this,"PREVIOUS")} className={me.getButtonCSS('PREVIOUS')}>Previous</button>
                    <button  onClick={me.navClick.bind(this,"MORE")}    className={me.getButtonCSS('MORE')}>More</button>
                     <span>({this.state.offset})</span>
@@ -129,7 +129,7 @@ export default class ImageComponent extends Component
                  
 
                 <ImageList isProcessing={this.state.isProcessing} imagePageData={this.state.imagePageData} />
-
+                
              </div>
         </div>
         

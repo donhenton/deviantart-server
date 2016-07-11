@@ -8,6 +8,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CategoryTree from './../components/categoryTree'
 import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree';
 import FolderTarget from './../components/tagSearch/folderTarget';
+import CurrentImageDisplay from './../components/tagSearch/currentImageDisplay';
+
 
 export default class TagSearchPage extends Component {
         
@@ -57,9 +59,19 @@ export default class TagSearchPage extends Component {
                 
            </div>
            <div className="columnRight">
-                <FolderTarget />
+                
+                <table className="table table-striped well">
+                <tbody>
+                <tr><td colSpan="2"><FolderTarget /></td></tr>
+                <tr>
+                <td>
                 <ImageComponent />
-
+                </td><td>
+                <CurrentImageDisplay />
+                </td>
+                </tr>
+                </tbody>
+                </table>
 
            </div>
        </section>

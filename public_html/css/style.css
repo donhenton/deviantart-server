@@ -638,38 +638,40 @@ body {
     top: -40px;
     left: 300; }
 
-.displayComponent .pagingControls {
-  margin-bottom: 10px; }
-  .displayComponent .pagingControls button {
-    margin: 10px; }
-
-.displayComponent .imageComponentContainer {
-  height: 410px;
-  padding: 10px;
-  overflow: auto;
-  border: thin solid #963019; }
-  .displayComponent .imageComponentContainer .imageListContainer {
-    -moz-column-count: 6;
-    -moz-column-gap: 0px;
-    -webkit-column-count: 6;
-    -webkit-column-gap: 0px;
-    column-count: 6;
-    column-gap: 0px;
-    width: 750px;
-    margin: 0 auto; }
-    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryHit {
-      opacity: 1; }
-    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryMiss {
-      opacity: 0.5; }
-    .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
-      margin: 5px;
-      width: 100%; }
-
-.displayComponent div.waitIndicator {
-  background: url("images/spiffygif_96x96.gif") 50% 50% no-repeat;
-  width: 765px;
-  height: 410px;
-  position: absolute;
-  top: 21%;
-  left: 37%;
-  z-index: 999; }
+.displayComponent {
+  width: 300px; }
+  .displayComponent .pagingControls {
+    margin-bottom: 10px; }
+    .displayComponent .pagingControls button {
+      margin: 10px; }
+  .displayComponent .imageComponentContainer {
+    height: 410px;
+    position: relative;
+    width: 500px;
+    padding: 10px;
+    overflow: auto;
+    border: thin solid #963019; }
+    .displayComponent .imageComponentContainer .imageListContainer {
+      -moz-column-count: 4;
+      -moz-column-gap: 0px;
+      -webkit-column-count: 4;
+      -webkit-column-gap: 0px;
+      column-count: 4;
+      column-gap: 0px;
+      width: 100%;
+      margin: 0 auto; }
+      .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryHit {
+        opacity: 1; }
+      .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryMiss {
+        opacity: 0.5; }
+      .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
+        margin: 5px;
+        width: 100%; }
+  .displayComponent div.waitIndicator {
+    background: url("images/spiffygif_96x96.gif") 50% 50% no-repeat;
+    width: 765px;
+    height: 410px;
+    position: absolute;
+    top: 21%;
+    left: 37%;
+    z-index: 999; }
