@@ -6,12 +6,15 @@ import SearchAttributes from './../components/tagSearch/searchAttributesComponen
 import ImageComponent from './../components/tagSearch/imageComponent';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CategoryTree from './../components/categoryTree'
+import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree';
+import FolderTarget from './../components/tagSearch/folderTarget';
 
 export default class TagSearchPage extends Component {
         
   constructor()
   {
       super();
+     
        
   }
   
@@ -45,7 +48,7 @@ export default class TagSearchPage extends Component {
                     <CategoryTree />
                 </TabPanel>
                 <TabPanel>
-                     <h2>Hello from Morgue</h2>
+                    <ReadOnlyFolderTree />
                 </TabPanel>
                
                </Tabs>
@@ -54,7 +57,7 @@ export default class TagSearchPage extends Component {
                 
            </div>
            <div className="columnRight">
-
+                <FolderTarget />
                 <ImageComponent />
 
 

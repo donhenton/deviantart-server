@@ -583,6 +583,21 @@ body {
   border: #16174f double;
   width: 100%; }
 
+.searchContainer .targetFolder {
+  margin-right: 20px; }
+  .searchContainer .targetFolder #targetFolderIcon {
+    color: #667467;
+    font-size: 48px; }
+  .searchContainer .targetFolder .targetFolderText {
+    color: #963019;
+    margin-right: 10px;
+    top: -5px;
+    position: relative;
+    font-family: Roboto, Arial, Sans-Serif;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic; }
+
 .tagSearchContainer {
   width: 400px;
   position: relative; }

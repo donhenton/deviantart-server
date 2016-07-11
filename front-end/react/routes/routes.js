@@ -7,8 +7,8 @@ import MorgueFoldersPage from './../pages/morgueFoldersPage';
 
 export const createRoutes = () => (
   <Route path="/" component={Main} >
-    <IndexRoute component={MorgueFoldersPage} />
-    <Route path="morgueFolders" component={TagSearchPage} />  
+    <IndexRoute component={TagSearchPage} />
+    <Route path="morgueFolders" component={MorgueFoldersPage} />  
     
   </Route>
 );

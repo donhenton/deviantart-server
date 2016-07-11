@@ -117,40 +117,7 @@ import storage from 'localStorage';
             this.data = JSON.parse(storage.getItem(LOCALSTORAGE_KEY));
         }
 
-        sampleData()
-        {
-
-        let tempData = [
-        {
-
-        'key': '/1',
-                'name':'bonzo the clown',
-                children: []
-        },
-        {
-
-        'key': '/2',
-                'name':'3 stooges',
-                children: [
-                {'key': '/2/0', 'name': 'Manny', children: []},
-                {'key': '/2/1', 'name': 'Moe', children: []},
-                {'key': '/2/2', 'name': 'Jack', children: [    {'key': '/2/2/0', 'name': 'Jack Dog', children: []}  ]}
-
-                ]
-        },
-        {
-
-        'key': '/3',
-                'name':'Eggs',
-        children: []
-        },
-        ]
-
-
-
-                 
-                this.data =  [{key: '/0','name': 'root', children: tempData}];
-        }
+         
 
 
 
