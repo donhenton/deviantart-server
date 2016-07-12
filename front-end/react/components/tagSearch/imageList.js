@@ -114,6 +114,18 @@ export default class ImageList extends Component
   }
   
   
+  clickOnImage(imageData)
+  {
+      
+      postal.publish({
+               channel: "deviant-system",
+                topic: "select-image" ,
+               data:  imageData
+            });
+      
+      
+  }
+  
   renderImages()
   {
       var newImages = null;
@@ -121,20 +133,22 @@ export default class ImageList extends Component
       let me = this;
       let idx = 0;
       
+      
       if (this.props.imagePageData && this.props.imagePageData.length > 0) 
       {
         newImages =  this.props.imagePageData.map((imgData) => {
             if (imgData.smallestThumb && imgData.smallestThumb.src)
             {
              idx++;
+             let clickAction = me.clickOnImage.bind(me,imgData)
              var css = me.computeImageCSS(imgData)
             return ( 
                     <span  key={imgData.deviationid} className={css}>
                      
-                    <a target="_new" href={imgData.url}>
-                    <img id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
+                     
+                    <img onClick={clickAction} id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
                          onError={this.handleImageErrored.bind(this)}  src={imgData.smallestThumb.src} />
-                    </a>
+                    
                     </span>
                     )
             }

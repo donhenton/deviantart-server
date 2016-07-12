@@ -31,6 +31,53 @@ $box-width: 500px;
 .searchContainer
 {
     
+    table.imageSelectorComponent
+    {
+        td.currentImageTableCell
+        {
+            background-color: $green-color;
+            width: 250px;
+            padding: 20px;
+            margin: 0px;
+           
+            
+            
+            .currentImageControlContainer
+            {
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+                overflow:auto;
+                height: 400px;
+                
+                .imageControl
+                {
+                 width: 100px;
+                 height: 50px;
+                 color: white;
+                 text-align: center;
+                 margin: 10px auto;
+                  
+                  
+                }
+            }
+            
+            
+            
+            img.currentImageDisplay
+            {
+                width: 100%;
+                margin: 10px auto;
+                
+                 
+                
+                
+            }
+        }
+        
+        
+    }
     
     
     .targetFolder
@@ -185,6 +232,7 @@ $box-width: 500px;
             {
                 margin: 5px;
                 width: 100%;
+                cursor: pointer;
 
             }
 

@@ -16,14 +16,14 @@ export default class ImageComponent extends Component
   componentWillMount()
   {
       let me = this;
-      let targetInfo = {name: "", key: "" }
-      this.state = {targetFolder: targetInfo };
+       
+      this.state = {imageData: null };
       postal.subscribe({
                 channel: "deviant-system",
-                topic: "select-target-folder" ,
+                topic: "select-image" ,
                 callback: function (data, envelope) {
                         //data.name  data.key
-                        me.setState({'targetFolder': data});
+                        me.setState({'imageData': data});
 
                 }
                });
@@ -32,16 +32,23 @@ export default class ImageComponent extends Component
    
         
    render() {
-      var me = this;
-    return (
-             <div  className="currentImageDisplay">
-              
-                  stuff goes here
-             
-             </div>
-           )
-   
-        
+            var me = this;
+            if (this.state.imageData)
+            {
+                 return (
+                   
+
+                       <img  className="currentImageDisplay" src={this.state.imageData.thumbs[2].src} />
+
+                   
+                 )
+            }
+            else
+            {
+                return (
+                   <div>  </div>
+                 )
+            }
         
         }
         

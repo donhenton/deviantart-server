@@ -3,7 +3,7 @@ import { Component } from 'react';
 import deviantService from './../services/deviantService';
 import TagSearchComponent from './../components/tagSearch/tagSearchComponent';
 import SearchAttributes from './../components/tagSearch/searchAttributesComponent';
-import ImageComponent from './../components/tagSearch/imageComponent';
+import ImageComponent from './../components/tagSearch/imageSelectorComponent';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CategoryTree from './../components/categoryTree'
 import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree';
@@ -60,14 +60,25 @@ export default class TagSearchPage extends Component {
            </div>
            <div className="columnRight">
                 
-                <table className="table table-striped well">
+                <table className="imageSelectorComponent table table-striped well">
                 <tbody>
                 <tr><td colSpan="2"><FolderTarget /></td></tr>
                 <tr>
-                <td>
+                <td className="imageComponentTableCell">
                 <ImageComponent />
-                </td><td>
-                <CurrentImageDisplay />
+                </td><td  className="currentImageTableCell">
+                 <div className="currentImageControlContainer">
+                 
+                        
+                  <div className='imageControl'>
+                      click 1</div>
+                      <div className='imageControl'>
+                      click 2</div>
+                      
+                          <CurrentImageDisplay />
+                      
+                     
+                </div>
                 </td>
                 </tr>
                 </tbody>

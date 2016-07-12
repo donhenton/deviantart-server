@@ -583,6 +583,28 @@ body {
   border: #16174f double;
   width: 100%; }
 
+.searchContainer table.imageSelectorComponent td.currentImageTableCell {
+  background-color: #667467;
+  width: 250px;
+  padding: 20px;
+  margin: 0px; }
+  .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    height: 400px; }
+    .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer .imageControl {
+      width: 100px;
+      height: 50px;
+      color: white;
+      text-align: center;
+      margin: 10px auto; }
+  .searchContainer table.imageSelectorComponent td.currentImageTableCell img.currentImageDisplay {
+    width: 100%;
+    margin: 10px auto; }
+
 .searchContainer .targetFolder {
   margin-right: 20px; }
   .searchContainer .targetFolder #targetFolderIcon {
@@ -666,7 +688,8 @@ body {
         opacity: 0.5; }
       .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
         margin: 5px;
-        width: 100%; }
+        width: 100%;
+        cursor: pointer; }
   .displayComponent div.waitIndicator {
     background: url("images/spiffygif_96x96.gif") 50% 50% no-repeat;
     width: 765px;
