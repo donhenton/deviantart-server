@@ -17,7 +17,7 @@ export default class ImageComponent extends Component
   {
       let me = this;
        
-      this.state = {imageData: null };
+      this.state = {imageData: null,targetFolder: null };
       postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
@@ -27,9 +27,35 @@ export default class ImageComponent extends Component
 
                 }
                });
+               
+      postal.subscribe({
+                channel: "deviant-system",
+                topic: "select-target-folder" ,
+                callback: function (data, envelope) {
+                        //data.name  data.key
+                        me.setState({'targetFolder': data});
+
+                }
+               });
   }
   
-   
+   renderFolderButton()
+   {
+      if (this.state.targetFolder)
+      {
+          return ( 
+              <div className='imageControl'>click 222</div> 
+              )
+      }
+      else
+      {
+          return null;
+      }
+      
+       
+       
+       
+   }
         
    render() {
             var me = this;
@@ -40,14 +66,17 @@ export default class ImageComponent extends Component
                  
                         
                   <div className='imageControl'><a target="_new" href={this.state.imageData.url}>View Deviant Art Page</a></div>
-                      <div className='imageControl'>
-                      click 2</div>
-                      <div className="imageWrapper">
+                  
+                  {me.renderFolderButton()}
+                  
+                  
+                  
+                  <div className="imageWrapper">
+                            <a target="_new" href={this.state.imageData.url}>
                             <img 
-                             width={this.state.imageData.thumbs[2].width} 
-                             height={this.state.imageData.thumbs[2].height} 
                              className="currentImageDisplay" 
                              src={this.state.imageData.thumbs[2].src} />
+                            </a>
                        </div>         
                    </div>
                  )

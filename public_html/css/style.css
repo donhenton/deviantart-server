@@ -593,8 +593,7 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    height: 450px;
-    border: thin solid red; }
+    height: 450px; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a {
       color: white;
       text-decoration: none; }
