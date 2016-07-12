@@ -36,11 +36,20 @@ export default class ImageComponent extends Component
             if (this.state.imageData)
             {
                  return (
-                   
-
-                       <img  className="currentImageDisplay" src={this.state.imageData.thumbs[2].src} />
-
-                   
+                   <div className="currentImageControlContainer">
+                 
+                        
+                  <div className='imageControl'><a target="_new" href={this.state.imageData.url}>View Deviant Art Page</a></div>
+                      <div className='imageControl'>
+                      click 2</div>
+                      <div className="imageWrapper">
+                            <img 
+                             width={this.state.imageData.thumbs[2].width} 
+                             height={this.state.imageData.thumbs[2].height} 
+                             className="currentImageDisplay" 
+                             src={this.state.imageData.thumbs[2].src} />
+                       </div>         
+                   </div>
                  )
             }
             else

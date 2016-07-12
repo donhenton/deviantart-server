@@ -593,14 +593,21 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    overflow: auto;
-    height: 400px; }
+    height: 450px;
+    border: thin solid red; }
+    .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a {
+      color: white;
+      text-decoration: none; }
+      .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a:hover {
+        text-decoration: underline; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer .imageControl {
-      width: 100px;
       height: 50px;
       color: white;
       text-align: center;
       margin: 10px auto; }
+  .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
+    overflow: auto;
+    height: 300px; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell img.currentImageDisplay {
     width: 100%;
     margin: 10px auto; }
@@ -608,7 +615,7 @@ body {
 .searchContainer .targetFolder {
   margin-right: 20px; }
   .searchContainer .targetFolder #targetFolderIcon {
-    color: #667467;
+    color: #963019;
     font-size: 48px; }
   .searchContainer .targetFolder .targetFolderText {
     color: #963019;

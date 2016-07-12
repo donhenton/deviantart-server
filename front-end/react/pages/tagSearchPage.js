@@ -67,18 +67,12 @@ export default class TagSearchPage extends Component {
                 <td className="imageComponentTableCell">
                 <ImageComponent />
                 </td><td  className="currentImageTableCell">
-                 <div className="currentImageControlContainer">
                  
-                        
-                  <div className='imageControl'>
-                      click 1</div>
-                      <div className='imageControl'>
-                      click 2</div>
                       
                           <CurrentImageDisplay />
                       
                      
-                </div>
+                
                 </td>
                 </tr>
                 </tbody>
