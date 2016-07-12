@@ -17,13 +17,13 @@ export default class ImageComponent extends Component
   {
       let me = this;
        
-      this.state = {imageData: null,targetFolder: null };
+      this.state = {imageData: null,targetFolder: null, didTransfer: false };
       postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
                 callback: function (data, envelope) {
                         //data.name  data.key
-                        me.setState({'imageData': data});
+                        me.setState({'imageData': data,didTransfer: false});
 
                 }
                });
@@ -44,7 +44,7 @@ export default class ImageComponent extends Component
       if (this.state.targetFolder)
       {
           return ( 
-              <div className='imageControl'>click 222</div> 
+              <div className='imageControl'><em>Drag Image to Folder</em></div> 
               )
       }
       else
@@ -56,6 +56,49 @@ export default class ImageComponent extends Component
        
        
    }
+   
+   //////DND ///////////////////////////////////////////////////////////////
+   
+   sourceDragStart(e)
+   {
+       
+       e.target.style.opacity = 0.2;
+       e.dataTransfer.setData('application/json',JSON.stringify(this.state.imageData))
+       e.dataTransfer.effectAllowed = 'move';
+   }
+   
+   sourceDragEnd(e)
+   {
+       if(e.dataTransfer.dropEffect !== 'none'){
+         
+         //do the stuff to set up 
+         this.setState({didTransfer: true})
+       }
+       else
+       {
+           console.log("you bailed")
+       }
+       e.target.style.opacity = 1;
+       
+   }
+   
+   getCompletedTextCss()
+   {
+       let css = "completedText hidden";
+       if (this.state.didTransfer)
+       {
+           css = css + "completedText "
+       }
+       
+       
+       return css;
+       
+   }
+   
+   ////////////////////////////////////////////////////////////////////////
+   
+   
+   
         
    render() {
             var me = this;
@@ -72,11 +115,16 @@ export default class ImageComponent extends Component
                   
                   
                   <div className="imageWrapper">
-                            <a target="_new" href={this.state.imageData.url}>
+                            <div className="imageExpander">
                             <img 
+                             onDragStart={me.sourceDragStart.bind(me)}
+                             onDragEnd={me.sourceDragEnd.bind(me)}
                              className="currentImageDisplay" 
                              src={this.state.imageData.thumbs[2].src} />
-                            </a>
+                                     
+                            <span className={me.getCompletedTextCss()}>{'Image Added To '+this.state.targetFolder.name}</span>         
+                           </div>
+                            
                        </div>         
                    </div>
                  )

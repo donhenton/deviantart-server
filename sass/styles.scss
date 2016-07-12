@@ -30,7 +30,7 @@ $box-width: 500px;
 
 .searchContainer
 {
-    
+
     table.imageSelectorComponent
     {
         td.currentImageTableCell
@@ -39,85 +39,116 @@ $box-width: 500px;
             width: 250px;
             padding: 20px;
             margin: 0px;
-            
-            
-            
+
+
+
             .currentImageControlContainer
             {
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
                 align-items: center;
-                
+
                 height: 450px;
-               
+
                 a
                 {
                     color: white;
                     text-decoration: none;
-                    
+
                     &:hover
-                    {
+                        {
                         text-decoration: underline;
                     }
-                    
+
                 }
-                
-                
+
+
                 .imageControl
                 {
-                  
-                 height: 50px;
-                 color: white;
-                 text-align: center;
-                 margin: 10px auto;
-                  
-                  
+
+                    height: 35px;
+                    color: white;
+                    text-align: center;
+                    margin: 10px auto;
+
+
                 }
             }
-            
-            
+
+
             .imageWrapper
             {
                 overflow: auto;
-                height: 300px;
+                height: 350px;
+               
+
+                .imageExpander
+                {
+                     position: relative;
+                    .completedText
+                    {
+
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        background: rgba(0,0,0,0.6);
+                        color: #ddd;
+                        padding: 20px;
+                    }
+
+                }
             }
             img.currentImageDisplay
             {
                 width: 100%;
                 margin: 10px auto;
-                 
+                cursor: move;
+
             }
         }
-        
-        
+
+
     }
-    
-    
+
+
     .targetFolder
     {
         margin-right: 20px;
-        
+        height: 40px;
+        padding: 5px;
+
+
+
+        &.incoming
+        {
+            border: thin $blue-color dashed;
+        }
+
         #targetFolderIcon
         {
             color: $red-color;
             font-size: 48px;
-            
+            position: relative;
+            top: -10px;
+
         }
-        
+
         .targetFolderText 
         {
-          color: $red-color;
-          margin-right: 10px;
-          top: -5px;
-          position: relative;
-          font-family: Roboto, Arial, Sans-Serif ;
-          font-size: 24px;
-          font-weight: 400;
-          font-style: italic;
-            
+            color: $red-color;
+            margin-right: 10px;
+            position: relative;
+            top: -15px;
+            font-family: Roboto, Arial, Sans-Serif ;
+            font-size: 24px;
+            font-weight: 400;
+            font-style: italic;
+
         }
-        
+
     }
 }
 
@@ -187,7 +218,7 @@ $box-width: 500px;
         position:absolute;
         top:-40px;
         left: 300;
-         
+
     }
 
 
@@ -203,60 +234,61 @@ $box-width: 500px;
             margin: 10px;
         }
     }
-    
+
     width: 300px;
-    
-.imageComponentContainer
-{
-    height: 410px;
-    position: relative;
-    width: 500px;
-    padding: 10px;
-    overflow: auto;
-    border: thin solid $red-color;
-    //http://alijafarian.com/responsive-image-grids-using-css/
-    .imageListContainer
+
+    .imageComponentContainer
     {
-        -moz-column-count: 4;
-        -moz-column-gap: 0px;
-        -webkit-column-count: 4;
-        -webkit-column-gap: 0px;
-        column-count: 4;
-        column-gap: 0px;
-        width: 100%;
-        margin: 0 auto;
-
-    
-
-
-        .deviantThumb
+        height: 410px;
+        position: relative;
+        width: 500px;
+        padding: 10px;
+        overflow: auto;
+        border: thin solid $red-color;
+        //http://alijafarian.com/responsive-image-grids-using-css/
+        .imageListContainer
         {
+            -moz-column-count: 4;
+            -moz-column-gap: 0px;
+            -webkit-column-count: 4;
+            -webkit-column-gap: 0px;
+            column-count: 4;
+            column-gap: 0px;
+            width: 100%;
+            margin: 0 auto;
 
-            &.categoryHit
+
+
+
+            .deviantThumb
             {
-                opacity: 1;
+
+                &.categoryHit
+                {
+                    opacity: 1;
+                }
+                &.categoryMiss
+                {
+                    opacity: 0.5;
+                }
+
+
+                img
+                {
+                    margin: 5px;
+                    width: 100%;
+                    cursor: pointer;
+                    -webkit-user-drag:  none;
+
+                }
+
+
             }
-            &.categoryMiss
-            {
-                opacity: 0.5;
-            }
-
-
-            img
-            {
-                margin: 5px;
-                width: 100%;
-                cursor: pointer;
-
-            }
-
-
         }
+
     }
 
-}
-
- div.waitIndicator
+    div.waitIndicator
     { 
         background:  url('images/spiffygif_96x96.gif') 50% 50% no-repeat;
         width:765px;
@@ -266,5 +298,5 @@ $box-width: 500px;
         left:37%;
         z-index:999;
     }
-    
-    }
+
+}

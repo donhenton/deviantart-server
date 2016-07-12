@@ -600,27 +600,45 @@ body {
       .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a:hover {
         text-decoration: underline; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer .imageControl {
-      height: 50px;
+      height: 35px;
       color: white;
       text-align: center;
       margin: 10px auto; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
     overflow: auto;
-    height: 300px; }
+    height: 350px; }
+    .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper .imageExpander {
+      position: relative; }
+      .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper .imageExpander .completedText {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: #ddd;
+        padding: 20px; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell img.currentImageDisplay {
     width: 100%;
-    margin: 10px auto; }
+    margin: 10px auto;
+    cursor: move; }
 
 .searchContainer .targetFolder {
-  margin-right: 20px; }
+  margin-right: 20px;
+  height: 40px;
+  padding: 5px; }
+  .searchContainer .targetFolder.incoming {
+    border: thin #16174f dashed; }
   .searchContainer .targetFolder #targetFolderIcon {
     color: #963019;
-    font-size: 48px; }
+    font-size: 48px;
+    position: relative;
+    top: -10px; }
   .searchContainer .targetFolder .targetFolderText {
     color: #963019;
     margin-right: 10px;
-    top: -5px;
     position: relative;
+    top: -15px;
     font-family: Roboto, Arial, Sans-Serif;
     font-size: 24px;
     font-weight: 400;
@@ -695,7 +713,8 @@ body {
       .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
         margin: 5px;
         width: 100%;
-        cursor: pointer; }
+        cursor: pointer;
+        -webkit-user-drag: none; }
   .displayComponent div.waitIndicator {
     background: url("images/spiffygif_96x96.gif") 50% 50% no-repeat;
     width: 765px;
