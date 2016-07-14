@@ -16,6 +16,7 @@ export default class ImageList extends Component
       this.currentCounter = 0;
       this.loadTargetCount = 0; 
       this.imageRefs=[];
+      this.subscription = null;
   }
   
   
@@ -29,13 +30,18 @@ export default class ImageList extends Component
         this.loadTargetCount = 0;  
   }
                
+    componentWillUnmount () {
+      
+      this.subscription.unsubscribe();
+       
+  } 
   
   
   componentWillMount()
   {
        let me = this;
        this.state = {isProcessing: false,categories: []};
-       postal.subscribe({
+       this.subscription = postal.subscribe({
                 channel: "deviant-system",
                         topic: "select-category",
                         callback: function (data, envelope) {

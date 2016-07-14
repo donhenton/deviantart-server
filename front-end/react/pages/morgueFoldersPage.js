@@ -13,6 +13,7 @@ export default class MorgueFoldersPage extends Component {
       this.treeRef = null;
       this.folderData = null;
       this.folderIdx = {};
+      this.subscription = null;
   }
   
  
@@ -21,9 +22,9 @@ export default class MorgueFoldersPage extends Component {
       let me = this;
       this.folderData = storageService.getFolderData();
       this.state = { selectedKey: "", selectedFolderName: "", folderData: this.folderData, actionMode: "INIT"};
-      postal.subscribe({
+      this.subscription = postal.subscribe({
           
-                        channel: "deviant-system-folder-maintainence",
+                        channel: "deviant-system-folder-tree",
                         topic: "select-folder" ,
                         callback: function (data, envelope) {
                               
@@ -35,7 +36,11 @@ export default class MorgueFoldersPage extends Component {
       
   }
   
-   
+  componentWillUnmount () {
+      console.log("performing unsub folder page")
+      this.subscription.unsubscribe();
+      postal.unsubscribe(this.subscription)
+  } 
   
   mapFolderNameChange(ev)
   {

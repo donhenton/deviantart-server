@@ -13,9 +13,13 @@ export default class TagSearchPage extends Component
   {
       super();
       
-      
+      this._isMounted = false;
       this.handleDocumentClick = this.handleClick.bind(this)
        
+  }
+  componentDidMount()
+  {
+      this._isMounted = true;
   }
   
   componentWillMount()
@@ -28,6 +32,8 @@ export default class TagSearchPage extends Component
   
   componentWillUnmount () {
       console.log("removing handler")
+      this._isMounted = false;
+      
     window.document.removeEventListener('click', this.handleDocumentClick,true)
   }
   

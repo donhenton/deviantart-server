@@ -8,17 +8,21 @@ export default class ImageComponent extends Component
    constructor()
   {
       super();
-      
+      this.subscriptions = [];
   }
          
-  
+   componentWillUnmount () {
+      
+      this.subscriptions.map((sub) => { sub.unsubscribe()})
+       
+  } 
   
   componentWillMount()
   {
       let me = this;
        
       this.state = {imageData: null,targetFolder: null, didTransfer: false };
-      postal.subscribe({
+      let s1 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
                 callback: function (data, envelope) {
@@ -28,7 +32,7 @@ export default class ImageComponent extends Component
                 }
                });
                
-      postal.subscribe({
+      let s2 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-target-folder" ,
                 callback: function (data, envelope) {
@@ -37,6 +41,10 @@ export default class ImageComponent extends Component
 
                 }
                });
+               
+      this.subscriptions.push(s1);
+      this.subscriptions.push(s2);
+      
   }
   
    renderFolderButton()

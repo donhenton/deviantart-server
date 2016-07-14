@@ -10,9 +10,14 @@ export default class ImageComponent extends Component
    constructor()
   {
       super();
-      
+      this.subscription = null;
   }
          
+  componentWillUnmount () {
+      
+      this.subscription.unsubscribe();
+       
+  } 
   
   
   componentWillMount()
@@ -20,7 +25,7 @@ export default class ImageComponent extends Component
       let me = this;
       let targetInfo = {name: "", key: "" }
       this.state = {targetFolder: targetInfo, receivingImage: false };
-      postal.subscribe({
+     this.subscription = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-target-folder" ,
                 callback: function (data, envelope) {

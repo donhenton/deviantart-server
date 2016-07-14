@@ -13,12 +13,17 @@ export default class SearchAttributesComponent extends Component
    constructor()
   {
       super();
+      this.subscription = null;
        
   }
   
   
   
-  
+  componentWillUnmount () {
+      
+      this.subscription.unsubscribe();
+       
+  } 
                
   
   
@@ -30,7 +35,7 @@ export default class SearchAttributesComponent extends Component
       
       
       //data:  {tag: tagName}
-       postal.subscribe({
+       this.subscription = postal.subscribe({
                 channel: "deviant-system",
                         topic: "select-tag",
                         callback: function (data, envelope) {

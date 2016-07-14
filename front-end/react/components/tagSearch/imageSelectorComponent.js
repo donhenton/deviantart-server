@@ -14,16 +14,20 @@ export default class ImageComponent extends Component
    constructor()
   {
       super();
-      
+      this.subscription = null;
   }
          
-  
+  componentWillUnmount () {
+      
+      this.subscription.unsubscribe();
+       
+  } 
   
   componentWillMount()
   {
       this.state = {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
       var me = this;
-      postal.subscribe({
+      this.subscription = postal.subscribe({
                 channel: "deviant-system",
                         topic: "select-tag",
                         callback: function (data, envelope) {
