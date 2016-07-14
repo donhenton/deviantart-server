@@ -45,7 +45,7 @@ onSelect(selectedKeys, ev)
     this.setState({selectedKey: selectedKeys[0]})
    // console.log("sending out message "+selectedKeys[0])
      postal.publish({
-               channel: "deviant-system-folder-tree",
+               channel: "deviant-system-folder-maintainence",
                topic: "select-folder" ,
                data:  {selectedKey: selectedKeys[0]}
             });

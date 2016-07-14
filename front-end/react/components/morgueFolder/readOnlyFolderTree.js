@@ -25,7 +25,7 @@ constructor()
 componentWillMount()
 { 
       let me = this;
-      this.folderData = storageService.getFolderData()[0].children;
+      this.folderData = storageService.getFolderData().children;
       this.state = {  folderData: this.folderData};
       let idxObj = storageService.getIndex(); 
       

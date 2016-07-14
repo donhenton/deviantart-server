@@ -1,6 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import postal from 'postal';
+import storageService from './../../services/storageService';
+
 
 export default class ImageComponent extends Component  
 {
@@ -67,9 +69,13 @@ export default class ImageComponent extends Component
  {
       this.setState({receivingImage: false});
       let imageData = JSON.parse(e.dataTransfer.getData("application/json"));
-       console.log("target drop "+ imageData.deviationid);
+      console.log("target drop "+ imageData.deviationid);
+      storageService.insertIntoFolder(imageData,this.state.targetFolder) ;
+       
+       
        return false;
  }
+ 
  
  targetDragOver(e)
  {

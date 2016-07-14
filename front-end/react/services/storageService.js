@@ -27,6 +27,7 @@ import storage from 'localStorage';
         flatten(data)
         {
             var accum = {}
+            accum[data.key] = {'key': data.key, 'name': data.name, children: data.children}
             var me = this;
             
             function recurse(children,parentKeyString)
@@ -45,7 +46,7 @@ import storage from 'localStorage';
   
             }
             
-            recurse(data,"")
+            recurse(data.children,data.key)
             return accum;
          }
 
@@ -73,9 +74,17 @@ import storage from 'localStorage';
         {
              let index = this.getIndex();
              let target = index[parentKey];
-             target.children.push({name: name, key:"bonzo",children:[]})        
-             storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             if (target.children)
+             {
+                target.children.push({name: name, key:"bonzo",children:[]})   
+             }
+             else
+             {
+                 
+             }
              this.getIndex();
+             storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+             
              return this.getFolderData();
         }
         
@@ -115,6 +124,12 @@ import storage from 'localStorage';
         {
              
             this.data = JSON.parse(storage.getItem(LOCALSTORAGE_KEY));
+            if (!this.data)
+            {
+                
+                this.data = {key: '/0','name': 'root', children: []}
+                storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+            }
         }
 
          
@@ -123,4 +138,4 @@ import storage from 'localStorage';
 
         }
 let _storage = new StorageService();
-        export default _storage;
+export default _storage;

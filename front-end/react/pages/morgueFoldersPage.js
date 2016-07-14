@@ -23,7 +23,7 @@ export default class MorgueFoldersPage extends Component {
       this.state = { selectedKey: "", selectedFolderName: "", folderData: this.folderData, actionMode: "INIT"};
       postal.subscribe({
           
-                        channel: "deviant-system-folder-tree",
+                        channel: "deviant-system-folder-maintainence",
                         topic: "select-folder" ,
                         callback: function (data, envelope) {
                               
@@ -201,7 +201,7 @@ export default class MorgueFoldersPage extends Component {
             <h2>Morgue Folders</h2>
                 
        
-               <MorgueFolderTree selectedKey={this.state.selectedKey} folderData={this.state.folderData} />
+               <MorgueFolderTree selectedKey={this.state.selectedKey} folderData={[this.state.folderData]} />
        
        
        
