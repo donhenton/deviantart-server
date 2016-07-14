@@ -4,3 +4,4 @@
 /public/js/react/
 /config/env/development.js
 .DS_Store
+/newjson.json

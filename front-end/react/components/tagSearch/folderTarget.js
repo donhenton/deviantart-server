@@ -72,6 +72,7 @@ export default class ImageComponent extends Component
  }
  targetDrop(e)
  {
+      e.preventDefault();
       this.setState({receivingImage: false});
       let imageData = JSON.parse(e.dataTransfer.getData("application/json"));
       console.log("target drop "+ imageData.deviationid);

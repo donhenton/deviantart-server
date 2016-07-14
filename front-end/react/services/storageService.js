@@ -19,6 +19,34 @@ import storage from 'localStorage';
 
         }
         
+        insertIntoFolder(data,folder)
+        {
+            let key = folder.key;
+            let targetFolder = this.getIndex()[key];
+            if (!targetFolder['deviations'])
+            {
+                targetFolder.deviations = [];
+            }
+            
+            let storedData = {};
+            storedData.deviationid = data.deviationid;
+            storedData.thumbs = data.thumbs;
+            storedData.preview = data.preview;
+            
+            let checkIfPresent = targetFolder.deviations.filter((dev) => {
+                
+                return dev.deviationid === storedData.deviation;
+                
+                
+            })
+            if (!(checkIfPresent) || checkIfPresent.length == 0)
+            {
+                targetFolder.deviations.push(storedData)
+                storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+            }
+            
+             
+        }
         
         /**
          * create the flatten key index

@@ -106,7 +106,13 @@ export default class ImageComponent extends Component
    ////////////////////////////////////////////////////////////////////////
    
    
-   
+   getImageWrapperText()
+   {
+       if (this.state.targetFolder)
+          return  'Image Added To '+this.state.targetFolder.name;
+       else
+          return 'Image Added';
+   }
         
    render() {
             var me = this;
@@ -130,7 +136,7 @@ export default class ImageComponent extends Component
                              className="currentImageDisplay" 
                              src={this.state.imageData.thumbs[2].src} />
                                      
-                            <span className={me.getCompletedTextCss()}>{'Image Added To '+this.state.targetFolder.name}</span>         
+                            <span className={me.getCompletedTextCss()}>{me.getImageWrapperText()}</span>         
                            </div>
                             
                        </div>         
