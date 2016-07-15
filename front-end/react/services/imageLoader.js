@@ -5,6 +5,12 @@
 import postal from 'postal';
 import deviantService from './deviantService'
 import ImageData from './classes/imageData'
+
+/**
+ * this class is used by imageSelectorComponent services that provide images
+ * will provide pages of images in the ImageData format
+ */
+
 class ImageLoader
 {
     
@@ -17,8 +23,16 @@ class ImageLoader
 
     }
 
-    
-    getPage(tag,offset,limit)
+    /**
+     * paging function for imageSelectorComponent
+     * the interface is getPage(offset,limit,tag<optional>)
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    getPage(offset,limit,tag)
     {
         
        return deviantService.getTagImages(tag,offset,limit)

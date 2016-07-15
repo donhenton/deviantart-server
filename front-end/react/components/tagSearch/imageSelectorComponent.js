@@ -2,19 +2,22 @@
 import React from 'react';
 import { Component } from 'react';
 import deviantService from './../../services/deviantService';
-import imageLoader from './../../services/imageLoader';
 import ReactDOM from 'react-dom';
 import postal from 'postal';
 import ImageList from './imageList';
 
-export const imageCount = 25;
-export default class ImageComponent extends Component  
+//export const this.imageCount = 25;
+
+
+
+export default class ImageSelectorComponent extends Component  
 {
     
    constructor()
   {
       super();
       this.subscription = null;
+      this.imageCount = 25;
   }
          
   componentWillUnmount () {
@@ -26,6 +29,11 @@ export default class ImageComponent extends Component
   componentWillMount()
   {
       this.state = {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
+      if (this.props.pageCount)
+      {
+          this.imageCount = this.props.pageCount;
+      }
+       
       var me = this;
       this.subscription = postal.subscribe({
                 channel: "deviant-system",
@@ -67,14 +75,14 @@ export default class ImageComponent extends Component
       if (type === 'PREVIOUS')
       {
           
-           offset = offsetStart - 2*(imageCount-1)
+           offset = offsetStart - 2*(this.imageCount-1)
            if (offset < 0)
            {
                offset = 0;
            }
           
       }
-      imageLoader.getPage(tag,offset, imageCount)
+      this.props.imageSource.getPage(offset, this.imageCount,tag)
         .then(function(data )
         {
            
@@ -106,7 +114,7 @@ export default class ImageComponent extends Component
       }
       if (type === 'PREVIOUS')
       {
-          if (this.state.offset === 0 || (this.state.offset - (imageCount -1))===0)
+          if (this.state.offset === 0 || (this.state.offset - (this.imageCount -1))===0)
           {
               css = css + " hidden";
           }

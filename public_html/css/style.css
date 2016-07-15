@@ -611,7 +611,9 @@ body {
       text-align: center;
       flex-basis: content;
       flex-grow: 1;
-      margin-top: 5px; }
+      border-bottom: 1px solid white;
+      padding-top: 5px;
+      padding-bottom: 15px; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
     overflow: auto;
     height: 350px;
