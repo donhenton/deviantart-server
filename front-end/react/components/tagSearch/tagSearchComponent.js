@@ -25,13 +25,13 @@ export default class TagSearchPage extends Component
   componentWillMount()
   {
       this.state = {'value': "",options: [], downloading: false,initialized: false};
-      console.log("adding handler")
+     // console.log("adding handler")
       window.document.addEventListener('click', this.handleDocumentClick,true);
       
   }
   
   componentWillUnmount () {
-      console.log("removing handler")
+     //console.log("removing handler")
       this._isMounted = false;
       
     window.document.removeEventListener('click', this.handleDocumentClick,true)
@@ -40,7 +40,7 @@ export default class TagSearchPage extends Component
   handleClick(evt) {
  
          var classVar = $(evt.target).attr('class');
-         console.log("handle doc click ")
+       //  console.log("handle doc click ")
          //click on a tag search list item doesn't reset state
          if (classVar === 'tagSearchItem' || classVar === 'tagSearchInput')
          {
@@ -60,6 +60,9 @@ export default class TagSearchPage extends Component
                topic: "select-tag" ,
                data:  {tag: tagName}
             });
+        
+            
+            
   }
   
         
@@ -176,6 +179,12 @@ export default class TagSearchPage extends Component
     {
         this.getOptions(e.target.value);
         this.setState({  value: e.target.value});
+        
+         postal.publish({
+               channel: "deviant-system",
+               topic: "starting-search" ,
+               data:  {}
+            });   
     }
        
 }

@@ -19,7 +19,7 @@ export default class WaitIndicator extends Component {
             
             hideWaitIndicator()
             {
-                console.log("wait indicator "+this.props.isProcessing)
+                //console.log("wait indicator "+this.props.isProcessing)
                 if (this.props.isProcessing)
                 {
                     return "waitIndicator";

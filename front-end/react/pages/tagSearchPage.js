@@ -10,19 +10,53 @@ import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree'
 import FolderTarget from './../components/tagSearch/folderTarget';
 import CurrentImageDisplay from './../components/tagSearch/currentImageDisplay';
 import imageLoader from './../services/imageLoader';
+import postal from 'postal';
 
 export default class TagSearchPage extends Component {
         
   constructor()
   {
       super();
-     
+     this.subscription = null;
        
   }
   
- 
+ componentWillMount()
+  {
+      let me = this;
+      this.state = {'selectedTab': 0 };
+      this.subscription =  postal.subscribe({
+               channel: "deviant-system",
+               topic: "starting-search" ,
+               callback: function(data,envelope)
+               {
+                   
+                        me.setState({'selectedTab': 0})
+                   
+                   
+               }
+            });
+  }
   
-        
+  componentWillUnmount () {
+      
+      this.subscription.unsubscribe();
+       
+  } 
+  
+  getTabSelected()
+  {
+      let me = this;
+      if (me.state && me.state.selectedTab)
+      {
+          return me.state.selectedTab;
+      }
+      
+      return 0;
+      
+  }
+  
+      
         
   render() {
       var me = this;
@@ -65,7 +99,33 @@ export default class TagSearchPage extends Component {
                 <tr><td colSpan="2"><FolderTarget /></td></tr>
                 <tr>
                 <td className="imageComponentTableCell">
-                <ImageSelectorComponent imageSource={imageLoader} pageCount={25}/>
+                
+                
+                
+                 <Tabs selectedIndex={me.getTabSelected()}>
+               
+                <TabList>
+                    <Tab>Search Files</Tab>
+                    <Tab>Folder Contents</Tab>
+                </TabList>
+        
+        
+                <TabPanel>
+                    <ImageSelectorComponent imageSource={imageLoader}   pageCount={25}/>
+                </TabPanel>
+                <TabPanel>
+                    folder contents
+                </TabPanel>
+               
+               </Tabs>
+                
+                
+                
+                
+                
+                
+                
+                
                 </td><td  className="currentImageTableCell">
                  
                       

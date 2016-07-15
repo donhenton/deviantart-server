@@ -8,27 +8,41 @@ import ImageList from './imageList';
 
 //export const this.imageCount = 25;
 
-
+let stateHolder = {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
 
 export default class ImageSelectorComponent extends Component  
 {
-    
-   constructor()
+   
+   //props object is passed into the constructor
+   
+   constructor(props)
   {
-      super();
+      super(props);
+     
       this.subscription = null;
       this.imageCount = 25;
+      
   }
          
   componentWillUnmount () {
-      
+   //   console.log("Unmounting image selector ");
       this.subscription.unsubscribe();
+      stateHolder = this.state;
        
   } 
   
+  componentWillReceiveProps(nextProps)
+  {
+      
+      
+      
+  }
+  
   componentWillMount()
   {
-      this.state = {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
+       
+      
+      this.state = stateHolder;
       if (this.props.pageCount)
       {
           this.imageCount = this.props.pageCount;
@@ -40,6 +54,8 @@ export default class ImageSelectorComponent extends Component
                         topic: "select-tag",
                         callback: function (data, envelope) {
                               
+                               // {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
+                               //{isProcessing: false,imagePageData: data.listData,hasMore: data.hasMore, offset: 0}
                                 me.setState({'tag': data.tag,offset: 0});
                                 me.moveToPage('MORE',data.tag,0);
                              
@@ -86,7 +102,7 @@ export default class ImageSelectorComponent extends Component
         .then(function(data )
         {
            
-            me.setState({isProcessing: false,offset:offset, imagePageData: data.listData,hasMore: data.hasMore, offset: data.nextOffset})
+            me.setState({isProcessing: false,  imagePageData: data.listData,hasMore: data.hasMore, offset: data.nextOffset})
              
             
         }).catch(function(err)
