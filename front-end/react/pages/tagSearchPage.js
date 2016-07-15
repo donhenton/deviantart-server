@@ -41,16 +41,16 @@ export default class TagSearchPage extends Component {
                <Tabs>
                
                 <TabList>
-                    <Tab>Categories</Tab>
                     <Tab>Morgue File</Tab>
+                    <Tab>Categories</Tab>
                 </TabList>
         
         
                 <TabPanel>
-                    <CategoryTree />
+                    <ReadOnlyFolderTree />
                 </TabPanel>
                 <TabPanel>
-                    <ReadOnlyFolderTree />
+                    <CategoryTree />
                 </TabPanel>
                
                </Tabs>

@@ -440,118 +440,120 @@ section#pageContainer {
   section#pageContainer footer {
     text-align: center; }
 
-.folderTree .f-tree {
-  margin: 20px;
-  padding: 5px;
+.folderTree {
+  border: double #16174f;
+  width: 95%;
   height: 300px;
-  overflow: auto;
-  border: double #16174f; }
-  .folderTree .f-tree li {
-    padding-left: 20px;
-    padding-top: 15px;
-    list-style: none;
-    white-space: nowrap;
-    margin: 0px;
-    outline: 0; }
-    .folderTree .f-tree li span.f-tree-switcher, .folderTree .f-tree li span.f-tree-checkbox {
-      line-height: 24px;
-      margin-right: 2px;
-      width: 24px;
-      height: 24px;
-      display: inline-block;
-      vertical-align: middle;
-      border: 0 none;
-      cursor: pointer;
-      outline: none;
-      top: -8px;
-      position: relative; }
-    .folderTree .f-tree li span.f-tree-iconEle {
-      line-height: 24px;
-      margin-right: 2px;
-      width: 24px;
-      height: 24px;
-      display: inline-block;
-      vertical-align: middle;
-      border: 0 none;
-      cursor: pointer;
-      outline: none; }
-    .folderTree .f-tree li span.f-tree-title {
-      font-size: 25px;
-      padding: 5px; }
-    .folderTree .f-tree li span.f-tree-switcher.f-tree-center_open:before, .folderTree .f-tree li span.f-tree-switcher.f-tree-center_close:before {
-      font-family: "foundation-icons";
-      position: relative;
-      font-style: normal;
-      font-weight: normal;
-      color: #16174f;
-      font-size: 24px;
-      font-variant: normal;
-      text-transform: none;
-      -webkit-font-smoothing: antialiased;
-      text-decoration: inherit; }
-    .folderTree .f-tree li span.f-tree-switcher.f-tree-center_open:before {
-      left: -40px;
-      top: 8px;
-      content: "\f176"; }
-    .folderTree .f-tree li span.f-tree-switcher.f-tree-center_close:before {
-      left: -40px;
-      top: 8px;
-      content: "\f199"; }
-    .folderTree .f-tree li span.f-tree-iconEle:before {
-      font-family: "foundation-icons";
-      position: relative;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 36px;
-      font-variant: normal;
-      text-transform: none;
-      color: #667467;
-      -webkit-font-smoothing: antialiased;
-      text-decoration: inherit;
-      left: -25px;
-      content: "\f150"; }
-    .folderTree .f-tree li a {
-      display: inline-block;
-      cursor: pointer;
-      height: 30px;
-      text-decoration: none; }
-      .folderTree .f-tree li a:before,
-      .folderTree .f-tree li a .grouping:after {
-        content: " ";
-        display: table; }
-      .folderTree .f-tree li a:after {
-        clear: both; }
-      .folderTree .f-tree li a.f-tree-node-selected span.f-tree-title {
-        background-color: #963019;
-        color: white; }
-    .folderTree .f-tree li.drag-over > a[draggable] {
-      background-color: #316ac5;
-      color: white;
-      border: 1px #316ac5 solid;
-      opacity: 0.8; }
-    .folderTree .f-tree li.drag-over-gap-top > a[draggable] {
-      border-top: 2px blue solid; }
-    .folderTree .f-tree li.drag-over-gap-bottom > a[draggable] {
-      border-bottom: 2px blue solid; }
-    .folderTree .f-tree li.filter-node > a {
-      color: #a60000 !important;
-      font-weight: bold !important; }
-    .folderTree .f-tree li a[draggable],
-    .folderTree .f-tree li a[draggable="true"] {
-      color: #333;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      /* Required to make elements draggable in old WebKit */
-      -khtml-user-drag: element;
-      -webkit-user-drag: element; }
-    .folderTree .f-tree li ul {
-      margin: 0;
-      padding: 0; }
-      .folderTree .f-tree li ul.f-tree-line {
-        background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y; }
+  overflow: auto; }
+  .folderTree ul.f-tree {
+    margin-left: 5px;
+    padding: 5px; }
+    .folderTree ul.f-tree li {
+      padding-left: 20px;
+      padding-top: 15px;
+      list-style: none;
+      white-space: nowrap;
+      margin: 0px;
+      outline: 0; }
+      .folderTree ul.f-tree li span.f-tree-switcher, .folderTree ul.f-tree li span.f-tree-checkbox {
+        line-height: 24px;
+        margin-right: 2px;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        border: 0 none;
+        cursor: pointer;
+        outline: none;
+        top: -8px;
+        position: relative; }
+      .folderTree ul.f-tree li span.f-tree-iconEle {
+        line-height: 24px;
+        margin-right: 2px;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        border: 0 none;
+        cursor: pointer;
+        outline: none; }
+      .folderTree ul.f-tree li span.f-tree-title {
+        font-size: 25px;
+        padding: 5px; }
+      .folderTree ul.f-tree li span.f-tree-switcher.f-tree-center_open:before, .folderTree ul.f-tree li span.f-tree-switcher.f-tree-center_close:before {
+        font-family: "foundation-icons";
+        position: relative;
+        font-style: normal;
+        font-weight: normal;
+        color: #16174f;
+        font-size: 24px;
+        font-variant: normal;
+        text-transform: none;
+        -webkit-font-smoothing: antialiased;
+        text-decoration: inherit; }
+      .folderTree ul.f-tree li span.f-tree-switcher.f-tree-center_open:before {
+        left: -25px;
+        top: 8px;
+        content: "\f176"; }
+      .folderTree ul.f-tree li span.f-tree-switcher.f-tree-center_close:before {
+        left: -25px;
+        top: 8px;
+        content: "\f199"; }
+      .folderTree ul.f-tree li span.f-tree-iconEle:before {
+        font-family: "foundation-icons";
+        position: relative;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+        font-variant: normal;
+        text-transform: none;
+        color: #667467;
+        -webkit-font-smoothing: antialiased;
+        text-decoration: inherit;
+        left: -25px;
+        content: "\f150"; }
+      .folderTree ul.f-tree li a {
+        display: inline-block;
+        cursor: pointer;
+        height: 30px;
+        text-decoration: none; }
+        .folderTree ul.f-tree li a:before,
+        .folderTree ul.f-tree li a .grouping:after {
+          content: " ";
+          display: table; }
+        .folderTree ul.f-tree li a:after {
+          clear: both; }
+        .folderTree ul.f-tree li a.f-tree-node-selected span.f-tree-title {
+          background-color: #963019;
+          color: white; }
+      .folderTree ul.f-tree li.drag-over > a[draggable] {
+        background-color: #316ac5;
+        color: white;
+        border: 1px #316ac5 solid;
+        opacity: 0.8; }
+      .folderTree ul.f-tree li.drag-over-gap-top > a[draggable] {
+        border-top: 2px blue solid; }
+      .folderTree ul.f-tree li.drag-over-gap-bottom > a[draggable] {
+        border-bottom: 2px blue solid; }
+      .folderTree ul.f-tree li.filter-node > a {
+        color: #a60000 !important;
+        font-weight: bold !important; }
+      .folderTree ul.f-tree li a[draggable],
+      .folderTree ul.f-tree li a[draggable="true"] {
+        color: #333;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        /* Required to make elements draggable in old WebKit */
+        -khtml-user-drag: element;
+        -webkit-user-drag: element; }
+      .folderTree ul.f-tree li ul {
+        margin: 0;
+        padding: 0; }
+        .folderTree ul.f-tree li ul.f-tree-line {
+          background: url("https://t.alipayobjects.com/images/T13BtfXl0mXXXXXXXX.gif") 0 0 repeat-y; }
 
 .folderForm {
   /*

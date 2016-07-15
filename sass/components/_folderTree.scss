@@ -1,14 +1,13 @@
 .folderTree
 {
-
-    .f-tree {
-        margin: 20px;
+    border: double $blue-color;
+    width: 95%; 
+    height: 300px;
+    overflow: auto;
+    ul.f-tree {
+        margin-left: 5px;
         padding: 5px;
-        height: 300px;
-        overflow: auto;
-        border: double $blue-color;
-         
-
+   
 
         li {
             padding-left: 20px;
@@ -21,8 +20,8 @@
             span
             {
 
-               
-                 &.f-tree-switcher,
+
+                &.f-tree-switcher,
                 &.f-tree-checkbox,
                 {
                     line-height: 24px;
@@ -36,14 +35,15 @@
                     outline: none;
                     top: -8px;
                     position: relative;
-                    
-                    
+
+
+
                 }
-                
-                
-                
-                
-                
+
+
+
+
+
                 &.f-tree-iconEle {
 
                     line-height: 24px;
@@ -87,7 +87,7 @@
                         { 
 
 
-                        left: -40px;
+                        left: -25px;
                         top: 8px;
 
                         content: "\f176";
@@ -96,7 +96,7 @@
 
                     &.f-tree-center_close:before
                         {                        
-                        left: -40px;
+                        left: -25px;
                         top: 8px;
                         content: "\f199";
 
@@ -131,7 +131,7 @@
                 cursor: pointer;
                 height: 30px;
                 text-decoration: none;
-               // vertical-align: top;
+                // vertical-align: top;
 
                 &:before,
                     .grouping:after {
@@ -145,7 +145,7 @@
 
                 &.f-tree-node-selected
                 {
-                     
+
                     span.f-tree-title
                     {
                         background-color: $red-color;
@@ -216,7 +216,7 @@
 
 .folderForm
 {
-    
+
     /*
     #addFolder,#editFolder,#folderInput
     {
@@ -234,13 +234,13 @@
     #folderName
     {
         &:disabled
-        {
+            {
             opacity: 0.5;
             cursor: default;
             color: inherit;
             background-color:inherit;
         }
     }
-    
-    
+
+
 }

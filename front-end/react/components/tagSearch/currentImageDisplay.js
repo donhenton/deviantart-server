@@ -89,29 +89,18 @@ export default class ImageComponent extends Component
        e.target.style.opacity = 1;
        
    }
-   
-   getCompletedTextCss()
-   {
-       let css = "completedText hidden";
-       if (this.state.didTransfer)
-       {
-           css = css + "completedText "
-       }
-       
-       
-       return css;
-       
-   }
+  
    
    ////////////////////////////////////////////////////////////////////////
    
    
-   getImageWrapperText()
+   addImageSelectedLabel() 
    {
-       if (this.state.targetFolder)
-          return  'Image Added To '+this.state.targetFolder.name;
+              
+       if (this.state.didTransfer)
+          return  <span className="completedText">{'Image Added To '+this.state.targetFolder.name}</span> 
        else
-          return 'Image Added';
+          return null;
    }
         
    render() {
@@ -136,7 +125,7 @@ export default class ImageComponent extends Component
                              className="currentImageDisplay" 
                              src={this.state.imageData.thumbs[2].src} />
                                      
-                            <span className={me.getCompletedTextCss()}>{me.getImageWrapperText()}</span>         
+                        {me.addImageSelectedLabel()}        
                            </div>
                             
                        </div>         
