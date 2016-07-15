@@ -54,8 +54,6 @@ export default class ImageSelectorComponent extends Component
                         topic: "select-tag",
                         callback: function (data, envelope) {
                               
-                               // {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
-                               //{isProcessing: false,imagePageData: data.listData,hasMore: data.hasMore, offset: 0}
                                 me.setState({'tag': data.tag,offset: 0});
                                 me.moveToPage('MORE',data.tag,0);
                              
@@ -80,6 +78,16 @@ export default class ImageSelectorComponent extends Component
   {
       let me = this;
       me.setState({isProcessing:true});
+      $("div.imageComponentContainer").each( function() 
+        {
+           // certain browsers have a bug such that scrollHeight is too small
+           // when content does not fill the client area of the element
+           var scrollHeight = Math.max(this.scrollHeight, this.clientHeight);
+           //this.scrollTop = scrollHeight - this.clientHeight;
+           this.scrollTop = 0;
+           
+           
+        });
       let offset = 0;
        
       if (type === 'MORE')
