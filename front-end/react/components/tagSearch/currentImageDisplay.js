@@ -102,6 +102,13 @@ export default class ImageComponent extends Component
        else
           return null;
    }
+   
+   computePathDisplay()
+   {
+       let display = 
+       this.state.imageData.categoryPath.replace(/\//g, " "+String.fromCharCode(8594)+" ");
+       return display;
+   }
         
    render() {
             var me = this;
@@ -112,7 +119,8 @@ export default class ImageComponent extends Component
                  
                         
                   <div className='imageControl'><a target="_new" href={this.state.imageData.url}>View Deviant Art Page</a></div>
-                  
+                  <div className='imageControl'>{'Title: '+this.state.imageData.title}</div>
+                  <div className='imageControl'>{'Path: '+ me.computePathDisplay()}</div>
                   {me.renderFolderButton()}
                   
                   

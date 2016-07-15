@@ -442,7 +442,7 @@ section#pageContainer {
 
 .folderTree {
   border: double #16174f;
-  width: 95%;
+  width: 98%;
   height: 300px;
   overflow: auto; }
   .folderTree ul.f-tree {
@@ -450,7 +450,7 @@ section#pageContainer {
     padding: 5px; }
     .folderTree ul.f-tree li {
       padding-left: 20px;
-      padding-top: 15px;
+      padding-top: 0px;
       list-style: none;
       white-space: nowrap;
       margin: 0px;
@@ -585,16 +585,21 @@ body {
   border: #16174f double;
   width: 100%; }
 
+.searchContainer table.imageSelectorComponent td.imageComponentTableCell {
+  width: 525px; }
+
 .searchContainer table.imageSelectorComponent td.currentImageTableCell {
   background-color: #667467;
   width: 250px;
   padding: 20px;
-  margin: 0px; }
+  margin: 0px;
+  overflow: auto; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    padding: 2px;
     height: 450px; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a {
       color: white;
@@ -602,13 +607,19 @@ body {
       .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a:hover {
         text-decoration: underline; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer .imageControl {
-      height: 35px;
       color: white;
       text-align: center;
-      margin: 10px auto; }
+      flex-basis: content;
+      flex-grow: 1;
+      margin-top: 5px; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
     overflow: auto;
-    height: 350px; }
+    height: 350px;
+    flex-grow: 1;
+    flex-basis: content;
+    margin-top: 5px;
+    width: 200px;
+    overflow: auto; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper .imageExpander {
       position: relative; }
       .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper .imageExpander .completedText {
@@ -621,9 +632,10 @@ body {
         color: #ddd;
         padding: 20px; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell img.currentImageDisplay {
-    width: 100%;
+    width: 200px;
     margin: 10px auto;
-    cursor: move; }
+    cursor: move;
+    overflow: auto; }
 
 .searchContainer .targetFolder {
   margin-right: 20px;
@@ -687,7 +699,7 @@ body {
     left: 300; }
 
 .displayComponent {
-  width: 300px; }
+  width: 525px; }
   .displayComponent .pagingControls {
     margin-bottom: 10px; }
     .displayComponent .pagingControls button {
@@ -695,7 +707,7 @@ body {
   .displayComponent .imageComponentContainer {
     height: 410px;
     position: relative;
-    width: 500px;
+    width: 525px;
     padding: 10px;
     overflow: auto;
     border: thin solid #963019; }

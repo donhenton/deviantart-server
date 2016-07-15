@@ -59,6 +59,8 @@ export default class ImageData
                         listItem['preview'] = null;
                         listItem['actualImage'] = null;
                         listItem['url'] = imageHit.url;
+                        listItem['title'] = imageHit.title;
+                        
                         listItem['preview'] = imageHit.preview.src;
                         listItem['actualImage'] = imageHit.content.src;
                         listItem["category"] = imageHit.category;

@@ -32,14 +32,28 @@ $box-width: 500px;
 {
 
     table.imageSelectorComponent
+ 
     {
+        td.imageComponentTableCell
+        {
+             width: 525px;
+            
+            
+            
+        }
+        
+        
+        
+        
+        
         td.currentImageTableCell
         {
             background-color: $green-color;
             width: 250px;
             padding: 20px;
             margin: 0px;
-
+            overflow: auto;
+            
 
 
             .currentImageControlContainer
@@ -48,7 +62,8 @@ $box-width: 500px;
                 flex-flow: column;
                 justify-content: center;
                 align-items: center;
-
+                padding: 2px;
+                
                 height: 450px;
 
                 a
@@ -67,11 +82,13 @@ $box-width: 500px;
                 .imageControl
                 {
 
-                    height: 35px;
+                     
                     color: white;
                     text-align: center;
-                    margin: 10px auto;
-
+                    flex-basis: content;
+                    flex-grow: 1; 
+                     
+                    margin-top: 5px;
 
                 }
             }
@@ -81,7 +98,11 @@ $box-width: 500px;
             {
                 overflow: auto;
                 height: 350px;
-               
+                flex-grow: 1;
+                flex-basis: content;
+                margin-top:  5px;
+                width: 200px;
+                overflow: auto;
 
                 .imageExpander
                 {
@@ -103,9 +124,10 @@ $box-width: 500px;
             }
             img.currentImageDisplay
             {
-                width: 100%;
+                width: 200px;
                 margin: 10px auto;
                 cursor: move;
+                overflow: auto;
 
             }
         }
@@ -235,13 +257,15 @@ $box-width: 500px;
         }
     }
 
-    width: 300px;
+    width: 525px;
+    
+    
 
     .imageComponentContainer
     {
         height: 410px;
         position: relative;
-        width: 500px;
+        width: 525px;
         padding: 10px;
         overflow: auto;
         border: thin solid $red-color;

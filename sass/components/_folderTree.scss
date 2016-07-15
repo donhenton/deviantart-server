@@ -1,7 +1,7 @@
 .folderTree
 {
     border: double $blue-color;
-    width: 95%; 
+    width: 98%; 
     height: 300px;
     overflow: auto;
     ul.f-tree {
@@ -11,7 +11,7 @@
 
         li {
             padding-left: 20px;
-            padding-top: 15px;
+            padding-top: 0px;
             list-style: none;
             white-space: nowrap;
             margin: 0px;
