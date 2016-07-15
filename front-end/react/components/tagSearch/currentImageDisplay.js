@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import postal from 'postal';
+import WaitIndicator from './../waitIndicator';
 
 export default class ImageComponent extends Component  
 {
@@ -21,13 +22,13 @@ export default class ImageComponent extends Component
   {
       let me = this;
        
-      this.state = {imageData: null,targetFolder: null, didTransfer: false };
+      this.state = {imageData: null,targetFolder: null, didTransfer: false ,isProcessing: false};
       let s1 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
                 callback: function (data, envelope) {
                         //data.name  data.key
-                        me.setState({'imageData': data,didTransfer: false});
+                        me.setState({'imageData': data,didTransfer: false,isProcessing: true});
 
                 }
                });
@@ -89,6 +90,20 @@ export default class ImageComponent extends Component
        e.target.style.opacity = 1;
        
    }
+   
+   
+   handleImageLoaded() {
+     // console.log("image load "+this.currentCounter+" target "+this.loadTargetCount)
+      this.setState({isProcessing: false})
+     
+  }
+ 
+  handleImageErrored(e) {
+     //console.log("image error ");
+     //$(e.target).closest('span.deviantThumb').hide();
+     this.setState({isProcessing: false})
+  }
+   
   
    
    ////////////////////////////////////////////////////////////////////////
@@ -117,7 +132,7 @@ export default class ImageComponent extends Component
                  return (
                    <div className="currentImageControlContainer">
                  
-                        
+                   <WaitIndicator isProcessing={me.state.isProcessing} />     
                   <div className='imageControl'><a target="_new" href={this.state.imageData.url}>View Deviant Art Page</a></div>
                   <div className='imageControl'>{'Title: '+this.state.imageData.title}</div>
                   <div className='imageControl'>{'Path: '+ me.computePathDisplay()}</div>
@@ -130,6 +145,8 @@ export default class ImageComponent extends Component
                             <img 
                              onDragStart={me.sourceDragStart.bind(me)}
                              onDragEnd={me.sourceDragEnd.bind(me)}
+                             onLoad={this.handleImageLoaded.bind(this)}
+                             onError={this.handleImageErrored.bind(this)}
                              className="currentImageDisplay" 
                              src={this.state.imageData.thumbs[2].src} />
                                      

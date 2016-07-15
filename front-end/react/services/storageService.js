@@ -30,7 +30,7 @@ import storage from 'localStorage';
             
             let storedData = {};
             storedData.deviationid = data.deviationid;
-            storedData.thumbs = data.thumbs;
+            storedData.smallestThumb = data.smallestThumb;
             storedData.preview = data.preview;
             
             let checkIfPresent = targetFolder.deviations.filter((dev) => {
