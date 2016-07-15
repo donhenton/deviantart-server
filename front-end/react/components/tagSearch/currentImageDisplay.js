@@ -28,6 +28,10 @@ export default class ImageComponent extends Component
                 topic: "select-image" ,
                 callback: function (data, envelope) {
                         //data.name  data.key
+                        if ($("div.imageWrapper")[0])
+                        {
+                            $("div.imageWrapper")[0].scrollTop = 0;
+                        }
                         me.setState({'imageData': data,didTransfer: false,isProcessing: true});
 
                 }
@@ -82,10 +86,13 @@ export default class ImageComponent extends Component
          
          //do the stuff to set up 
          this.setState({didTransfer: true})
+         $("div.imageWrapper")[0].scrollTop = 0;
+ 
+           
        }
        else
        {
-           console.log("you bailed")
+          // console.log("you bailed")
        }
        e.target.style.opacity = 1;
        
@@ -113,6 +120,7 @@ export default class ImageComponent extends Component
    {
               
        if (this.state.didTransfer)
+
           return  <span className="completedText">{'Image Added To '+this.state.targetFolder.name}</span> 
        else
           return null;

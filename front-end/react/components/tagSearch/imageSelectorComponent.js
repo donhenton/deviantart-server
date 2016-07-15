@@ -82,8 +82,8 @@ export default class ImageSelectorComponent extends Component
         {
            // certain browsers have a bug such that scrollHeight is too small
            // when content does not fill the client area of the element
-           var scrollHeight = Math.max(this.scrollHeight, this.clientHeight);
-           //this.scrollTop = scrollHeight - this.clientHeight;
+           // var scrollHeight = Math.max(this.scrollHeight, this.clientHeight);
+           // this.scrollTop = scrollHeight - this.clientHeight;
            this.scrollTop = 0;
            
            
