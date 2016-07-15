@@ -576,6 +576,10 @@ section#pageContainer {
     color: inherit;
     background-color: inherit; }
 
+.folderDisplayComponent {
+  width: 525px;
+  height: 442px; }
+
 body {
   z-index: 0; }
 

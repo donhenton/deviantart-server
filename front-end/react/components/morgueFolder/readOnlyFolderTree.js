@@ -38,7 +38,7 @@ componentWillMount()
 
                let folderName = idxObj[data.selectedKey].name 
                let folderData = {name: folderName , key: data.selectedKey }
-               console.log("sending on readonly tree "+JSON.stringify(folderData))
+              // console.log("sending on readonly tree "+JSON.stringify(folderData))
 
                postal.publish({
                channel: "deviant-system",

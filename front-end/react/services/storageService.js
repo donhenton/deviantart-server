@@ -32,6 +32,7 @@ import storage from 'localStorage';
             storedData.deviationid = data.deviationid;
             storedData.smallestThumb = data.smallestThumb;
             storedData.preview = data.preview;
+            storedData.title = data.title;
             
             let checkIfPresent = targetFolder.deviations.filter((dev) => {
                 

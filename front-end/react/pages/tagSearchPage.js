@@ -11,6 +11,7 @@ import FolderTarget from './../components/tagSearch/folderTarget';
 import CurrentImageDisplay from './../components/tagSearch/currentImageDisplay';
 import imageLoader from './../services/imageLoader';
 import postal from 'postal';
+import FolderDisplayComponent from './../components/folderContents/folderDisplayComponent'
 
 export default class TagSearchPage extends Component {
         
@@ -114,7 +115,7 @@ export default class TagSearchPage extends Component {
                     <ImageSelectorComponent imageSource={imageLoader}   pageCount={25}/>
                 </TabPanel>
                 <TabPanel>
-                    folder contents
+                    <FolderDisplayComponent />
                 </TabPanel>
                
                </Tabs>
