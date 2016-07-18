@@ -1,8 +1,41 @@
 import React from 'react';
 import { Component } from 'react';
+import ImageSelectorComponent from './../tagSearch/imageSelectorComponent';
+import storageService from './../../services/storageService';
 
 
-export default class ImageSelectorComponent extends Component  
+
+
+class FolderImageLoader 
+{
+constructor()
+    {
+        let me = this;
+   
+    }
+    
+    getPage(offset,limit)
+    {
+        
+       return deviantService.getTagImages(tag,offset,limit)
+        .then(function(data)
+        {
+            let parseData = JSON.parse(data);
+            let imageData = new ImageData(parseData);
+            return imageData.getPageData();
+            
+        }).catch(function(err)
+        {
+            throw new Error(err.message);
+        })
+        
+    }
+
+}
+
+let imageLoader = new FolderImageLoader();
+
+export default class FolderDisplayComponent extends Component  
 {
    
         //props object is passed into the constructor
@@ -40,12 +73,13 @@ export default class ImageSelectorComponent extends Component
        
        render()
        {
+           let me = this;
            
            return (
                    
                     <div className="folderDisplayComponent">
-                    
-                    
+                     
+                    <ImageSelectorComponent imageSource={imageLoader}   pageCount={25}/>
                     
                     </div>
                     
