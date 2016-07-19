@@ -1,35 +1,21 @@
 import postal from 'postal';
 import deviantService from './../../../services/deviantService';
 import ImageData from './../../../services/classes/ImageData';
+import AbstractImageLoader from './abstractImageLoader';
 
-export default class TagImageLoader
+
+export default class TagImageLoader extends AbstractImageLoader
 {
     
     constructor(imageLimit)
     {
-        let me = this;
+        super(imageLimit);
         this.tag = null;
-        this.imageCount = imageLimit;
-        if (!this.imageCount)
-        {
-            this.imageCount = 5;
-        }
-        this.pushFunction = null;
+         
   
     }
     
-    getImageCount()
-    {
-        return this.imageCount;
-    }
     
-    /**
-     * signature on the f variable is handle(imageData.getPageData());
-     */
-    setPushFunction(f)
-    {
-        this.pushFunction = f;
-    }
  
 
     getPage(offset)

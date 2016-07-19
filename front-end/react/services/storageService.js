@@ -28,21 +28,15 @@ import storage from 'localStorage';
                 targetFolder.deviations = [];
             }
             
-            let storedData = {};
-            storedData.deviationid = data.deviationid;
-            storedData.smallestThumb = data.smallestThumb;
-            storedData.preview = data.preview;
-            storedData.title = data.title;
-            
             let checkIfPresent = targetFolder.deviations.filter((dev) => {
                 
-                return dev.deviationid === storedData.deviation;
+                return dev.deviationid === data.deviationid;
                 
                 
             })
             if (!(checkIfPresent) || checkIfPresent.length == 0)
             {
-                targetFolder.deviations.push(storedData)
+                targetFolder.deviations.push(data)
                 storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
             }
             

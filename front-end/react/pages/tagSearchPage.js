@@ -10,8 +10,10 @@ import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree'
 import FolderTarget from './../components/tagSearch/folderTarget';
 import CurrentImageDisplay from './../components/tagSearch/currentImageDisplay';
 import postal from 'postal';
-import FolderDisplayComponent from './../components/folderContents/folderDisplayComponent'
+ 
 import TagImageLoader from './../components/images/loaders/tagImageLoader';
+import FolderImageLoader from './../components/images/loaders/folderImageLoader';
+ 
 
 export default class TagSearchPage extends Component {
         
@@ -21,6 +23,7 @@ export default class TagSearchPage extends Component {
      this.subscription = null;
      this.imageCount = 25;
      this.tagImageLoader = new TagImageLoader(this.imageCount);  
+     this.folderImageLoader = new FolderImageLoader(this.imageCount); 
   }
   
  componentWillMount()
@@ -113,10 +116,12 @@ export default class TagSearchPage extends Component {
         
         
                 <TabPanel>
+                 
                     <ImageSelectorComponent imageLoader={me.tagImageLoader} />
                 </TabPanel>
                 <TabPanel>
-                    <FolderDisplayComponent />
+                    
+                    <ImageSelectorComponent imageLoader={me.folderImageLoader} />
                 </TabPanel>
                
                </Tabs>

@@ -3,14 +3,8 @@ import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ImageList from './imageList';
-import ImageData from './../../services/classes/imageData'
 
- 
-
-
-
-
-let stateHolder = {hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
+// let stateHolder = {hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
 
 /**
  * this.props.imageLoader is derived from ./images/loaders/tagImageLoader and the like
@@ -38,8 +32,8 @@ export default class ImageSelectorComponent extends Component
          
   componentWillUnmount () {
    
-       
-      stateHolder = this.state;
+      this.props.imageLoader.setStoredState(this.state); 
+     //// stateHolder = this.state;
       if (this.props.imageLoader.onUnMount)
             this.props.imageLoader.onUnMount();
        
@@ -61,7 +55,7 @@ export default class ImageSelectorComponent extends Component
   {
        
       
-      this.state = stateHolder;
+      this.state = this.props.imageLoader.getStoredState(); 
       let p = this.pushDataFunction.bind(this);
       this.props.imageLoader.setPushFunction(p);
       this.imageCount = this.props.imageLoader.getImageCount();
