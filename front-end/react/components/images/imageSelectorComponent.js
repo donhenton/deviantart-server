@@ -33,10 +33,6 @@ export default class ImageSelectorComponent extends Component
    constructor(props)
   {
       super(props);
-     
-      this.subscription = null;
-       
-     
       
   }
          
