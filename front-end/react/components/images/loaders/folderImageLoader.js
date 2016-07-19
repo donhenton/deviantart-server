@@ -33,20 +33,6 @@ export default class FolderImageLoader extends AbstractImageLoader
     getPage(offset)
     {
         let me = this;
-//       return deviantService.getTagImages(this.tag,offset,this.imageCount)
-//        .then(function(data)
-//        {
-//            let parseData = JSON.parse(data);
-//            let imageData = new ImageData(parseData);
-//            me.pushFunction(imageData.getPageData())
-//           // return imageData.getPageData();
-//            
-//        }).catch(function(err)
-//        {
-//            //would handle error here by calling push function with error
-//            //data
-//            throw new Error(err.message);
-//        })
         let imageData = storageService.getFolderDeviations(me.folderData.key);
         if (imageData)
         {
@@ -64,10 +50,6 @@ export default class FolderImageLoader extends AbstractImageLoader
             
             
         }
-        
-        
-
-
         
     }
     

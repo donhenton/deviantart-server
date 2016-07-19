@@ -3,13 +3,14 @@ import { Route, IndexRoute } from 'react-router';
 import Main from './../components/main';
  
 import TagSearchPage from './../pages/tagSearchPage'; 
-import MorgueFoldersPage from './../pages/morgueFoldersPage';
+import MaintainFoldersPage from './../pages/maintainFoldersPage';
+import ExploreFoldersPage from './../pages/exploreFoldersPage';
 
 export const createRoutes = () => (
   <Route path="/" component={Main} >
     <IndexRoute component={TagSearchPage} />
-    <Route path="morgueFolders" component={MorgueFoldersPage} />  
-    
+    <Route path="maintainFolders" component={MaintainFoldersPage} />  
+    <Route path="exploreFolders" component={ExploreFoldersPage} /> 
   </Route>
 );
 

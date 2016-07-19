@@ -28,9 +28,10 @@ export default class Main extends Component {
  
                          
                                 
-                                <li><Link to="/morgueFolders">Morgue Folders</Link></li>
+                                
                                 <li><Link to="/">Home</Link></li>
-                          
+                                <li><Link to="/exploreFolders">Explore Folders</Link></li>
+                                <li><Link to="/maintainFolders">Maintain Folders</Link></li>
                         
                     </ul>    
 
