@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component } from 'react';
-import ImageSelectorComponent from './../images/imageSelectorComponent';
 import storageService from './../../services/storageService';
 
 
@@ -79,7 +78,7 @@ export default class FolderDisplayComponent extends Component
                    
                     <div className="folderDisplayComponent">
                      
-                    <ImageSelectorComponent imageSource={imageLoader}   pageCount={25}/>
+                   
                     
                     </div>
                     

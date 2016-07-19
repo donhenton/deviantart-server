@@ -15,19 +15,7 @@ export default class TagImageLoader
             this.imageCount = 5;
         }
         this.pushFunction = null;
-        
-        this.subscription = postal.subscribe({
-                channel: "deviant-system",
-                        topic: "select-tag",
-                        callback: function (data, envelope) {
-                              
-                                me.tag = data.tag;
-                                me.getPage(0,me.imageCount);
-                             
-                        }
-               });
-
-
+  
     }
     
     getImageCount()
@@ -35,11 +23,15 @@ export default class TagImageLoader
         return this.imageCount;
     }
     
+    /**
+     * signature on the f variable is handle(imageData.getPageData());
+     */
     setPushFunction(f)
     {
         this.pushFunction = f;
     }
  
+
     getPage(offset)
     {
        let me = this;
@@ -53,12 +45,40 @@ export default class TagImageLoader
             
         }).catch(function(err)
         {
+            //would handle error here by calling push function with error
+            //data
             throw new Error(err.message);
         })
         
     }
+    
+    /**
+     * optional for tying into the imageSelector component life cycle
+     */
+    onUnMount()
+    {
+        //console.log("did unsub 1")
+        this.subscription.unsubscribe();
+        
+        
+    }
 
-
+    onMount()
+    {
+        let me = this;
+        //console.log("did subsribe 1")
+        this.subscription = postal.subscribe({
+                channel: "deviant-system",
+                        topic: "select-tag",
+                        callback: function (data, envelope) {
+                              
+                                me.tag = data.tag;
+                                me.getPage(0,me.imageCount);
+                             
+                        }
+               });
+        
+    }
 
 }
 
