@@ -24,7 +24,7 @@ export default class FolderImageLoader extends AbstractImageLoader
                                 //{name: folderName , key: data.selectedKey }
                                 console.log("fff "+JSON.stringify(data));
                                 me.folderData = data;
-                              //  me.getPage(0,me.imageCount);
+                                me.getPage(0,me.imageCount);
                              
                         }
                });
@@ -50,7 +50,17 @@ export default class FolderImageLoader extends AbstractImageLoader
         let imageData = storageService.getFolderDeviations(me.folderData.key);
         if (imageData)
         {
-            me.pushFunction(imageData);
+            let imageOverage = imageData.length - me.getImageCount();
+            let hasMore = false;
+            let offset = 0;
+            if (imageOverage > 0)
+            {
+                offset = me.getImageCount() - 1;
+                hasMore = true;
+            }
+            let data = {hasMore: hasMore, offset: offset, listData: imageData}
+            
+            me.pushFunction(data);
             
             
         }
