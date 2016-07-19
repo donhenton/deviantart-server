@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import ImageSelectorComponent from './../tagSearch/imageSelectorComponent';
+import ImageSelectorComponent from './../images/imageSelectorComponent';
 import storageService from './../../services/storageService';
 
 

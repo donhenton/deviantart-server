@@ -3,15 +3,15 @@ import { Component } from 'react';
 import deviantService from './../services/deviantService';
 import TagSearchComponent from './../components/tagSearch/tagSearchComponent';
 import SearchAttributes from './../components/tagSearch/searchAttributesComponent';
-import ImageSelectorComponent from './../components/tagSearch/imageSelectorComponent';
+import ImageSelectorComponent from './../components/images/imageSelectorComponent';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import CategoryTree from './../components/categoryTree'
 import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree';
 import FolderTarget from './../components/tagSearch/folderTarget';
 import CurrentImageDisplay from './../components/tagSearch/currentImageDisplay';
-import imageLoader from './../services/imageLoader';
 import postal from 'postal';
 import FolderDisplayComponent from './../components/folderContents/folderDisplayComponent'
+import TagImageLoader from './../components/images/loaders/tagImageLoader';
 
 export default class TagSearchPage extends Component {
         
@@ -19,7 +19,8 @@ export default class TagSearchPage extends Component {
   {
       super();
      this.subscription = null;
-       
+     this.imageCount = 25;
+     this.tagImageLoader = new TagImageLoader(this.imageCount);  
   }
   
  componentWillMount()
@@ -112,7 +113,7 @@ export default class TagSearchPage extends Component {
         
         
                 <TabPanel>
-                    <ImageSelectorComponent imageSource={imageLoader}   pageCount={25}/>
+                    <ImageSelectorComponent imageLoader={me.tagImageLoader} />
                 </TabPanel>
                 <TabPanel>
                     <FolderDisplayComponent />
