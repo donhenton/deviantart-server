@@ -104,31 +104,10 @@ export default class TagSearchPage extends Component {
                 <tr><td colSpan="2"><FolderTarget ref="folderTarget" /></td></tr>
                 <tr>
                 <td className="imageComponentTableCell">
-                
-                
-                
-                  
-        
-        
-                
-                 
-                    <ImageSelectorComponent imageLoader={me.tagImageLoader} />
-                 
-                
-                
-                
-                
-                
-                
-                
+                     <ImageSelectorComponent imageLoader={me.tagImageLoader} />
                 </td><td  className="currentImageTableCell">
-                 
-                      
                           <CurrentImageDisplay />
-                      
-                     
-                
-                </td>
+                 </td>
                 </tr>
                 </tbody>
                 </table>

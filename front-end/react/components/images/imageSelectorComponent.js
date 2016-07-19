@@ -125,7 +125,9 @@ export default class ImageSelectorComponent extends Component
       }
       if (type === 'PREVIOUS')
       {
-          if (this.state.offset === 0 || (this.state.offset - (this.imageCount -1))===0)
+          if (this.state.offset === 0 
+                  || (this.state.offset == 0 && this.state.hasMore == false)
+                  || (this.state.offset - (this.imageCount -1))===0)
           {
               css = css + " hidden";
           }

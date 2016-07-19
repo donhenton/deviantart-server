@@ -1,17 +1,17 @@
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import storageService from './../services/storageService'
-import MorgueFolderTree from './../components/morgueFolder/morgueFolderTree'
-import postal from 'postal';
 import FolderImageLoader from './../components/images/loaders/folderImageLoader';
+import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree';
+import ImageSelectorComponent from './../components/images/imageSelectorComponent';
+
 
 export default class MorgueFoldersPage extends Component {
         
   constructor()
   {
       super();
-       this.imageCount = 25;
+     this.imageCount = 25;
      
      this.folderImageLoader = new FolderImageLoader(this.imageCount); 
   }
@@ -37,8 +37,14 @@ export default class MorgueFoldersPage extends Component {
       
     return (
        
-         <div> get a job
-        </div>
+          <section className="exploreFolderComponent">
+            <div className="columnLeft">
+              <ReadOnlyFolderTree />
+            </div>
+            <div className="columnRight">
+              <ImageSelectorComponent imageLoader={me.folderImageLoader} />
+            </div>
+         </section>
     );
   }
 }

@@ -9,7 +9,7 @@ export default class FolderImageLoader extends AbstractImageLoader
     {
         super(imageLimit);
         this.folderData = null;
-         
+        this.setStoredState({hasMore: false, offset: 0, imagePageData: null} );
         
     }
     
@@ -44,7 +44,8 @@ export default class FolderImageLoader extends AbstractImageLoader
                 offset = me.getImageCount() - 1;
                 hasMore = true;
             }
-            let data = {hasMore: hasMore, offset: offset, listData: imageData}
+            let data = {hasMore: hasMore, nextOffset: offset, listData: imageData}
+            //me.setStoredState(data);
             
             me.pushFunction(data);
             
