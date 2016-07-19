@@ -25,7 +25,7 @@ export default class ImageList extends Component
   {
       this.setState({isProcessing: nextProps.isProcessing})
       if (nextProps.imagePageData)
-        this.loadTargetCount = nextProps.imagePageData.length-1;
+        this.loadTargetCount = nextProps.imagePageData.listData.length-1;
       else
         this.loadTargetCount = 0;  
   }
@@ -140,9 +140,9 @@ export default class ImageList extends Component
       let idx = 0;
       
       
-      if (this.props.imagePageData && this.props.imagePageData.length > 0) 
+      if (this.props.imagePageData && this.props.imagePageData.listData && this.props.imagePageData.listData.length > 0) 
       {
-        newImages =  this.props.imagePageData.map((imgData) => {
+        newImages =  this.props.imagePageData.listData.map((imgData) => {
             if (imgData.smallestThumb && imgData.smallestThumb.src)
             {
              idx++;

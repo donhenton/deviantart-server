@@ -15,24 +15,37 @@ import ImageData from './../../services/classes/imageData'
 class ImageLoader
 {
     
-    constructor()
+    constructor(imageLimit,pushFunction)
     {
         let me = this;
         this.tag = null;
+        this.imageCount = imageLimit;
+        this.pushFunction = pushFunction;
         
+        this.subscription = postal.subscribe({
+                channel: "deviant-system",
+                        topic: "select-tag",
+                        callback: function (data, envelope) {
+                              
+                                me.tag = data.tag;
+                                me.getPage(0,me.imageCount);
+                             
+                        }
+               });
 
 
     }
  
-    getPage(offset,limit,tag)
+    getPage(offset,limit)
     {
-        
-       return deviantService.getTagImages(tag,offset,limit)
+       let me = this;
+       return deviantService.getTagImages(this.tag,offset,limit)
         .then(function(data)
         {
             let parseData = JSON.parse(data);
             let imageData = new ImageData(parseData);
-            return imageData.getPageData();;
+            me.pushFunction(imageData.getPageData())
+           // return imageData.getPageData();
             
         }).catch(function(err)
         {
@@ -42,17 +55,8 @@ class ImageLoader
     }
 
 
- 
-
-
 
 }
-
-
-
-
-
-
 
 
 
@@ -69,8 +73,7 @@ export default class ImageSelectorComponent extends Component
      
       this.subscription = null;
       this.imageCount = 25;
-      this.tag = null;
-      this.imageLoader = new ImageLoader();
+      this.imageLoader = new ImageLoader(this.imageCount,this.pushDataFunction.bind(this));
       
   }
          
@@ -78,15 +81,13 @@ export default class ImageSelectorComponent extends Component
    //   console.log("Unmounting image selector ");
       this.subscription.unsubscribe();
       stateHolder = this.state;
-      this.tag = null;
+       
        
   } 
   
-  componentWillReceiveProps(nextProps)
+  pushDataFunction(data,newOffset)
   {
-      
-      
-      
+      this.setState({isProcessing: false,  imagePageData: data,hasMore: data.hasMore, offset: data.nextOffset})
   }
   
   componentWillMount()
@@ -98,35 +99,19 @@ export default class ImageSelectorComponent extends Component
       {
           this.imageCount = this.props.pageCount;
       }
-       
-      var me = this;
-      this.subscription = postal.subscribe({
-                channel: "deviant-system",
-                        topic: "select-tag",
-                        callback: function (data, envelope) {
-                              
-                                me.setState({offset: 0});
-                                me.tag = data.tag;
-                                me.moveToPage('MORE',me.tag,0);
-                             
-                        }
-               });
-      
-      
-      
-
+ 
  
   }
   //type is 'MORE' or 'PREVIOUS'
   navClick(type)
   {
            
-          this.moveToPage(type,this.tag,this.state.offset);
+          this.moveToPage(type,this.state.offset);
  
   }
   
   
-  moveToPage(type,tag,offsetStart)
+  moveToPage(type,offsetStart)
   {
       let me = this;
       me.setState({isProcessing:true});
@@ -158,17 +143,14 @@ export default class ImageSelectorComponent extends Component
            }
           
       }
-      me.imageLoader.getPage(offset, this.imageCount,tag)
-        .then(function(data )
-        {
-           
-            me.setState({isProcessing: false,  imagePageData: data.listData,hasMore: data.hasMore, offset: data.nextOffset})
-             
-            
-        }).catch(function(err)
-        {
-            throw new Error(err.message);
-        })
+      me.imageLoader.getPage(offset, this.imageCount)
+//        .then(function(data )
+//        {
+//           
+//            me.setState({isProcessing: false,  imagePageData: data.listData,hasMore: data.hasMore, offset: data.nextOffset})
+//             
+//            
+//        }) 
   }
   
   
