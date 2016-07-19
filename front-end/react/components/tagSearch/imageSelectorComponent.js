@@ -5,10 +5,58 @@ import deviantService from './../../services/deviantService';
 import ReactDOM from 'react-dom';
 import postal from 'postal';
 import ImageList from './imageList';
+import ImageData from './../../services/classes/imageData'
 
 //export const this.imageCount = 25;
 
-let stateHolder = {'tag': null,hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
+
+
+
+class ImageLoader
+{
+    
+    constructor()
+    {
+        let me = this;
+        this.tag = null;
+        
+
+
+    }
+ 
+    getPage(offset,limit,tag)
+    {
+        
+       return deviantService.getTagImages(tag,offset,limit)
+        .then(function(data)
+        {
+            let parseData = JSON.parse(data);
+            let imageData = new ImageData(parseData);
+            return imageData.getPageData();;
+            
+        }).catch(function(err)
+        {
+            throw new Error(err.message);
+        })
+        
+    }
+
+
+ 
+
+
+
+}
+
+
+
+
+
+
+
+
+
+let stateHolder = {hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
 
 export default class ImageSelectorComponent extends Component  
 {
@@ -21,6 +69,8 @@ export default class ImageSelectorComponent extends Component
      
       this.subscription = null;
       this.imageCount = 25;
+      this.tag = null;
+      this.imageLoader = new ImageLoader();
       
   }
          
@@ -28,6 +78,7 @@ export default class ImageSelectorComponent extends Component
    //   console.log("Unmounting image selector ");
       this.subscription.unsubscribe();
       stateHolder = this.state;
+      this.tag = null;
        
   } 
   
@@ -54,14 +105,15 @@ export default class ImageSelectorComponent extends Component
                         topic: "select-tag",
                         callback: function (data, envelope) {
                               
-                                me.setState({'tag': data.tag,offset: 0});
-                                me.moveToPage('MORE',data.tag,0);
+                                me.setState({offset: 0});
+                                me.tag = data.tag;
+                                me.moveToPage('MORE',me.tag,0);
                              
                         }
                });
       
       
-      //data:  {tag: tagName}
+      
 
  
   }
@@ -69,7 +121,7 @@ export default class ImageSelectorComponent extends Component
   navClick(type)
   {
            
-          this.moveToPage(type,this.state.tag,this.state.offset);
+          this.moveToPage(type,this.tag,this.state.offset);
  
   }
   
@@ -106,7 +158,7 @@ export default class ImageSelectorComponent extends Component
            }
           
       }
-      this.props.imageSource.getPage(offset, this.imageCount,tag)
+      me.imageLoader.getPage(offset, this.imageCount,tag)
         .then(function(data )
         {
            
