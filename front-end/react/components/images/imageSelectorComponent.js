@@ -95,7 +95,7 @@ export default class ImageSelectorComponent extends Component
            }
           
       }
-      this.props.imageLoader.getPage(offset, this.imageCount)
+      this.props.imageLoader.getPage(offset)
  
   }
   

@@ -40,10 +40,10 @@ export default class TagImageLoader
         this.pushFunction = f;
     }
  
-    getPage(offset,limit)
+    getPage(offset)
     {
        let me = this;
-       return deviantService.getTagImages(this.tag,offset,limit)
+       return deviantService.getTagImages(this.tag,offset,this.imageCount)
         .then(function(data)
         {
             let parseData = JSON.parse(data);
