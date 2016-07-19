@@ -4,7 +4,7 @@ import postal from 'postal';
 import storageService from './../../services/storageService';
 
 
-export default class ImageComponent extends Component  
+export default class FolderTarget extends Component  
 {
     
    constructor()
@@ -19,6 +19,10 @@ export default class ImageComponent extends Component
        
   } 
   
+  getTargetFolder()
+  {
+      return this.state.targetFolder;
+  }
   
   componentWillMount()
   {

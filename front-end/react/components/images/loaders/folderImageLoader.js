@@ -1,41 +1,38 @@
 import postal from 'postal';
 import storageService from './../../../services/storageService';
- 
+import AbstractImageLoader from './abstractImageLoader'; 
 
-export default class FolderImageLoader
+export default class FolderImageLoader extends AbstractImageLoader
 {
     
     constructor(imageLimit)
     {
-        let me = this;
-        //let folderData = {name: folderName , key: data.selectedKey }
+        super(imageLimit);
         this.folderData = null;
-        this.imageCount = imageLimit;
-        if (!this.imageCount)
-        {
-            this.imageCount = 5;
-        }
-        this.pushFunction = null;
-  
+         
+        
     }
     
-    getImageCount()
+    activateSubscription()
     {
-        return this.imageCount;
+        let me = this;
+        
+        this.subscription = postal.subscribe({
+                 channel: "deviant-system",
+                 topic: "select-target-folder" ,
+                        callback: function (data, envelope) {
+                                //{name: folderName , key: data.selectedKey }
+                                console.log("fff "+JSON.stringify(data));
+                                me.folderData = data;
+                              //  me.getPage(0,me.imageCount);
+                             
+                        }
+               });
     }
-    
-    /**
-     * signature on the f variable is handle(imageData.getPageData());
-     */
-    setPushFunction(f)
-    {
-        this.pushFunction = f;
-    }
- 
 
     getPage(offset)
     {
-//       let me = this;
+        let me = this;
 //       return deviantService.getTagImages(this.tag,offset,this.imageCount)
 //        .then(function(data)
 //        {
@@ -50,6 +47,17 @@ export default class FolderImageLoader
 //            //data
 //            throw new Error(err.message);
 //        })
+        let imageData = storageService.getFolderDeviations(me.folderData.key);
+        if (imageData)
+        {
+            me.pushFunction(imageData);
+            
+            
+        }
+        
+        
+
+
         
     }
     
@@ -58,26 +66,21 @@ export default class FolderImageLoader
      */
     onUnMount()
     {
-        //console.log("did unsub 1")
+         console.log("did unsub 1 "+JSON.stringify(this.folderData))
         this.subscription.unsubscribe();
-        
+        this.subscription = null;
         
     }
 
     onMount()
     {
         let me = this;
-        //console.log("did subsribe 1")
-        this.subscription = postal.subscribe({
-                 channel: "deviant-system",
-                 topic: "select-target-folder" ,
-                        callback: function (data, envelope) {
-                              
-                                me.folderData = data.folderData;
-                                me.getPage(0,me.imageCount);
-                             
-                        }
-               });
+         console.log("did subsribe 1 "+JSON.stringify(this.folderData))
+        if(!this.subscription)
+        {
+            me.activateSubscription();
+        }
+        
         
     }
 

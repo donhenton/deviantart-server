@@ -155,7 +155,17 @@ import storage from 'localStorage';
             }
         }
 
-         
+        getFolderDeviations(folderKey)
+        {
+              let index = this.getIndex();
+              if (index[folderKey])
+              {
+                   return index[folderKey].deviations;
+              }
+                
+            
+            
+        }
 
 
 

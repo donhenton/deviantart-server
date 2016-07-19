@@ -44,7 +44,7 @@ export default class ImageSelectorComponent extends Component
    * 
    * if an error occurs would use this function to set state to declare it
    */
-  pushDataFunction(data,newOffset)
+  pushDataFunction(data)
   {
       
       
