@@ -98,8 +98,9 @@
     {
         width: 200px;
         margin: 10px auto;
-        cursor: move;
+        cursor: default;
         overflow: auto;
+        -webkit-user-drag: none;
 
     }
 

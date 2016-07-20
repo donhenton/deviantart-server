@@ -26,7 +26,7 @@ componentWillMount()
 { 
       let me = this;
       this.folderData = storageService.getFolderData().children;
-      this.state = {  folderData: this.folderData};
+      this.state = { selectedKey: null,  folderData: this.folderData};
       let idxObj = storageService.getIndex(); 
       
       this.subscription = 
@@ -39,7 +39,7 @@ componentWillMount()
                let folderName = idxObj[data.selectedKey].name 
                let folderData = {name: folderName , key: data.selectedKey }
               // console.log("sending on readonly tree "+JSON.stringify(folderData))
-
+               me.setState({selectedKey: data.selectedKey});
                postal.publish({
                channel: "deviant-system",
                topic: "select-target-folder" ,
@@ -65,7 +65,7 @@ render() {
        
       
     return (
-              <MorgueFolderTree  folderData={this.state.folderData} />
+              <MorgueFolderTree selectedKey={this.state.selectedKey} folderData={this.state.folderData} />
 
                 );  
       

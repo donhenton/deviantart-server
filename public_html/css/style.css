@@ -637,8 +637,9 @@ section#pageContainer {
 .exploreFolderComponent img.currentImageDisplay {
   width: 200px;
   margin: 10px auto;
-  cursor: move;
-  overflow: auto; }
+  cursor: default;
+  overflow: auto;
+  -webkit-user-drag: none; }
 
 body {
   z-index: 0; }
