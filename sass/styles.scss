@@ -68,8 +68,9 @@ $box-width: 500px;
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
-                align-items: center;
-                padding: 2px;
+                align-content: stretch; 
+                padding: 5px;
+                margin-top: 10px;
                 position:relative;
                 height: 450px;
 
@@ -92,11 +93,10 @@ $box-width: 500px;
 
                     color: white;
                     text-align: center;
-                    flex-basis: content;
-                    flex-grow: 1; 
+                    margin: 5px;
+                    
                     border-bottom: 1px solid white; 
-                    padding-top: 5px;
-                    padding-bottom: 15px;
+                    
 
                 }
             }

@@ -665,8 +665,9 @@ body {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    align-items: center;
-    padding: 2px;
+    align-content: stretch;
+    padding: 5px;
+    margin-top: 10px;
     position: relative;
     height: 450px; }
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer a {
@@ -677,11 +678,8 @@ body {
     .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer .imageControl {
       color: white;
       text-align: center;
-      flex-basis: content;
-      flex-grow: 1;
-      border-bottom: 1px solid white;
-      padding-top: 5px;
-      padding-bottom: 15px; }
+      margin: 5px;
+      border-bottom: 1px solid white; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
     overflow: auto;
     height: 350px;

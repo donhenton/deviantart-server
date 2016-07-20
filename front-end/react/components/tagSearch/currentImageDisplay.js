@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import postal from 'postal';
 import WaitIndicator from './../waitIndicator';
+import SingleImageDisplay from './../images/singleImageDisplay'
 
 export default class ImageComponent extends Component  
 {
@@ -22,7 +23,7 @@ export default class ImageComponent extends Component
   {
       let me = this;
        
-      this.state = {imageData: null,targetFolder: null, didTransfer: false ,isProcessing: false};
+      this.state = {imageData: null,targetFolder: null};
       let s1 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
@@ -32,7 +33,7 @@ export default class ImageComponent extends Component
                         {
                             $("div.imageWrapper")[0].scrollTop = 0;
                         }
-                        me.setState({'imageData': data,didTransfer: false,isProcessing: true});
+                        me.setState({'imageData': data});
 
                 }
                });
@@ -70,67 +71,24 @@ export default class ImageComponent extends Component
        
    }
    
-   //////DND ///////////////////////////////////////////////////////////////
-   
-   sourceDragStart(e)
-   {
-       
-       e.target.style.opacity = 0.2;
-       e.dataTransfer.setData('application/json',JSON.stringify(this.state.imageData))
-       e.dataTransfer.effectAllowed = 'move';
-   }
-   
-   sourceDragEnd(e)
-   {
-       if(e.dataTransfer.dropEffect !== 'none'){
-         
-         //do the stuff to set up 
-         this.setState({didTransfer: true})
-         $("div.imageWrapper")[0].scrollTop = 0;
  
-           
-       }
-       else
-       {
-          // console.log("you bailed")
-       }
-       e.target.style.opacity = 1;
-       
-   }
    
    
-   handleImageLoaded() {
-     // console.log("image load "+this.currentCounter+" target "+this.loadTargetCount)
-      this.setState({isProcessing: false})
-     
-  }
- 
-  handleImageErrored(e) {
-     //console.log("image error ");
-     //$(e.target).closest('span.deviantThumb').hide();
-     this.setState({isProcessing: false})
-  }
-   
-  
-   
-   ////////////////////////////////////////////////////////////////////////
-   
-   
-   addImageSelectedLabel() 
-   {
-              
-       if (this.state.didTransfer)
-
-          return  <span className="completedText">{'Image Added To '+this.state.targetFolder.name}</span> 
-       else
-          return null;
-   }
    
    computePathDisplay()
    {
        let display = 
        this.state.imageData.categoryPath.replace(/\//g, " "+String.fromCharCode(8594)+" ");
        return display;
+   }
+   
+   computeCompleteMessage()
+   {
+       if (this.state.targetFolder)
+           return "Added to "+this.state.targetFolder.name;
+       else
+           return null;
+       
    }
         
    render() {
@@ -140,29 +98,15 @@ export default class ImageComponent extends Component
                  return (
                    <div className="currentImageControlContainer">
                  
-                   <WaitIndicator isProcessing={me.state.isProcessing} />     
+                    
                   <div className='imageControl'><a target="_new" href={this.state.imageData.url}>View Deviant Art Page</a></div>
                   <div className='imageControl'>{'Title: '+this.state.imageData.title}</div>
                   <div className='imageControl'>{'Path: '+ me.computePathDisplay()}</div>
                   {me.renderFolderButton()}
                   
+                  <SingleImageDisplay completeMessage={me.computeCompleteMessage()} imageData={this.state.imageData}  />
+                  </div>
                   
-                  
-                  <div className="imageWrapper">
-                            <div className="imageExpander">
-                            <img 
-                             onDragStart={me.sourceDragStart.bind(me)}
-                             onDragEnd={me.sourceDragEnd.bind(me)}
-                             onLoad={this.handleImageLoaded.bind(this)}
-                             onError={this.handleImageErrored.bind(this)}
-                             className="currentImageDisplay" 
-                             src={this.state.imageData.thumbs[2].src} />
-                                     
-                        {me.addImageSelectedLabel()}        
-                           </div>
-                            
-                       </div>         
-                   </div>
                  )
             }
             else

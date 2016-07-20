@@ -9,20 +9,42 @@ export default class SingleImageDisplay extends Component
    constructor()
   {
       super();
-      
+      this.subscription = null;
   }
          
    componentWillUnmount () {
       
-      
+      if (this.subscription)
+      {
+          this.subscription.unsubscribe();
+          this.subscription = null;
+      }
        
   } 
+
+  
+  componentWillReceiveProps(nextProps)
+  {
+      this.setState({imageData: nextProps.imageData});
+  }
   
   componentWillMount()
   {
       let me = this;
-       
-      this.state = {imageData: null,targetFolder: null, didTransfer: false ,isProcessing: false};
+      this.subscription = postal.subscribe({
+                channel: "deviant-system",
+                topic: "select-image" ,
+                callback: function (data, envelope) {
+                        //data.name  data.key
+                        if ($("div.imageWrapper")[0])
+                        {
+                            $("div.imageWrapper")[0].scrollTop = 0;
+                        }
+                        me.setState({'imageData': data, isProcessing: true});
+
+                }
+               });
+      this.state = {imageData: me.props.imageData, didTransfer: false ,isProcessing: false};
        
       
   }
@@ -73,10 +95,13 @@ export default class SingleImageDisplay extends Component
      
    addImageSelectedLabel() 
    {
-              
+       let message = this.props.completeMessage;
+       if (!message)
+           message = "Action completed";
+       
        if (this.state.didTransfer)
 
-          return  <span className="completedText">{'Image Added To '+this.state.targetFolder.name}</span> 
+          return  <span className="completedText">{message}</span> 
        else
           return null;
    }
