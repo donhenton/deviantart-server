@@ -727,12 +727,27 @@ body {
       column-gap: 0px;
       width: 100%;
       margin: 0 auto; }
+      .displayComponent .imageComponentContainer .imageListContainer .deviantThumb .imageExpander {
+        position: relative;
+        text-align: center; }
+        .displayComponent .imageComponentContainer .imageListContainer .deviantThumb .imageExpander .imageCover {
+          cursor: not-allowed;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.6); }
+          .displayComponent .imageComponentContainer .imageListContainer .deviantThumb .imageExpander .imageCover .containedText {
+            color: #ddd;
+            font-size: smaller;
+            margin-top: 5px; }
       .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryHit {
         opacity: 1; }
       .displayComponent .imageComponentContainer .imageListContainer .deviantThumb.categoryMiss {
         opacity: 0.5; }
       .displayComponent .imageComponentContainer .imageListContainer .deviantThumb img {
-        margin: 5px;
+        margin: 1px;
         width: 100%;
         cursor: pointer;
         -webkit-user-drag: none; }

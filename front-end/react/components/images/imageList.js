@@ -4,7 +4,7 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import postal from 'postal';
 import WaitIndicator from './../waitIndicator';
-
+import storageService from './../../services/storageService';
 
  
 export default class ImageList extends Component  
@@ -91,31 +91,6 @@ export default class ImageList extends Component
   computeImageCSS(imgData)
   {
       var css = "deviantThumb"
-      if (this.state.categories.length)
-      {
-          var hit = false;
-          for (var i1 = 0;i1<this.state.categories.length;i1++)
-          {
-              let test = this.state.categories[i1];
-              if (imgData.categoryPath.indexOf(test) == 0)
-              {
-                  hit = true;
-                  break;
-              }
-          }
-          
-           
-          if (hit)
-          {
-              css = css + " categoryHit"
-          }
-          else
-          {
-              css = css + " categoryMiss"
-          }
-      }
-      
-      
       return css;
   }
   
@@ -132,6 +107,25 @@ export default class ImageList extends Component
       
   }
   
+   addImageSelectedLabel(folderInfo,imgData) 
+   {
+        
+       
+       if (folderInfo && this.props.showFolderInfo)
+
+          return  (
+              <div className="imageCover">
+                <div className="containedText">
+                    {'Image Added To '+folderInfo.folderName}        
+                </div>
+              </div> 
+            )
+       else
+          return null;
+   }
+  
+  
+  
   renderImages()
   {
       var newImages = null;
@@ -146,15 +140,22 @@ export default class ImageList extends Component
             if (imgData.smallestThumb && imgData.smallestThumb.src)
             {
              idx++;
+             let containingFolder = storageService.getFolderDeviation(imgData.deviationid);
              let clickAction = me.clickOnImage.bind(me,imgData)
              var css = me.computeImageCSS(imgData)
             return ( 
                     <span  key={imgData.deviationid} className={css}>
-                     
-                     
-                    <img onClick={clickAction} id={"image-key-"+idx} ref={(ref) => me.computeImageRef(ref)} onLoad={this.handleImageLoaded.bind(this)}
-                         onError={this.handleImageErrored.bind(this)}  src={imgData.smallestThumb.src} />
-                    
+                      
+                                <div className="imageExpander"> 
+                                {me.addImageSelectedLabel(containingFolder,imgData)} 
+                                    <img onClick={clickAction} id={"image-key-"+idx} 
+                                       ref={(ref) => me.computeImageRef(ref)} 
+                                       onLoad={this.handleImageLoaded.bind(this)}
+                                       onError={this.handleImageErrored.bind(this)}  
+                                        src={imgData.smallestThumb.src} />
+                                    
+                                </div>
+                        
                     </span>
                     )
             }

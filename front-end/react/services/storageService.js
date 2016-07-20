@@ -11,10 +11,11 @@ import storage from 'localStorage';
 
         constructor()
         {
-            
+            this.deviationLookup = {};
             this.data = null;
             this.fetchData();
             this.getIndex();
+            
            // storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.data))
 
         }
@@ -38,6 +39,7 @@ import storage from 'localStorage';
             {
                 targetFolder.deviations.push(data)
                 storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+                this.getIndex();
             }
             
              
@@ -46,10 +48,13 @@ import storage from 'localStorage';
         /**
          * create the flatten key index
          * reset all keys to use the child array index eg /0/1/2
+         * creates the deviationid index
          */
         flatten(data)
         {
             var accum = {}
+             
+            
             accum[data.key] = {'key': data.key, 'name': data.name, children: data.children}
             var me = this;
             
@@ -58,6 +63,7 @@ import storage from 'localStorage';
                     for (var i= 0;i< children.length;i++)
                     {
                         children[i].key = parentKeyString + "/"+i;
+                        
                        // accum[children[i].key] = {name: children[i].name,children: children[i].children};
                        accum[children[i].key] = children[i];
                         if (children[i].children.length > 0)
@@ -65,13 +71,29 @@ import storage from 'localStorage';
                             
                             recurse(children[i].children,children[i].key)
                         } 
-                      }//end for loop
+                        
+                        for (var k=0;k< children[i].deviations.length;k++)
+                        {   
+
+                             let cloneData = JSON.parse(JSON.stringify(children[i].deviations[k]));    
+                             cloneData.folderKey= children[i].key;
+                             me.deviationLookup[children[i].deviations[k].deviationid] = cloneData;
+
+                        }
+                     
+                        
+                        
+                    }//end for loop
   
             }
             
             recurse(data.children,data.key)
+            // console.log("XXXX\n"+JSON.stringify(this.deviationLookup))
             return accum;
          }
+         
+         
+         
 
         getIndex()
         {
@@ -89,6 +111,7 @@ import storage from 'localStorage';
             let target = index[key];
             target.name = name;
             storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+            this.getIndex();
             return this.getFolderData();
               
         }
@@ -165,6 +188,20 @@ import storage from 'localStorage';
                 
             
             
+        }
+        
+        getFolderDeviation(deviationid)
+        {
+            let devInfo =  this.deviationLookup[deviationid]
+           
+            if (devInfo)
+            {
+                 let index = this.getIndex();
+                devInfo['folderName'] = index[devInfo.folderKey].name;
+                
+                
+            }
+            return devInfo;
         }
 
 

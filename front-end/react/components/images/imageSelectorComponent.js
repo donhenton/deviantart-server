@@ -138,7 +138,10 @@ export default class ImageSelectorComponent extends Component
   }
   
   
-   
+  renderImageList()
+  {
+      return  <ImageList isProcessing={this.state.isProcessing} showFolderInfo={this.props.showFolderInfo} imagePageData={this.state.imagePageData} />
+  }
         
   render() {
       var me = this;
@@ -150,10 +153,8 @@ export default class ImageSelectorComponent extends Component
                     <span>({this.state.offset})</span>
                   </div>
              <div className="imageComponentContainer">
-
-                 
-
-                <ImageList isProcessing={this.state.isProcessing} imagePageData={this.state.imagePageData} />
+             {me.renderImageList()}
+     
                 
              </div>
         </div>
