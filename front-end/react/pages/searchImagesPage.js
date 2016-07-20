@@ -14,7 +14,7 @@ import TagImageLoader from './../components/images/loaders/tagImageLoader';
 
  
 
-export default class TagSearchPage extends Component {
+export default class SearchImagesPage extends Component {
         
   constructor()
   {
