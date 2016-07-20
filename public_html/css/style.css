@@ -106,6 +106,9 @@ h4 {
   color: #667467; }
 
 /* typography ---------------------- */
+.no-drag {
+  -webkit-user-drag: none; }
+
 .pull-right {
   float: right; }
 
@@ -576,9 +579,66 @@ section#pageContainer {
     color: inherit;
     background-color: inherit; }
 
-.folderDisplayComponent {
-  width: 525px;
-  height: 442px; }
+.exploreFolderComponent .exploreFolderFlex {
+  display: flex;
+  flex-flow: row;
+  align-content: stretch; }
+  .exploreFolderComponent .exploreFolderFlex .folderTree {
+    width: 25%;
+    height: 440px;
+    margin-right: 50px; }
+  .exploreFolderComponent .exploreFolderFlex .displayComponent {
+    margin-right: 20px; }
+
+.exploreFolderComponent .currentImageControlContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  position: relative;
+  height: 440px;
+  background-color: #667467;
+  color: white;
+  width: 250px; }
+  .exploreFolderComponent .currentImageControlContainer a {
+    text-decoration: none; }
+    .exploreFolderComponent .currentImageControlContainer a:hover {
+      text-decoration: underline; }
+  .exploreFolderComponent .currentImageControlContainer .imageControl {
+    color: white;
+    text-align: center;
+    flex-basis: content;
+    flex-grow: 1;
+    border-bottom: 1px solid white;
+    padding-top: 5px;
+    padding-bottom: 15px; }
+
+.exploreFolderComponent .imageWrapper {
+  overflow: auto;
+  height: 350px;
+  flex-grow: 1;
+  flex-basis: content;
+  margin-top: 5px;
+  width: 200px;
+  overflow: auto; }
+  .exploreFolderComponent .imageWrapper .imageExpander {
+    position: relative; }
+    .exploreFolderComponent .imageWrapper .imageExpander .completedText {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ddd;
+      padding: 20px; }
+
+.exploreFolderComponent img.currentImageDisplay {
+  width: 200px;
+  margin: 10px auto;
+  cursor: move;
+  overflow: auto; }
 
 body {
   z-index: 0; }
@@ -598,6 +658,9 @@ body {
   padding: 20px;
   margin: 0px;
   overflow: auto; }
+  .searchContainer table.imageSelectorComponent td.currentImageTableCell .width30 {
+    width: 30%;
+    float: left; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .currentImageControlContainer {
     display: flex;
     flex-flow: column;

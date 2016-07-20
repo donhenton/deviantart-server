@@ -6,7 +6,7 @@
 @import "components/buttons";
 @import "components/system";
 @import "components/folderTree";
-@import "components/folderDisplayComponent";
+@import "components/exploreFolderComponent";
 
 
 body {
@@ -55,7 +55,13 @@ $box-width: 500px;
             margin: 0px;
             overflow: auto;
 
-
+            .width30
+            {
+               width: 30%;
+               float:left;
+                
+            }
+            
 
             .currentImageControlContainer
             {

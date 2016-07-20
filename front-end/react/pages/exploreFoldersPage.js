@@ -37,13 +37,17 @@ export default class MorgueFoldersPage extends Component {
       
     return (
        
-          <section className="exploreFolderComponent">
+          <section className="exploreFolderComponent grouping">
           <h4>Explore Folders</h4>
-            <div className="columnLeft">
-              <ReadOnlyFolderTree />
-            </div>
-            <div className="columnRight">
-              <ImageSelectorComponent imageLoader={me.folderImageLoader} />
+            <div className="exploreFolderFlex">
+               
+               
+                 <ReadOnlyFolderTree />
+                
+                
+               <ImageSelectorComponent imageLoader={me.folderImageLoader} />
+               
+               <div className="currentImageControlContainer">fred</div>
             </div>
          </section>
     );

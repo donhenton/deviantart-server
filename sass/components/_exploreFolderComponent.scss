@@ -1,0 +1,108 @@
+.exploreFolderComponent
+{
+
+    .exploreFolderFlex
+    {
+        display: flex;
+        flex-flow: row;
+        align-content: stretch;
+
+
+        .folderTree
+        {
+            width: 25%;
+            height: 440px;
+            margin-right: 50px;
+        }
+
+        .displayComponent
+        {
+            margin-right: 20px;
+        }
+    }
+
+
+
+
+    .currentImageControlContainer
+    {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2px;
+        position:relative;
+        height: 440px;
+        background-color: $green-color;
+        color: white;
+        width: 250px;
+
+        a
+        {
+            
+            text-decoration: none;
+
+            &:hover
+                {
+                text-decoration: underline;
+            }
+
+        }
+
+
+        .imageControl
+        {
+
+
+            color: white;
+            text-align: center;
+            flex-basis: content;
+            flex-grow: 1; 
+            border-bottom: 1px solid white; 
+            padding-top: 5px;
+            padding-bottom: 15px;
+
+        }
+    }
+
+
+    .imageWrapper
+    {
+        overflow: auto;
+        height: 350px;
+        flex-grow: 1;
+        flex-basis: content;
+        margin-top:  5px;
+        width: 200px;
+        overflow: auto;
+
+        .imageExpander
+        {
+            position: relative;
+            .completedText
+            {
+
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: rgba(0,0,0,0.6);
+                color: #ddd;
+                padding: 20px;
+            }
+
+        }
+    }
+    img.currentImageDisplay
+    {
+        width: 200px;
+        margin: 10px auto;
+        cursor: move;
+        overflow: auto;
+
+    }
+
+
+
+}
