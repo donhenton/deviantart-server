@@ -3,6 +3,7 @@ import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ImageList from './imageList';
+import postal from 'postal';
 
 // let stateHolder = {hasMore: false,  imagePageData: null,isProcessing: false,offset: 0 };
 
@@ -27,6 +28,7 @@ export default class ImageSelectorComponent extends Component
    constructor(props)
   {
       super(props);
+      this.subscription = null;
       
   }
          
@@ -36,6 +38,9 @@ export default class ImageSelectorComponent extends Component
      //// stateHolder = this.state;
       if (this.props.imageLoader.onUnMount)
             this.props.imageLoader.onUnMount();
+      
+      this.subscription.unsubscribe();
+      this.subscription = null;
        
   } 
   
@@ -55,7 +60,22 @@ export default class ImageSelectorComponent extends Component
   {
        
       
-      this.state = this.props.imageLoader.getStoredState(); 
+      this.state = this.props.imageLoader.getStoredState();
+      
+      //this forces a refresh folder-image-change comes from storageService
+      let me = this;
+      this.state.refreshToggle = false;
+       this.subscription = postal.subscribe({
+                channel: "deviant-system",
+                topic: "folder-image-change" ,
+                callback: function (data, envelope) {
+                       // data is  {folder: folder, data: data}
+                       me.setState({refreshToggle: (!me.state.refreshToggle)});
+
+                }
+               });
+      
+      
       let p = this.pushDataFunction.bind(this);
       this.props.imageLoader.setPushFunction(p);
       this.imageCount = this.props.imageLoader.getImageCount();
