@@ -11,13 +11,19 @@
         .folderTree
         {
             width: 25%;
-            height: 440px;
+            height: 540px;
             margin-right: 50px;
         }
 
         .displayComponent
         {
             margin-right: 20px;
+           
+        }
+        
+        .imageComponentContainer
+        {
+             height: 540px;
         }
     }
 
@@ -30,21 +36,26 @@
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        padding: 2px;
+        padding: 10px;
         position:relative;
-        height: 440px;
+        
         background-color: $green-color;
         color: white;
         width: 250px;
 
         a
         {
-            
+            color: white;
+            &:visited
+                {
+                color:white;
+            }
             text-decoration: none;
 
             &:hover
                 {
                 text-decoration: underline;
+                color: white;
             }
 
         }
@@ -56,11 +67,9 @@
 
             color: white;
             text-align: center;
-            flex-basis: content;
-            flex-grow: 1; 
             border-bottom: 1px solid white; 
-            padding-top: 5px;
-            padding-bottom: 15px;
+            margin: 10px;
+            padding-bottom: 10px;
 
         }
     }

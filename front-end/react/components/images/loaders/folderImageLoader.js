@@ -29,6 +29,12 @@ export default class FolderImageLoader extends AbstractImageLoader
                         }
                });
     }
+    
+    
+    getFolderData()
+    {
+        return this.folderData;
+    }
 
     getPage(offset)
     {

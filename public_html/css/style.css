@@ -585,34 +585,37 @@ section#pageContainer {
   align-content: stretch; }
   .exploreFolderComponent .exploreFolderFlex .folderTree {
     width: 25%;
-    height: 440px;
+    height: 540px;
     margin-right: 50px; }
   .exploreFolderComponent .exploreFolderFlex .displayComponent {
     margin-right: 20px; }
+  .exploreFolderComponent .exploreFolderFlex .imageComponentContainer {
+    height: 540px; }
 
 .exploreFolderComponent .currentImageControlContainer {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding: 2px;
+  padding: 10px;
   position: relative;
-  height: 440px;
   background-color: #667467;
   color: white;
   width: 250px; }
   .exploreFolderComponent .currentImageControlContainer a {
+    color: white;
     text-decoration: none; }
+    .exploreFolderComponent .currentImageControlContainer a:visited {
+      color: white; }
     .exploreFolderComponent .currentImageControlContainer a:hover {
-      text-decoration: underline; }
+      text-decoration: underline;
+      color: white; }
   .exploreFolderComponent .currentImageControlContainer .imageControl {
     color: white;
     text-align: center;
-    flex-basis: content;
-    flex-grow: 1;
     border-bottom: 1px solid white;
-    padding-top: 5px;
-    padding-bottom: 15px; }
+    margin: 10px;
+    padding-bottom: 10px; }
 
 .exploreFolderComponent .imageWrapper {
   overflow: auto;
