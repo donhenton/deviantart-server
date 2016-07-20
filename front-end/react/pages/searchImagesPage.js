@@ -54,6 +54,7 @@ export default class TagSearchPage extends Component {
     return (
        
        <section className="searchContainer grouping">
+       <h4> Search For Images</h4>
             <div className="columnLeft">
                  
                     <SearchAttributes />

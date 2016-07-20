@@ -38,6 +38,7 @@ export default class MorgueFoldersPage extends Component {
     return (
        
           <section className="exploreFolderComponent">
+          <h4>Explore Folders</h4>
             <div className="columnLeft">
               <ReadOnlyFolderTree />
             </div>
