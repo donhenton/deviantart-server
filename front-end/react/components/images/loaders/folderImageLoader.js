@@ -10,6 +10,7 @@ export default class FolderImageLoader extends AbstractImageLoader
         super(imageLimit);
         this.folderData = null;
         this.setStoredState({hasMore: false, offset: 0, imagePageData: null} );
+        this.subscription = null;
         
     }
     
@@ -71,18 +72,22 @@ export default class FolderImageLoader extends AbstractImageLoader
      */
     onUnMount()
     {
-         console.log("did unsub 1 "+JSON.stringify(this.folderData))
-        this.subscription.unsubscribe();
-        this.subscription = null;
+        // console.log("did unsub 1 "+JSON.stringify(this.folderData))
+        if (this.subscription)
+        {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
         
     }
 
     onMount()
     {
         let me = this;
-         console.log("did subsribe 1 "+JSON.stringify(this.folderData))
+         
         if(!this.subscription)
         {
+           // console.log("did subsribe 1 "+JSON.stringify(this.folderData))
             me.activateSubscription();
         }
         

@@ -86,6 +86,7 @@ flatten(data)
 
     accum[data.key] = {'key': data.key, 'name': data.name, children: data.children}
     var me = this;
+    me.deviationLookup = {};
 
     function recurse(children,parentKeyString)
     {
@@ -103,7 +104,6 @@ flatten(data)
 
                 for (var k=0;k< children[i].deviations.length;k++)
                 {   
-
                      let cloneData = JSON.parse(JSON.stringify(children[i].deviations[k]));    
                      cloneData.folderKey= children[i].key;
                      me.deviationLookup[children[i].deviations[k].deviationid] = cloneData;

@@ -37,7 +37,7 @@ export default class MorgueFoldersPage extends Component {
   }
   
   componentWillUnmount () {
-      console.log("performing unsub folder page")
+     // console.log("performing unsub folder page")
       this.subscription.unsubscribe();
       postal.unsubscribe(this.subscription)
   } 
