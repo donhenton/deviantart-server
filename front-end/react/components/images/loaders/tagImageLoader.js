@@ -11,7 +11,7 @@ export default class TagImageLoader extends AbstractImageLoader
     {
         super(imageLimit);
         this.tag = null;
-         
+        this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null} ); 
   
     }
     
@@ -26,8 +26,15 @@ export default class TagImageLoader extends AbstractImageLoader
         {
             let parseData = JSON.parse(data);
             let imageData = new ImageData(parseData);
-            me.pushFunction(imageData.getPageData())
-           // return imageData.getPageData();
+            let packagedData = imageData.getPageData();
+            packagedData.hasLess = true;
+            if (offset == 0)
+                packagedData.hasLess = false;
+            
+            
+            
+            me.pushFunction(packagedData)
+           
             
         }).catch(function(err)
         {
