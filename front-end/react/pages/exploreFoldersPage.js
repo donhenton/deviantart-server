@@ -7,13 +7,14 @@ import ImageSelectorComponent from './../components/images/imageSelectorComponen
 import postal from 'postal';
 import SingleImageDisplay from './../components/images/singleImageDisplay';
 
+
 export default class MorgueFoldersPage extends Component {
         
   constructor()
   {
       super();
      this.imageCount = 25;
-     this.subscription = null;
+     this.subscriptions = [];
      this.folderImageLoader = new FolderImageLoader(this.imageCount); 
   }
   
@@ -21,8 +22,9 @@ export default class MorgueFoldersPage extends Component {
   componentWillMount()
   {
        this.state = {imageData: null}
+       this.folderImageLoader.onMount();
        let me = this;
-       this.subscription = postal.subscribe({
+       let sub1 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
                 callback: function (data, envelope) {
@@ -35,13 +37,24 @@ export default class MorgueFoldersPage extends Component {
 
                 }
                });
+               
+        let sub2 = postal.subscribe({
+                 channel: "deviant-system",
+                 topic: "select-target-folder" ,
+                        callback: function (data, envelope) {
+                                 me.setState({'imageData': null});
+                             
+                        }
+               });
       
+      this.subscriptions.push(sub1)
+      this.subscriptions.push(sub2)
   }
   
   componentWillUnmount () {
-      
-      this.subscription.unsubscribe();
-      this.subscription = null;
+                        
+      this.subscriptions.forEach((s) => s.unsubscribe());
+       this.folderImageLoader.onUnMount();
       
   } 
   
@@ -58,6 +71,17 @@ export default class MorgueFoldersPage extends Component {
        let message = "Do you want to remove this image from '"+ folderName +"?"
        
        let retVal = window.confirm(message);
+       
+       if (retVal)
+       {
+           //hit the database
+           //hide the 
+           this.setState({imageData: null});
+           this.folderImageLoader.deleteFromFolder(this.state.imageData);
+           
+           
+           
+       }
        
    }
    
@@ -76,7 +100,11 @@ export default class MorgueFoldersPage extends Component {
           <button onClick={me.removeImage.bind(me)} className="btn btn-small btn-red">Remove From Folder</button>              
                         
           </div>
-  
+       <div className='imageControl'>
+           
+          <button onClick={me.removeImage.bind(me)} className="btn btn-small btn-primary">More Like This</button>              
+                        
+          </div>
           </div>
         )
       }

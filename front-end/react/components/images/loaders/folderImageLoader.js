@@ -22,7 +22,7 @@ export default class FolderImageLoader extends AbstractImageLoader
                  topic: "select-target-folder" ,
                         callback: function (data, envelope) {
                                 //{name: folderName , key: data.selectedKey }
-                                console.log("fff "+JSON.stringify(data));
+                               // console.log("fff "+JSON.stringify(data));
                                 me.folderData = data;
                                 me.getPage(0,me.imageCount);
                              
@@ -34,6 +34,12 @@ export default class FolderImageLoader extends AbstractImageLoader
     getFolderData()
     {
         return this.folderData;
+    }
+    
+    deleteFromFolder(imageData)
+    {
+        storageService.deleteFromFolder(imageData,this.getFolderData());
+        this.getPage(this.getStoredState().offset,this.imageCount);  
     }
 
     getPage(offset)

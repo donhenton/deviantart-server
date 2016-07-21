@@ -63,6 +63,7 @@ export default class ImageSelectorComponent extends Component
       this.state = this.props.imageLoader.getStoredState();
       
       //this forces a refresh folder-image-change comes from storageService
+      //of its current collection of images
       let me = this;
       this.state.refreshToggle = false;
        this.subscription = postal.subscribe({

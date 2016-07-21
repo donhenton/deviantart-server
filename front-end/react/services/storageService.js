@@ -24,6 +24,26 @@ constructor()
 
 }
 
+
+
+deleteFromFolder(data,folder)
+{
+    let key = folder.key;
+    let targetFolder = this.getIndex()[key];    
+    targetFolder.deviations = targetFolder.deviations.filter((d) =>
+    {
+          return  d.deviationid !== data.deviationid;      
+              
+                
+    })
+    let newTotalData = this.getFolderData();
+    let newFolderData = 
+    storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newTotalData));
+    this.getIndex();
+    
+}
+
+
 insertIntoFolder(data,folder)
 {
     let key = folder.key;
