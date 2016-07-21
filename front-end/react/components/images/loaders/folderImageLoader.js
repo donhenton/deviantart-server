@@ -9,7 +9,7 @@ export default class FolderImageLoader extends AbstractImageLoader
     {
         super(imageLimit);
         this.folderData = null;
-        this.setStoredState({hasMore: false, offset: 0, imagePageData: null} );
+        this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null} );
         this.subscription = null;
         
     }
@@ -51,7 +51,8 @@ export default class FolderImageLoader extends AbstractImageLoader
         let nextOffset = 0;
         let imageCount = me.getImageCount(); 
         let sentData = [];
-        let readLimit = readLimit;
+        let readLimit = -1;
+        let hasLess = false;
         
         if (imageData)
         {
@@ -59,24 +60,46 @@ export default class FolderImageLoader extends AbstractImageLoader
             if (pageCount > 0)
             {
                 hasMore = true;
+                hasLess = true;
                 nextOffset = offset + imageCount;
+                if (offset == 0)
+                {
+                   hasLess = false; 
+                    
+                }
                 readLimit = nextOffset; 
+                if (pageCount == 1 && imageData.length == imageCount)
+                {
+                    //exactly image count one page only
+                    hasMore = false;
+                    hasLess = false;
+                    nextOffset = 0;
+                    readLimit = imageCount -1;
+                }
+                
+                
+                
             }
             else
             {
-                
+                hasMore = false;
+                hasLess = false;
                 let pageRemainder = imageData.length - offset;
                 if (pageRemainder > 0)
                 {
                     hasMore = false;
-                    nextOffset = offset;
+                    if(offset > 0)
+                    {
+                        hasLess = true;
+                    }
+                    nextOffset = -1;
                     readLimit = imageData.length; 
                 }
                 else
                 {
                     hasMore = false;
-                    nextOffset = 0;
-                    offset = 0;
+                    hasLess = false;
+                    nextOffset = -1;
                     readLimit = 0;
                 }
             }
@@ -85,12 +108,9 @@ export default class FolderImageLoader extends AbstractImageLoader
             {
                 sentData.push(imageData[i]);
             }
-            nextOffset = nextOffset -1;
-            if (nextOffset < 0)
-                nextOffset = 0;
             
             
-            let data = {hasMore: hasMore, nextOffset: nextOffset, listData: sentData}
+            let data = {hasMore: hasMore, hasLess: hasLess, nextOffset: nextOffset, listData: sentData}
             me.pushFunction(data);
             
             

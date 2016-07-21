@@ -53,7 +53,7 @@ export default class ImageSelectorComponent extends Component
   {
       
       
-      this.setState({isProcessing: false,  imagePageData: data,hasMore: data.hasMore, offset: data.nextOffset})
+      this.setState({isProcessing: false,  imagePageData: data,hasMore: data.hasMore, hasLess: data.hasLess, offset: data.nextOffset})
   }
   
   componentWillMount()
@@ -146,9 +146,7 @@ export default class ImageSelectorComponent extends Component
       }
       if (type === 'PREVIOUS')
       {
-          if (this.state.offset === 0 
-                  || (this.state.offset == 0 && this.state.hasMore == false) 
-                  || (this.state.offset - (this.imageCount -1))===0)
+          if (this.state.hasLess == false  )
           {
               css = css + " hidden";
           }
