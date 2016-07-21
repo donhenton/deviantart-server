@@ -82,28 +82,29 @@ export default class SingleImageDisplay extends Component
    
    handleImageLoaded() {
      // console.log("image load "+this.currentCounter+" target "+this.loadTargetCount)
-      this.setState({isProcessing: false})
+      this.setState({isProcessing: false,didTransfer: false})
      
   }
  
   handleImageErrored(e) {
      //console.log("image error ");
      //$(e.target).closest('span.deviantThumb').hide();
-     this.setState({isProcessing: false})
+     this.setState({isProcessing: false,didTransfer: false})
   }
    
      
    addImageSelectedLabel() 
    {
        let message = this.props.completeMessage;
-       if (!message)
-           message = "Action completed";
+       if (message)
+       {  
        
        if (this.state.didTransfer)
 
           return  <span className="completedText">{message}</span> 
-       else
-          return null;
+        
+       }
+       return null;
    }
    
    

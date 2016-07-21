@@ -23,7 +23,7 @@ export default class ImageComponent extends Component
   {
       let me = this;
        
-      this.state = {imageData: null,targetFolder: null};
+      this.state = {imageData: null,targetFolder: null,message: null};
       let s1 = postal.subscribe({
                 channel: "deviant-system",
                 topic: "select-image" ,
@@ -33,7 +33,7 @@ export default class ImageComponent extends Component
                         {
                             $("div.imageWrapper")[0].scrollTop = 0;
                         }
-                        me.setState({'imageData': data});
+                        me.setState({'imageData': data,message:null});
 
                 }
                });
@@ -47,9 +47,23 @@ export default class ImageComponent extends Component
 
                 }
                });
-               
+      
+      
+      let s3 = postal.subscribe({
+                channel: "deviant-system",
+                topic: "folder-image-change" ,
+                callback: function (data, envelope) {
+                        //inserted into a folder via drag and drop
+                        let message = "Added to "+me.state.targetFolder.name;
+                        me.setState({'message': message});
+
+                }
+               });      
+            
+            
       this.subscriptions.push(s1);
       this.subscriptions.push(s2);
+      this.subscriptions.push(s3);
       
   }
   
@@ -82,14 +96,14 @@ export default class ImageComponent extends Component
        return display;
    }
    
-   computeCompleteMessage()
-   {
-       if (this.state.targetFolder)
-           return "Added to "+this.state.targetFolder.name;
-       else
-           return null;
+   //computeCompleteMessage()
+   //{
+       //if ()
+       //    return "Added to "+this.state.targetFolder.name;
+       //else
+         //  return this.state.message;
        
-   }
+   //}
         
    render() {
             var me = this;
@@ -104,7 +118,7 @@ export default class ImageComponent extends Component
                   <div className='imageControl'>{'Path: '+ me.computePathDisplay()}</div>
                   {me.renderFolderButton()}
                   
-                  <SingleImageDisplay completeMessage={me.computeCompleteMessage()} imageData={this.state.imageData}  />
+                  <SingleImageDisplay completeMessage={me.state.message} imageData={this.state.imageData}  />
                   </div>
                   
                  )
