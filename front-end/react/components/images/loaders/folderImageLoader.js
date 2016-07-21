@@ -47,19 +47,50 @@ export default class FolderImageLoader extends AbstractImageLoader
     {
         let me = this;
         let imageData = storageService.getFolderDeviations(me.folderData.key);
+        let hasMore = false;
+        let nextOffset = 0;
+        let imageCount = me.getImageCount(); 
+        let sentData = [];
+        let readLimit = readLimit;
+        
         if (imageData)
         {
-            let imageOverage = imageData.length - me.getImageCount();
-            let hasMore = false;
-            let offset = 0;
-            if (imageOverage > 0)
+            let pageCount = Math.floor((imageData.length - offset)/imageCount);
+            if (pageCount > 0)
             {
-                offset = me.getImageCount() - 1;
                 hasMore = true;
+                nextOffset = offset + imageCount;
+                readLimit = nextOffset; 
             }
-            let data = {hasMore: hasMore, nextOffset: offset, listData: imageData}
-            //me.setStoredState(data);
+            else
+            {
+                
+                let pageRemainder = imageData.length - offset;
+                if (pageRemainder > 0)
+                {
+                    hasMore = false;
+                    nextOffset = offset;
+                    readLimit = imageData.length; 
+                }
+                else
+                {
+                    hasMore = false;
+                    nextOffset = 0;
+                    offset = 0;
+                    readLimit = 0;
+                }
+            }
             
+            for (var i= offset;i<readLimit;i++)
+            {
+                sentData.push(imageData[i]);
+            }
+            nextOffset = nextOffset -1;
+            if (nextOffset < 0)
+                nextOffset = 0;
+            
+            
+            let data = {hasMore: hasMore, nextOffset: nextOffset, listData: sentData}
             me.pushFunction(data);
             
             
