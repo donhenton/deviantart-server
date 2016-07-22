@@ -6,7 +6,7 @@ import ReadOnlyFolderTree from './../components/morgueFolder/readOnlyFolderTree'
 import ImageSelectorComponent from './../components/images/imageSelectorComponent';
 import postal from 'postal';
 import SingleImageDisplay from './../components/images/singleImageDisplay';
-
+import MoreLikeThis from './../components/moreLikeThis/moreLikeThisComponent';
 
 export default class MorgueFoldersPage extends Component {
         
@@ -21,7 +21,7 @@ export default class MorgueFoldersPage extends Component {
  
   componentWillMount()
   {
-       this.state = {imageData: null}
+       this.state = {imageData: null,doingMoreLikeThis: false}
        this.folderImageLoader.onMount();
        let me = this;
        let sub1 = postal.subscribe({
@@ -85,6 +85,21 @@ export default class MorgueFoldersPage extends Component {
        
    }
    
+   moreLikeThisToggle()
+   {
+       let newToggle = !this.state.doingMoreLikeThis 
+       this.setState({doingMoreLikeThis: newToggle})
+   }
+   
+   toggleText()
+   {
+       if (this.state.doingMoreLikeThis )
+       {
+           return "Return To Folder View";
+       }
+       return "More Like This";
+   }
+   
   renderHeader()
   {
       let me = this;
@@ -102,7 +117,7 @@ export default class MorgueFoldersPage extends Component {
           </div>
        <div className='imageControl'>
            
-          <button onClick={me.removeImage.bind(me)} className="btn btn-small btn-primary">More Like This</button>              
+          <button onClick={me.moreLikeThisToggle.bind(me)} className="btn btn-small btn-primary">{me.toggleText()}</button>              
                         
           </div>
           </div>
@@ -111,7 +126,39 @@ export default class MorgueFoldersPage extends Component {
       
       return null;
   }
-        
+  
+  renderImageComponents()
+  {
+      if (this.state.doingMoreLikeThis)
+      {
+          return <MoreLikeThis imageData={this.state.imageData} />;
+      }
+      return <ImageSelectorComponent imageLoader={this.folderImageLoader} />
+  }
+  
+  getCSSForTabs(type)
+  {
+      let css = "tabItem ";
+      if (type == "MORE")
+      {
+          if (this.state.doingMoreLikeThis)
+          {
+              css = css + "active "
+          }
+      }
+      if (type == "IMAGES")
+      {
+          if (this.state.doingMoreLikeThis == false && this.state.imageData)
+          {
+              css = css + "active "
+          }
+      }
+     
+      
+      return css;
+  
+      
+  }
         
   render() {
       var me = this;
@@ -126,8 +173,17 @@ export default class MorgueFoldersPage extends Component {
                
                  <ReadOnlyFolderTree />
                 
-                
-               <ImageSelectorComponent imageLoader={me.folderImageLoader} />
+                <div className="exploreImageContainer">
+                    <div className="tabContainer">
+                           <div className="tabBar">
+                             <div className={me.getCSSForTabs("IMAGES")}>Folder Images</div> 
+                             <div className={me.getCSSForTabs("MORE")}>More Like This</div>
+                           </div>   
+                           {me.renderImageComponents()}
+                    </div>
+                </div>
+               
+                    
                
                <div className="currentImageControlContainer">
                {me.renderHeader()}

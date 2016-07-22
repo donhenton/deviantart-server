@@ -8,6 +8,7 @@
 @import "components/folderTree";
 @import "components/exploreFolderComponent";
 @import "components/targetFolder";
+@import "components/tabContainer";
 
 body {
 
@@ -219,6 +220,10 @@ $box-width: 500px;
 
 }
 
+
+.searchContainer
+{ 
+
 .displayComponent
 { 
     .pagingControls
@@ -320,7 +325,7 @@ $box-width: 500px;
 
 }
 
-
+}
 
 div.waitIndicator
 { 
