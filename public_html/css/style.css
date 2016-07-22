@@ -611,7 +611,7 @@ section#pageContainer {
         display: flex;
         align-items: flex-end; }
         .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .tabContainer .tabBar .tabItem {
-          cursor: none;
+          cursor: default;
           display: inline;
           height: 30px;
           background: #667467;
@@ -621,22 +621,24 @@ section#pageContainer {
           padding: 5px 5px 0px 5px;
           color: white;
           font-size: 18px;
-          opacity: 0.75; }
+          opacity: 0.55; }
           .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .tabContainer .tabBar .tabItem.active {
             background: #f6f1ed;
             color: #963019;
             opacity: 1; }
     .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .displayComponent {
-      border: thin solid #963019;
-      overflow: auto;
-      height: 480px; }
+      border-bottom: thin solid #16174f;
+      border-left: thin solid #16174f;
+      border-right: thin solid #16174f; }
       .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .displayComponent .pagingControls {
-        margin-bottom: 10px; }
+        background-color: #f6f1ed; }
         .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .displayComponent .pagingControls button {
           margin: 10px; }
       .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .displayComponent .imageComponentContainer {
-        position: relative;
-        padding: 10px; }
+        overflow: auto;
+        height: 430px;
+        background-color: #667467;
+        padding: 5px; }
         .exploreFolderComponent .exploreFolderFlex .exploreImageContainer .displayComponent .imageComponentContainer .imageListContainer {
           -moz-column-count: 4;
           -moz-column-gap: 0px;

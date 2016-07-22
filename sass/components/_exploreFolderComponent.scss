@@ -21,7 +21,7 @@
         {
             height: 540px;
             width: 525px;
-           
+
             margin-right: 20px;
 
 
@@ -41,11 +41,11 @@
                     padding-top: 7px;
                     display: flex;
                     align-items: flex-end;
-                    
+
 
                     .tabItem {
-                        
-                        cursor: none;
+
+                        cursor: default;
                         display: inline;
                         height: 30px;
                         background: $green-color;
@@ -55,7 +55,7 @@
                         padding: 5px 5px 0px 5px;
                         color: white;
                         font-size: 18px;
-                        opacity: 0.75;
+                        opacity: 0.55;
 
                         &.active  {
                             background: $white-color;
@@ -74,13 +74,15 @@
 
             .displayComponent
             { 
-                 border: thin solid $red-color;
-                 overflow: auto;
-                 height: 480px;
+                border-bottom: thin solid $blue-color;
+                border-left: thin solid $blue-color;
+                border-right: thin solid $blue-color;
+
 
                 .pagingControls
                 {
-                    margin-bottom: 10px;
+                     
+                    background-color: $white-color;
                     button
                     {
                         margin: 10px;
@@ -93,9 +95,10 @@
                 .imageComponentContainer
                 {
 
-                    position: relative;
-                    // width: 525px;
-                    padding: 10px;
+                    overflow: auto;
+                    height: 430px;
+                    background-color: $green-color;
+                    padding: 5px;
 
 
                     //http://alijafarian.com/responsive-image-grids-using-css/

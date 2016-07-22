@@ -21,7 +21,7 @@ export default class MorgueFoldersPage extends Component {
  
   componentWillMount()
   {
-       this.state = {imageData: null,doingMoreLikeThis: false}
+       this.state = {imageData: null,doingMoreLikeThis: false,folderData:null}
        this.folderImageLoader.onMount();
        let me = this;
        let sub1 = postal.subscribe({
@@ -42,7 +42,9 @@ export default class MorgueFoldersPage extends Component {
                  channel: "deviant-system",
                  topic: "select-target-folder" ,
                         callback: function (data, envelope) {
-                                 me.setState({'imageData': null});
+                                 me.setState({'imageData': null,folderData: me.folderImageLoader.getFolderData()});
+                                 
+                                 
                              
                         }
                });
@@ -148,7 +150,7 @@ export default class MorgueFoldersPage extends Component {
       }
       if (type == "IMAGES")
       {
-          if (this.state.doingMoreLikeThis == false && this.state.imageData)
+          if (this.state.doingMoreLikeThis == false && this.state.folderData)
           {
               css = css + "active "
           }
