@@ -84,16 +84,30 @@
     
 }
 
-.columnLeft
+.column30Left
 {
     width: 30%;
     float: left;
     padding: 10px;
 }
 
-.columnRight
+.column70Right
 {
     width: 70%;
+    float: right;
+    padding: 10px;
+}
+
+.column70Left
+{
+    width: 70%;
+    float: left;
+    padding: 10px;
+}
+
+.column30Right
+{
+    width: 30%;
     float: right;
     padding: 10px;
 }

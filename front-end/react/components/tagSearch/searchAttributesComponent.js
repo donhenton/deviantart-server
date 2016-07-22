@@ -59,10 +59,10 @@ export default class SearchAttributesComponent extends Component
       var me = this;
     return (
        
-        <div className="searchAttributes">
+        <span className="searchAttributes">
              Selected Tag: {me.state.tag}
             
-       </div>
+       </span>
        
        
     );

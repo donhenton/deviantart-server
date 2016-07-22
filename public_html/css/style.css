@@ -162,13 +162,23 @@ h4 {
   float: right;
   padding: 10px; }
 
-.columnLeft {
+.column30Left {
   width: 30%;
   float: left;
   padding: 10px; }
 
-.columnRight {
+.column70Right {
   width: 70%;
+  float: right;
+  padding: 10px; }
+
+.column70Left {
+  width: 70%;
+  float: left;
+  padding: 10px; }
+
+.column30Right {
+  width: 30%;
   float: right;
   padding: 10px; }
 
@@ -446,7 +456,7 @@ section#pageContainer {
 .folderTree {
   border: double #16174f;
   width: 98%;
-  height: 300px;
+  height: 200px;
   overflow: auto; }
   .folderTree ul.f-tree {
     margin-left: 5px;
@@ -644,6 +654,32 @@ section#pageContainer {
   overflow: auto;
   -webkit-user-drag: none; }
 
+#targetFolderArea {
+  position: relative; }
+  #targetFolderArea.incoming {
+    border: thin #963019 dashed; }
+  #targetFolderArea .targetFolderTextContainer {
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px; }
+  #targetFolderArea.targetFolder {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    #targetFolderArea.targetFolder #targetFolderIcon {
+      color: #963019;
+      font-size: 300px; }
+
 body {
   z-index: 0; }
 
@@ -686,8 +722,7 @@ body {
       border-bottom: 1px solid white; }
   .searchContainer table.imageSelectorComponent td.currentImageTableCell .imageWrapper {
     overflow: auto;
-    height: 350px;
-    flex-grow: 1;
+    height: 300px;
     flex-basis: content;
     margin-top: 5px;
     width: 200px;
@@ -708,27 +743,6 @@ body {
     margin: 10px auto;
     cursor: move;
     overflow: auto; }
-
-.searchContainer .targetFolder {
-  margin-right: 20px;
-  height: 40px;
-  padding: 5px; }
-  .searchContainer .targetFolder.incoming {
-    border: thin #16174f dashed; }
-  .searchContainer .targetFolder #targetFolderIcon {
-    color: #963019;
-    font-size: 48px;
-    position: relative;
-    top: -10px; }
-  .searchContainer .targetFolder .targetFolderText {
-    color: #963019;
-    margin-right: 10px;
-    position: relative;
-    top: -15px;
-    font-family: Roboto, Arial, Sans-Serif;
-    font-size: 24px;
-    font-weight: 400;
-    font-style: italic; }
 
 .tagSearchContainer {
   width: 400px;

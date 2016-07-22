@@ -55,30 +55,20 @@ export default class SearchImagesPage extends Component {
        
        <section className="searchContainer grouping">
        <h4> Search For Images</h4>
-            <div className="columnLeft">
+            <div className="column70Left">
                  
-                    <SearchAttributes />
+                   
                 
-                <div className="row">
-                    <TagSearchComponent />
-                </div>
+                    <div className="column50Left"><TagSearchComponent /></div> 
+                    <div className="column50Right"><SearchAttributes /></div> 
+                    
+                 
 
                 <div className="row">
                 
-               
-                  <ReadOnlyFolderTree />
-                 
-               
-                
-                </div>
-                
-                
-           </div>
-           <div className="columnRight">
-                
                 <table className="imageSelectorComponent table table-striped well">
                 <tbody>
-                <tr><td colSpan="2"><FolderTarget ref="folderTarget" /></td></tr>
+                <tr><td colSpan="2"></td></tr>
                 <tr>
                 <td className="imageComponentTableCell">
                      <ImageSelectorComponent showFolderInfo={true} imageLoader={me.tagImageLoader} />
@@ -88,7 +78,21 @@ export default class SearchImagesPage extends Component {
                 </tr>
                 </tbody>
                 </table>
-
+                
+                 
+               
+                
+                </div>
+                
+                
+           </div>
+           <div className="column30Right">
+                  <div className="row">
+                 <ReadOnlyFolderTree />
+                 </div>
+                 <div className="row">
+                 <FolderTarget ref="folderTarget" />
+                 </div>
            </div>
        </section>
     );

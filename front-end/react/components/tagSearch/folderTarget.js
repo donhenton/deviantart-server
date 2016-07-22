@@ -44,7 +44,7 @@ export default class FolderTarget extends Component
   {
       if (this.state.targetFolder.name.length > 0)
       {
-          return "Selected Folder: "+ this.state.targetFolder.name
+          return this.state.targetFolder.name
       }
       else
       {
@@ -95,7 +95,7 @@ export default class FolderTarget extends Component
  
  getTargetCss()
  {
-     let css = "targetFolder pull-right grouping ";
+     let css = "targetFolder grouping ";
      if (this.state.receivingImage)
      {
          css = css + " incoming"
@@ -110,18 +110,15 @@ export default class FolderTarget extends Component
       var me = this;
       if (!(me.state.targetFolder)  || me.state.targetFolder.name.length == 0)
       {
-          return <span id="targetFolderArea" className={me.getTargetCss()} />
+          return null;
       }
     return (
-             <span id="targetFolderArea" 
+             <div id="targetFolderArea" 
                     
                 className={me.getTargetCss()}>
               
-                 <span 
-                    
-            
-                className="targetFolderText">   {me.getFolderText()}</span>  
-                 <span 
+                 
+                 <div
          
                     onDragEnter={me.targetDragEnter.bind(me)}
                     onDragLeave={me.targetDragLeave.bind(me)}
@@ -129,8 +126,17 @@ export default class FolderTarget extends Component
                     onDragOver={me.targetDragOver.bind(me)}
                     onDrop={me.targetDrop.bind(me)}
                     id="targetFolderIcon" className="fi-folder" />
+                    <div   
+                    onDragEnter={me.targetDragEnter.bind(me)}
+                    onDragLeave={me.targetDragLeave.bind(me)}
+                    onDragEnd={me.targetDragEnd.bind(me)}
+                    onDragOver={me.targetDragOver.bind(me)}
+                    onDrop={me.targetDrop.bind(me)}
+            
+            
+                    className="targetFolderTextContainer">   {me.getFolderText()}</div>  
              
-             </span>
+             </div>
            )
    
         

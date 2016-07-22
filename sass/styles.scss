@@ -7,7 +7,7 @@
 @import "components/system";
 @import "components/folderTree";
 @import "components/exploreFolderComponent";
-
+@import "components/targetFolder";
 
 body {
 
@@ -94,7 +94,7 @@ $box-width: 500px;
                     color: white;
                     text-align: center;
                     margin: 5px;
-                    
+                  
                     border-bottom: 1px solid white; 
                     
 
@@ -105,8 +105,8 @@ $box-width: 500px;
             .imageWrapper
             {
                 overflow: auto;
-                height: 350px;
-                flex-grow: 1;
+                height: 300px;
+                
                 flex-basis: content;
                 margin-top:  5px;
                 width: 200px;
@@ -144,42 +144,7 @@ $box-width: 500px;
     }
 
 
-    .targetFolder
-    {
-        margin-right: 20px;
-        height: 40px;
-        padding: 5px;
-
-
-
-        &.incoming
-        {
-            border: thin $blue-color dashed;
-        }
-
-        #targetFolderIcon
-        {
-            color: $red-color;
-            font-size: 48px;
-            position: relative;
-            top: -10px;
-
-        }
-
-        .targetFolderText 
-        {
-            color: $red-color;
-            margin-right: 10px;
-            position: relative;
-            top: -15px;
-            font-family: Roboto, Arial, Sans-Serif ;
-            font-size: 24px;
-            font-weight: 400;
-            font-style: italic;
-
-        }
-
-    }
+   
 }
 
 .tagSearchContainer
