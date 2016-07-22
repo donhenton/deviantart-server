@@ -41,12 +41,24 @@ export default class MorgueFoldersPage extends Component {
         let sub2 = postal.subscribe({
                  channel: "deviant-system",
                  topic: "select-target-folder" ,
-                        callback: function (data, envelope) {
-                                 me.setState({'imageData': null,folderData: me.folderImageLoader.getFolderData()});
-                                 
-                                 
-                             
-                        }
+                 callback: function (data, envelope) { 
+                            
+                      console.log("folderPage "+JSON.stringify(data));
+                      let wasDoingMore = me.state.doingMoreLikeThis;
+                      me.setState({doingMoreLikeThis: false,'imageData': null,folderData: data},
+                                    function()
+                                    {   
+                                        if (wasDoingMore)
+                                        {
+                                            me.folderImageLoader.checkForRefresh(data);
+                                        }
+                                    }
+                                    
+                                    
+                                    );
+                      
+                              
+                 }       
                });
       
       this.subscriptions.push(sub1)

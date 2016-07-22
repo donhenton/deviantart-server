@@ -23,7 +23,7 @@ export default class FolderImageLoader extends AbstractImageLoader
                  topic: "select-target-folder" ,
                         callback: function (data, envelope) {
                                 //{name: folderName , key: data.selectedKey }
-                               // console.log("fff "+JSON.stringify(data));
+                                 console.log("folderImage loader folder data "+JSON.stringify(data));
                                 me.folderData = data;
                                 me.getPage(0,me.imageCount);
                              
@@ -35,6 +35,16 @@ export default class FolderImageLoader extends AbstractImageLoader
     getFolderData()
     {
         return this.folderData;
+    }
+    
+    checkForRefresh(data)
+    {
+         let me = this;
+         if (me.folderData.key != data.key)
+         {
+            me.folderData = data;
+            me.getPage(0,me.imageCount);
+         }
     }
     
     deleteFromFolder(imageData)
