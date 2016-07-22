@@ -54,7 +54,7 @@ export default class SearchImagesPage extends Component {
     return (
        
        <section className="searchContainer grouping">
-       <h4> Search For Images</h4>
+       <h2> Search For Images</h2>
             <div className="column70Left">
                  
                    
@@ -88,7 +88,12 @@ export default class SearchImagesPage extends Component {
            </div>
            <div className="column30Right">
                   <div className="row">
-                 <ReadOnlyFolderTree />
+                    <div className="row">
+                      <h3>MorgueFolders</h3>
+                    </div>
+                    <div className="row">
+                      <ReadOnlyFolderTree />
+                    </div>
                  </div>
                  <div className="row">
                  <FolderTarget ref="folderTarget" />

@@ -202,7 +202,7 @@ export default class MorgueFoldersPage extends Component {
     return (
        
          <div>
-         <h4>Maintain Folders</h4>
+         <h2>Maintain Folders</h2>
             <div className="column50Left">
             <h2>Morgue Folders</h2>
                 

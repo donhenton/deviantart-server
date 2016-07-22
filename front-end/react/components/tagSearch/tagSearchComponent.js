@@ -61,7 +61,7 @@ export default class TagSearchPage extends Component
                data:  {tag: tagName}
             });
         
-            
+      this.resetState();      
             
   }
   

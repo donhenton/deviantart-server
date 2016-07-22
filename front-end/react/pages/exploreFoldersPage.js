@@ -120,7 +120,7 @@ export default class MorgueFoldersPage extends Component {
     return (
        
           <section className="exploreFolderComponent grouping">
-          <h4>Explore Folders</h4>
+          <h2>Explore Folders</h2>
             <div className="exploreFolderFlex">
                
                
