@@ -94,7 +94,50 @@ module.exports = function (conf) {
         return e;
     };
     
-    
+    daoService.getMoreLikeThis = function(deviationid,offset,limit)
+    {
+         var success = function(validatedAccessToken)
+        {
+            var deferredResult = Q.defer();
+            var options = {
+            method: 'GET',
+            uri: baseURI+'/browse/morelikethis',
+            json: true,
+            gzip: true,
+            headers:
+                    {
+                        'User-Agent': 'Request-Promise'
+                    },
+            qs:
+                    {
+                        seed: deviationid,
+                        offset: offset,
+                        limit: limit,
+                        access_token: validatedAccessToken
+                    }
+
+            };
+            rp(options)
+                .then(function (body) {
+                    //console.log("category stuff " + typeof body);
+                     deferredResult.resolve(body);
+                    
+                })
+                .catch(function (err) {
+
+                   // console.log("error in  categories service\n\n\n" + err.message);
+                    deferredResult.reject(err);
+                    
+                });
+            
+            
+            return deferredResult.promise;
+            
+        }//end success
+        
+        
+        return getCredentials().then(success, console.error);
+    }
     
     daoService.getTagImages = function(tag,offset,limit)
     {

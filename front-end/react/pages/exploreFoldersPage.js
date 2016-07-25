@@ -42,12 +42,18 @@ export default class MorgueFoldersPage extends Component {
                  channel: "deviant-system",
                  topic: "select-target-folder" ,
                  callback: function (data, envelope) { 
-                            
+                      
                       console.log("folderPage "+JSON.stringify(data));
+                      //if on the more like this tag, then doingMoreLikeThis will be true
                       let wasDoingMore = me.state.doingMoreLikeThis;
                       me.setState({doingMoreLikeThis: false,'imageData': null,folderData: data},
                                     function()
                                     {   
+                                        //setting doingMoreLikeThis to false flips the tab
+                                        //but the image component won' get the new images
+                                        //since it was mounted after the new data was loaded
+                                        //so have to reload the data
+                                        
                                         if (wasDoingMore)
                                         {
                                             me.folderImageLoader.checkForRefresh(data);
@@ -102,6 +108,17 @@ export default class MorgueFoldersPage extends Component {
    moreLikeThisToggle()
    {
        let newToggle = !this.state.doingMoreLikeThis 
+       
+       if (newToggle)
+       {
+           
+           postal.publish({
+               channel: "deviant-system",
+               topic: "select-seed" ,
+               data:  {imageData: this.state.imageData}
+            });
+           
+       }
        this.setState({doingMoreLikeThis: newToggle})
    }
    
@@ -141,13 +158,13 @@ export default class MorgueFoldersPage extends Component {
       return null;
   }
   
-  renderImageComponents()
+  renderMoreLikeThis()
   {
       if (this.state.doingMoreLikeThis)
       {
-          return <MoreLikeThis imageData={this.state.imageData} />;
+          return "";
       }
-      return <ImageSelectorComponent imageLoader={this.folderImageLoader} />
+      return "<ImageSelectorComponent imageLoader={this.folderImageLoader} />"
   }
   
   getCSSForTabs(type)
@@ -165,6 +182,31 @@ export default class MorgueFoldersPage extends Component {
           if (this.state.doingMoreLikeThis == false && this.state.folderData)
           {
               css = css + "active "
+          }
+      }
+     
+      
+      return css;
+  
+      
+  }
+  
+  getCSSForImageComponent(type)
+  {
+      let css = "hidden";
+      if (type == "MORE")
+      {
+          if (this.state.doingMoreLikeThis)
+          {
+              css = ""
+          }
+          
+      }
+      if (type == "IMAGES")
+      {
+          if (!this.state.doingMoreLikeThis)
+          {
+              css = ""
           }
       }
      
@@ -193,7 +235,13 @@ export default class MorgueFoldersPage extends Component {
                              <div className={me.getCSSForTabs("IMAGES")}>Folder Images</div> 
                              <div className={me.getCSSForTabs("MORE")}>More Like This</div>
                            </div>   
-                           {me.renderImageComponents()}
+                                
+                                <div className={me.getCSSForImageComponent("MORE")} >
+                                <MoreLikeThis  />;
+                                </div>
+                                <div className={me.getCSSForImageComponent("IMAGES")} >
+                                <ImageSelectorComponent imageLoader={this.folderImageLoader} />
+                                </div>
                     </div>
                 </div>
                

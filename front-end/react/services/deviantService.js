@@ -83,7 +83,10 @@ class DeviantService
          return this.proxyService.getTagImages(tag,offset,limit)
      }
     
-    
+     getMoreLikeThis(seed,offset,limit)
+     {
+         return this.proxyService.getMoreLikeThis(seed,offset,limit)
+     }
     
 }
 

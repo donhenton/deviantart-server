@@ -85,11 +85,35 @@ module.exports = function (app, daService) {
         ); 
         
     }
+    var processMoreLikeThis = function(req,res)
+    {
+        
+      //  https://www.deviantart.com/api/v1/oauth2/browse/tags
+       var seed  = req.query.seed ;
+       var limit = req.query.limit;
+       var offset = req.query.offset;
+       
      
+         
+        daService.getMoreLikeThis(seed,offset,limit).then(function (data)
+            {
+                res.json(data);
+            },
+
+            function (err)
+            {
+                reportError(res, err.toString());
+            }
+
+
+        ); 
+        
+    } 
     
     app.get(['/deviant/getCategories','/deviant/getCategories*'], processGetCategories);
     app.get(['/deviant/tagSearch' ], processTagSearch); 
     app.get(['/deviant/tagImages' ], processTagImages); 
+    app.get(['/deviant/morelikethis' ], processMoreLikeThis); 
 
 };
 

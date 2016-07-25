@@ -50,7 +50,16 @@ export default class ProxyService
                     );
     }
     
-    
+    getMoreLikeThis(seed,offset,limit)
+    {
+        return rp(this.rootURL+"/morelikethis?seed="+seed
+                  +"&offset="+offset
+                  +"&limit="+limit
+                    
+                    
+                    
+                    );
+    }
     
 }
 
