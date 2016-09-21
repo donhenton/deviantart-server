@@ -11,8 +11,7 @@ class StorageService
     {
         this.deviationLookup = {};
         this.data = null;
-        // this.fetchData();
-        this.userId = 100;
+        this.userId = null;
        
         let me = this;
         this.subscription = postal.subscribe({
@@ -46,6 +45,11 @@ class StorageService
 
 
     }
+    
+    setUserId(id)
+    {
+        this.userId = id;
+    }
 
     setFolderData(data)
     {
@@ -64,7 +68,6 @@ class StorageService
         })
 
         this.persistData();
-        ;
         this.getIndex();
 
     }
@@ -72,6 +75,19 @@ class StorageService
     persistData()
     {
       //  storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()));
+      /*
+      let me = this;
+        mongoService.persistData(me.userId,me.getFolderData())
+                        .then(function (ackData)
+                        {
+                             
+
+                        }).catch(function (err)
+                {
+
+                    throw new Error(err.message);
+                })
+*/
     }
 
     insertIntoFolder(data, folder)

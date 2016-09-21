@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Link } from 'react-router';
 import WaitIndicator from './waitIndicator';
 import postal from 'postal';
-import StorageService from './../services/storageService';
+
 
 
 
@@ -49,6 +49,8 @@ export default class Main extends Component {
     {
         //call the mongo service
         //load the data into the storage service via a setter
+        
+         
         postal.publish({
             channel: "mongo-system",
             topic: "request-mongo-data",

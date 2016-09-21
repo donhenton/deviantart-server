@@ -9,8 +9,8 @@ module.exports = function (app) {
 
         // Use the 'response' object to render the 'index' view with a 'title' property
         res.render('index', {
-            title: 'Node Demonstration App',
-            stuff: 'stuff'
+            title: 'DeviantArt Application',
+            userId: 100 
         });
 
     };
