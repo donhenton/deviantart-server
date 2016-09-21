@@ -27,7 +27,7 @@ export default class Main extends Component {
             topic: "ack-mongo-data",
             callback: function (data, envelope) {
                 
-                //storage service loaded itself as it responsed to request-mongo-data
+                //storage service loaded itself as it responded to request-mongo-data
                 //this just acks and lets the program proceed
                 if (data.ack == "OK")
                 {
