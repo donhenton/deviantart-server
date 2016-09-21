@@ -9,7 +9,22 @@ export default class Main extends Component {
   constructor()
   {
       super();
+      this.subscription = null;
        
+  }
+  
+  componentWillMount()
+  {
+      this.state = {waiting: true};
+        
+  }
+  
+  componentDidMount()
+  {
+      //call the mongo service
+      //load the data into the storage service via a setter
+      
+      
   }
         
   render() {

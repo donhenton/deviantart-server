@@ -20,11 +20,14 @@ constructor()
     this.fetchData();
     this.getIndex();
 
-   // storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.data))
+    
 
 }
 
-
+setFolderData(data)
+{
+    this.data = data;
+}
 
 deleteFromFolder(data,folder)
 {
@@ -36,11 +39,16 @@ deleteFromFolder(data,folder)
               
                 
     })
-    let newTotalData = this.getFolderData();
-    let newFolderData = 
-    storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newTotalData));
+     
+    this.persistData();;
     this.getIndex();
     
+}
+
+
+persistData()
+{
+    storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()));
 }
 
 
@@ -62,7 +70,7 @@ insertIntoFolder(data,folder)
     if (!(checkIfPresent) || checkIfPresent.length == 0)
     {
         targetFolder.deviations.push(data)
-        storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+        this.persistData();
         postal.publish({
             channel: "deviant-system",
             topic: "folder-image-change" ,
@@ -139,7 +147,7 @@ saveEdit(key,name)
     let index = this.getIndex();
     let target = index[key];
     target.name = name;
-    storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+    this.persistData();
     this.getIndex();
     return this.getFolderData();
 
@@ -158,7 +166,7 @@ addFolder(parentKey, name)
 
      }
      this.getIndex();
-     storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+     this.persistData();
 
      return this.getFolderData();
 }
@@ -187,7 +195,7 @@ deleteFolder(key)
      let containingArray = index[parentKey].children;
     // console.log("will delete "+containingArray[deleteIndex].name)
      containingArray.splice(deleteIndex,1)
-     storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+     this.persistData();
      this.getIndex();
      return this.getFolderData();
 }
@@ -203,7 +211,7 @@ fetchData()
     {
 
         this.data = {key: '/0','name': 'root', children: []}
-        storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()))
+        this.persistData();
     }
 }
 
