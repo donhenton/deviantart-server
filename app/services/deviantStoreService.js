@@ -54,7 +54,8 @@ module.exports = function (config) {
                     if (items && items.length && items.length === 1)
                     {
                         deferredResult.resolve(items[0].data);
-                    } else
+                    } 
+                    else
                     {
                         var m = "no data found for user id '"+userId+"'";
                     
