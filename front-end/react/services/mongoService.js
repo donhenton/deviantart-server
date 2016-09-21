@@ -1,3 +1,8 @@
+/**
+ * 
+ *  specific calls to the proxy on node for the mongo db persistence services.
+ */
+
 import rp from 'request-promise';
 
 class MongoService

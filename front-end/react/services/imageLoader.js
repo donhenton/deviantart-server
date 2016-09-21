@@ -8,7 +8,9 @@ import ImageData from './classes/imageData'
 
 /**
  * this class is used by imageSelectorComponent services that provide images
- * will provide pages of images in the ImageData format
+ * will provide pages of images in the ImageData format. Specifically sits on
+ * top of the deviant art service for image information, transforming the 
+ * resultant call data into the ImageData format.
  */
 
 class ImageLoader

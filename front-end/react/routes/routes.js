@@ -15,36 +15,4 @@ export const createRoutes = () => (
 );
 
 
-
-/*
-
  
- 
-  export const createRoutes = () => (
-  <Route path="/" component={App} >
-    <IndexRoute component={CommDemo} />
-    <Route path="listCommDemo"  >
-      <IndexRoute component={ListCommDemo} />
-    </Route>
-   
-    <Route path="listdemoRow" component={ListContainerRow} />
-    <Route path="listdemoNoRow" component={ListContainerNoRow} />
-    
-  </Route>
-);
-
-
-
-
-/*
-  
-    <Route path="page2/:id"  >
-      <IndexRoute component={Page2} />
-    </Route>
- 
- */
- 
- 
- 
- 
-  

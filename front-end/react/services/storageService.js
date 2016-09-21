@@ -1,4 +1,9 @@
-
+/**
+ * 
+ *  This service sits on top of the in memory image of the application data,
+ *  and is responsible for loading from mongo and updating to mongo as the 
+ *  user makes changes.
+ */
 import postal from 'postal';
 import mongoService from './mongoService';
 
