@@ -9,7 +9,7 @@ module.exports = function (config) {
     daoService.promisedConnect = function ()
     {
         var deferredDbConnection = Q.defer();
-        
+
         mongoClient.connect(config.deviantStorageDB.url, function (err, database) {
             if (err) {
                 deferredDbConnection.reject(err);
@@ -41,8 +41,8 @@ module.exports = function (config) {
 
             var col = db.collection('morgueFiles');
             var deferredResult = Q.defer();
-           
-            
+
+
             col.find({"user": userId}).toArray(function (err, items) {
                 // console.log("error " + err);
                 if (err)
@@ -50,8 +50,16 @@ module.exports = function (config) {
                     deferredResult.reject(err);
                 } else
                 {
-                  //  console.log(items[0].data)
-                    deferredResult.resolve(items[0].data);
+                    //  console.log(items[0].data)
+                    if (items && items.length && items.length === 1)
+                    {
+                        deferredResult.resolve(items[0].data);
+                    } else
+                    {
+                        var m = "no data found for user id '"+userId+"'";
+                    
+                         deferredResult.resolve({"message": m});
+                    }
                 }
 
                 db.close();
