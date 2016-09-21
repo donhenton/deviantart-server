@@ -2,7 +2,7 @@
 import postal from 'postal';
 import mongoService from './mongoService';
 
-
+let emptyData =   {key: '/0','name': 'root', children: []};
 
 class StorageService
 {
@@ -75,19 +75,20 @@ class StorageService
     persistData()
     {
       //  storage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.getFolderData()));
-      /*
+       
       let me = this;
         mongoService.persistData(me.userId,me.getFolderData())
                         .then(function (ackData)
                         {
-                             
+                             //{ack: "OK" }
+                             return ackData;
 
                         }).catch(function (err)
                 {
 
                     throw new Error(err.message);
                 })
-*/
+ 
     }
 
     insertIntoFolder(data, folder)
@@ -147,15 +148,16 @@ class StorageService
 
                     recurse(children[i].children, children[i].key)
                 }
-
-                for (var k = 0; k < children[i].deviations.length; k++)
+                if (children[i].deviations)
                 {
-                    let cloneData = JSON.parse(JSON.stringify(children[i].deviations[k]));
-                    cloneData.folderKey = children[i].key;
-                    me.deviationLookup[children[i].deviations[k].deviationid] = cloneData;
+                    for (var k = 0; k < children[i].deviations.length; k++)
+                    {
+                        let cloneData = JSON.parse(JSON.stringify(children[i].deviations[k]));
+                        cloneData.folderKey = children[i].key;
+                        me.deviationLookup[children[i].deviations[k].deviationid] = cloneData;
 
+                    }
                 }
-
 
 
             }//end for loop

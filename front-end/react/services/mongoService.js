@@ -6,30 +6,38 @@ class MongoService
     constructor()
     {
 
-        this.rootURL =  'http://' + location.hostname + ":" + location.port + '/storage';
-        
-        
+        this.rootURL = 'http://' + location.hostname + ":" + location.port + '/storage';
+
+
     }
 
-
- getDataForUser(uId)
+    getDataForUser(uId)
     {
         let userId = null;
         if (typeof uId === 'string')
         {
             userId = parseInt(uId);
-        }
-        else
+        } else
         {
             userId = uId;
         }
-        
-        
-          
-        return rp(this.rootURL+"/getDataForUser/"+userId);
+
+
+
+        return rp(this.rootURL + "/getDataForUser/" + userId);
     }
 
-
+    persistData(userId, data)
+    {
+        var options = {
+            method: 'PUT',
+            uri: this.rootURL + "/persistData/" + userId,
+            body:  data,
+            json: true // Automatically stringifies the body to JSON
+        };
+        
+        return rp(options);
+    }
 
 }
 

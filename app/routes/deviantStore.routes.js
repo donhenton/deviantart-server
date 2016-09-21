@@ -34,8 +34,8 @@ module.exports = function (app, deviantStoreService) {
     app.put('/storage/persistData/:userId', function (req, res) {
         // console.log(req.body);
         var userId = parseInt(req.params.userId);
-        console.log("user id "+userId)
-        console.log(req.body)
+       // console.log("user id "+userId)
+       // console.log(req.body)
         var error = function (err) {
             reportError(res, err.toString());
         };
@@ -49,7 +49,7 @@ module.exports = function (app, deviantStoreService) {
                 //   console.log(result);
                 if (result.result.n == 1)
                 {
-                    res.json(null);
+                    res.json({"ack":"OK"});
                 } else
                 {
                     var resVar = deviantStoreService.createError('Not Found',
