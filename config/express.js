@@ -50,11 +50,11 @@ module.exports = function () {
     // Load the 'index' routing file
     
     var deviantArtService = require('../app/services/deviantartService.js')(config);
+    var deviantStoreService = require('../app/services/deviantStoreService.js')(config);
     
     require('../app/routes/pages.routes.js')(app);
     require('../app/routes/rest.routes.js')(app,deviantArtService); 
-    
-    
+    require('../app/routes/deviantStore.routes.js')(app,deviantStoreService); 
 
     
 
