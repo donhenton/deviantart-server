@@ -81,7 +81,7 @@ export default class Main extends Component {
 
     <header>
 
-        <figure className="logo"><a href="/">Deviant Art Morgue Files</a><br/></figure> 
+        <figure className="logo"><a href="/main">Deviant Art Morgue Files</a><br/></figure> 
 
         <nav className="topMenu grouping">
 
@@ -92,9 +92,9 @@ export default class Main extends Component {
 
 
 
-                <li><Link to="/">Search For Images</Link></li>
-                <li><Link to="/exploreFolders">Explore Folders</Link></li>
-                <li><Link to="/maintainFolders">Maintain Folders</Link></li>
+                <li><Link to="/main">Search For Images</Link></li>
+                <li><Link to="/main/exploreFolders">Explore Folders</Link></li>
+                <li><Link to="/main/maintainFolders">Maintain Folders</Link></li>
 
             </ul>    
 

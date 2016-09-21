@@ -754,6 +754,12 @@ section#pageContainer {
 body {
   z-index: 0; }
 
+.mainPageContainer .mainLoginForm {
+  width: 45%;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto; }
+
 .categoryTree {
   overflow: auto;
   height: 300px;
