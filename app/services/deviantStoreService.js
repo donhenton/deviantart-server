@@ -30,6 +30,38 @@ module.exports = function (config) {
     };
 
 
+    daoService.persistData = function (userId, data)
+    {
+        var success = function(db)
+        {
+            var col = db.collection('morgueFiles');
+            var deferredResult = Q.defer();
+
+
+            col.update({user: userId}
+            , {$set: {
+                    data: data
+                }},
+                    function (err, result) {
+                        //console.log(result);
+                        if (err)
+                        {
+                            deferredResult.reject(err);
+                        } else
+                        {
+                            deferredResult.resolve(result);
+                        }
+
+                        db.close();
+                    });
+            return deferredResult.promise;
+        }
+
+        return   daoService.promisedConnect().then(success, console.error);
+
+    };
+
+
     daoService.getDataForUser = function (userId)
     {
 
@@ -54,12 +86,11 @@ module.exports = function (config) {
                     if (items && items.length && items.length === 1)
                     {
                         deferredResult.resolve(items[0].data);
-                    } 
-                    else
+                    } else
                     {
-                        var m = "no data found for user id '"+userId+"'";
-                    
-                         deferredResult.resolve({"message": m});
+                        var m = "no data found for user id '" + userId + "'";
+
+                        deferredResult.resolve({"message": m});
                     }
                 }
 
