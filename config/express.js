@@ -57,7 +57,7 @@ module.exports = function () {
     
     
     /* set up security */
-   // require('../app/authentication/local/initPassport')();
+   //require('auth/initPassport')();
    // app.use(passport.initialize());
    // app.use(passport.session());
  
