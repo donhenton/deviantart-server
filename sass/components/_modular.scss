@@ -240,7 +240,7 @@ b
     {
         color: $green-color;
     }
-    input[type=text], textarea,select,radio,radioGroup,input[type=submit] {
+    input[type=text], textarea,select,radio,radioGroup,input[type=submit],input[type=password] {
         -webkit-transition: all 0.30s ease-in-out;
         -moz-transition: all 0.30s ease-in-out;
         -ms-transition: all 0.30s ease-in-out;

@@ -11,12 +11,13 @@ var config = require('./config'),
         morgan = require('morgan'),
         compress = require('compression'),
         bodyParser = require('body-parser'),
-        methodOverride = require('method-override') 
- 
+        methodOverride = require('method-override'), 
+        session = require('express-session');
         
 var fs = require('fs');
 var vm = require('vm');
 var cookieParser = require('cookie-parser');
+var passport = require('passport')  ;
 
 // Define the Express configuration method
 module.exports = function () {
@@ -41,7 +42,24 @@ module.exports = function () {
     }));
     app.use(bodyParser.json());
     app.use(methodOverride());
-
+    
+    
+     var MongoStore = require('connect-mongo')(session);
+    app.use(session({
+        secret: config.sessionSecret,
+        resave: true,
+        saveUninitialized: true,        
+        store: new MongoStore({
+            url: config.deviantStorageDB.url
+        })
+    }));
+    
+    
+    
+    /* set up security */
+   // require('../app/authentication/local/initPassport')();
+   // app.use(passport.initialize());
+   // app.use(passport.session());
  
     // Set the application view engine and 'views' folder
     app.set('views', './app/views');
