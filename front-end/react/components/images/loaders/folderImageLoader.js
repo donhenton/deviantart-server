@@ -1,56 +1,73 @@
 import postal from 'postal';
 import storageService from './../../../services/storageService';
-import AbstractImageLoader from './abstractImageLoader'; 
+import AbstractImageLoader from './abstractImageLoader';
 
 export default class FolderImageLoader extends AbstractImageLoader
 {
-    
+
     constructor(imageLimit)
     {
         super(imageLimit);
         this.folderData = null;
-        this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null} );
-        this.subscription = null;
-        
+        this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null});
+        this.subscriptions = [];
+
     }
-    
-    activateSubscription()
+
+    activateSubscriptions()
     {
         let me = this;
-        
-        this.subscription = postal.subscribe({
-                 channel: "deviant-system",
-                 topic: "select-target-folder" ,
-                        callback: function (data, envelope) {
-                                //{name: folderName , key: data.selectedKey }
-                                 console.log("folderImage loader folder data "+JSON.stringify(data));
-                                me.folderData = data;
-                                me.getPage(0,me.imageCount);
-                             
-                        }
-               });
+
+        let s1 = postal.subscribe({
+            channel: "deviant-system",
+            topic: "select-target-folder",
+            callback: function (data, envelope) {
+                //{name: folderName , key: data.selectedKey }
+                console.log("folderImage loader folder data " + JSON.stringify(data));
+                me.folderData = data;
+                me.getPage(0, me.imageCount);
+
+            }
+        });
+        this.subscriptions.push(s1);
+        let s2 = postal.subscribe({
+            channel: "deviant-system",
+            topic: "folder-image-change",
+            callback: function (data, envelope) {
+                //{name: folderName , key: data.selectedKey }
+                // console.log("folderImage loader folder data " + JSON.stringify(data));
+                // me.folderData = data;
+                 me.getPage(0, me.imageCount);
+
+            }
+        });
+        this.subscriptions.push(s2);
+
+
+
+
+
     }
-    
-    
+
     getFolderData()
     {
         return this.folderData;
     }
-    
+
     checkForRefresh(data)
     {
-         let me = this;
-         if (me.folderData.key != data.key)
-         {
+        let me = this;
+        if (me.folderData.key != data.key)
+        {
             me.folderData = data;
-            me.getPage(0,me.imageCount);
-         }
+            me.getPage(0, me.imageCount);
+        }
     }
-    
+
     deleteFromFolder(imageData)
     {
-        storageService.deleteFromFolder(imageData,this.getFolderData());
-        this.getPage(this.getStoredState().offset,this.imageCount);  
+        storageService.deleteFromFolder(imageData, this.getFolderData());
+        this.getPage(this.getStoredState().offset, this.imageCount);
     }
 
     getPage(offset)
@@ -59,14 +76,14 @@ export default class FolderImageLoader extends AbstractImageLoader
         let imageData = storageService.getFolderDeviations(me.folderData.key);
         let hasMore = false;
         let nextOffset = 0;
-        let imageCount = me.getImageCount(); 
+        let imageCount = me.getImageCount();
         let sentData = [];
         let readLimit = -1;
         let hasLess = false;
-        
+
         if (imageData)
         {
-            let pageCount = Math.floor((imageData.length - offset)/imageCount);
+            let pageCount = Math.floor((imageData.length - offset) / imageCount);
             if (pageCount > 0)
             {
                 hasMore = true;
@@ -74,23 +91,22 @@ export default class FolderImageLoader extends AbstractImageLoader
                 nextOffset = offset + imageCount;
                 if (offset == 0)
                 {
-                   hasLess = false; 
-                    
+                    hasLess = false;
+
                 }
-                readLimit = nextOffset; 
+                readLimit = nextOffset;
                 if (pageCount == 1 && imageData.length == imageCount)
                 {
                     //exactly image count one page only
                     hasMore = false;
                     hasLess = false;
                     nextOffset = 0;
-                    readLimit = imageCount -1;
+                    readLimit = imageCount - 1;
                 }
-                
-                
-                
-            }
-            else
+
+
+
+            } else
             {
                 hasMore = false;
                 hasLess = false;
@@ -98,14 +114,13 @@ export default class FolderImageLoader extends AbstractImageLoader
                 if (pageRemainder > 0)
                 {
                     hasMore = false;
-                    if(offset > 0)
+                    if (offset > 0)
                     {
                         hasLess = true;
                     }
                     nextOffset = -1;
-                    readLimit = imageData.length; 
-                }
-                else
+                    readLimit = imageData.length;
+                } else
                 {
                     hasMore = false;
                     hasLess = false;
@@ -113,46 +128,46 @@ export default class FolderImageLoader extends AbstractImageLoader
                     readLimit = 0;
                 }
             }
-            
-            for (var i= offset;i<readLimit;i++)
+
+            for (var i = offset; i < readLimit; i++)
             {
                 sentData.push(imageData[i]);
             }
-            
-            
+
+
             let data = {hasMore: hasMore, hasLess: hasLess, nextOffset: nextOffset, listData: sentData}
             me.pushFunction(data);
-            
-            
+
+
         }
-        
+
     }
-    
+
     /**
      * optional for tying into the imageSelector component life cycle
      */
     onUnMount()
     {
         // console.log("did unsub 1 "+JSON.stringify(this.folderData))
-        if (this.subscription)
+        if (this.subscriptions.length > 0)
         {
-            this.subscription.unsubscribe();
-            this.subscription = null;
+            this.subscriptions.forEach(s => s.unsubscribe());
+            this.subscriptions = [];
         }
-        
+
     }
 
     onMount()
     {
         let me = this;
-         
-        if(!this.subscription)
+
+        if (this.subscriptions.length === 0)
         {
-           // console.log("did subsribe 1 "+JSON.stringify(this.folderData))
-            me.activateSubscription();
+            // console.log("did subsribe 1 "+JSON.stringify(this.folderData))
+            me.activateSubscriptions();
         }
-        
-        
+
+
     }
 
 }
