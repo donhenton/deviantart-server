@@ -159,7 +159,7 @@ export default class ImageSelectorComponent extends Component
   
   renderImageList()
   {
-      return  <ImageList isProcessing={this.state.isProcessing} showFolderInfo={this.props.showFolderInfo} imagePageData={this.state.imagePageData} />
+      return  <ImageList postalChannel={this.props.postalChannel} isProcessing={this.state.isProcessing} showFolderInfo={this.props.showFolderInfo} imagePageData={this.state.imagePageData} />
   }
         
   render() {

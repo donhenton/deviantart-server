@@ -237,7 +237,7 @@ export default class MorgueFoldersPage extends Component {
                            </div>   
                                 
                                 <div className={me.getCSSForImageComponent("MORE")} >
-                                <MoreLikeThis  />;
+                                <MoreLikeThis folderData={this.state.folderData} />;
                                 </div>
                                 <div className={me.getCSSForImageComponent("IMAGES")} >
                                 <ImageSelectorComponent imageLoader={this.folderImageLoader} />
