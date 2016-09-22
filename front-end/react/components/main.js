@@ -95,6 +95,7 @@ export default class Main extends Component {
                 <li><Link to="/main">Search For Images</Link></li>
                 <li><Link to="/main/exploreFolders">Explore Folders</Link></li>
                 <li><Link to="/main/maintainFolders">Maintain Folders</Link></li>
+                <li><a href="/logout">Logout</a></li>
 
             </ul>    
 
