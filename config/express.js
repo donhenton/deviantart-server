@@ -11,12 +11,13 @@ var config = require('./config'),
         morgan = require('morgan'),
         compress = require('compression'),
         bodyParser = require('body-parser'),
-        methodOverride = require('method-override') 
- 
+        methodOverride = require('method-override'), 
+        session = require('express-session');
         
 var fs = require('fs');
 var vm = require('vm');
 var cookieParser = require('cookie-parser');
+var passport = require('passport')  ;
 
 // Define the Express configuration method
 module.exports = function () {
@@ -36,13 +37,40 @@ module.exports = function () {
     // that can be specificed in the cookieOpts;
 
     // Use the 'body-parser' and 'method-override' middleware functions
+    var mongoose = require('mongoose');
+// Connect to DB
+    mongoose.connect(config.deviantStorageDB.url); 
+    
     app.use(bodyParser.urlencoded({
         extended: true
     }));
     app.use(bodyParser.json());
     app.use(methodOverride());
-
- 
+    
+    
+     var MongoStore = require('connect-mongo')(session);
+    app.use(session({
+        secret: config.sessionSecret,
+        resave: true,
+        saveUninitialized: true,        
+        store: new MongoStore({
+            url: config.deviantStorageDB.url
+        })
+    }));
+    
+    
+    
+    /* set up security */
+   //require('auth/initPassport')();
+   
+   /* set up security */
+   console.log("set up security")
+   var initPassport =  require('../passport/initPassport');
+   initPassport(passport);
+    app.use(passport.initialize());
+    app.use(passport.session());
+    
+    
     // Set the application view engine and 'views' folder
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
@@ -50,11 +78,12 @@ module.exports = function () {
     // Load the 'index' routing file
     
     var deviantArtService = require('../app/services/deviantartService.js')(config);
+    var deviantStoreService = require('../app/services/deviantStoreService.js')(config);
     
-    require('../app/routes/pages.routes.js')(app);
+   
     require('../app/routes/rest.routes.js')(app,deviantArtService); 
-    
-    
+    require('../app/routes/deviantStore.routes.js')(app,deviantStoreService);
+    require('../app/routes/passport.routes.js')(app,passport);
 
     
 

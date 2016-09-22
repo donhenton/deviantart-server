@@ -1,3 +1,12 @@
+/**
+ * the service which talks to the proxy services run by the node server.
+ * The proxy in question here is the deviant art system, which requires a proxy
+ * because CORS is not supported. These can be considered raw calls, which are 
+ * processed in more dtail by the imageLoader and deviantService services.
+ * 
+ * These are all the calls for deviant art data.
+ * 
+ */
 import rp from 'request-promise' ;
 
 export default class ProxyService

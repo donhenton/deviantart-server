@@ -14,10 +14,7 @@ export default class TagImageLoader extends AbstractImageLoader
         this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null} ); 
   
     }
-    
-    
  
-
     getPage(offset)
     {
        let me = this;
