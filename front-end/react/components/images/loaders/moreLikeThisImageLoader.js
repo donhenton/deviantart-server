@@ -11,7 +11,7 @@ export default class MoreLikeThisImageLoader extends AbstractImageLoader
     {
         super(imageLimit);
         this.seed = null;
-        this.setStoredState({hasMore: false, hasLess: false, offset: 0, imagePageData: null});
+        this.setStoredState({isProcessing: true, hasMore: false, hasLess: false, offset: 0, imagePageData: null});
         this.subscriptions = [];
 
     }

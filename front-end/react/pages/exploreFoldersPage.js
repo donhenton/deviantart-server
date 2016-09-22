@@ -119,7 +119,7 @@ export default class MorgueFoldersPage extends Component {
             });
            
        }
-       this.setState({doingMoreLikeThis: newToggle})
+       this.setState({doingMoreLikeThis: newToggle,isProcessing:newToggle})
    }
    
    toggleText()
@@ -158,14 +158,14 @@ export default class MorgueFoldersPage extends Component {
       return null;
   }
   
-  renderMoreLikeThis()
-  {
-      if (this.state.doingMoreLikeThis)
-      {
-          return "";
-      }
-      return "<ImageSelectorComponent imageLoader={this.folderImageLoader} />"
-  }
+//  renderMoreLikeThis()
+//  {
+//      if (this.state.doingMoreLikeThis)
+//      {
+//          return "";
+//      }
+//      return "<ImageSelectorComponent isProcessing={this.state.isProcessing} imageLoader={this.folderImageLoader} />"
+//  }
   
   getCSSForTabs(type)
   {
@@ -237,7 +237,7 @@ export default class MorgueFoldersPage extends Component {
                            </div>   
                                 
                                 <div className={me.getCSSForImageComponent("MORE")} >
-                                <MoreLikeThis folderData={this.state.folderData} />;
+                                <MoreLikeThis isProcessing={this.state.isProcessing} folderData={this.state.folderData} />;
                                 </div>
                                 <div className={me.getCSSForImageComponent("IMAGES")} >
                                 <ImageSelectorComponent imageLoader={this.folderImageLoader} />

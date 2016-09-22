@@ -38,14 +38,14 @@ export default class MoreLikeThisComponent extends Component {
         });
          
 
-        this.state = {refresh: false, folderData: this.props.folderData}
+        this.state = {refresh: false, folderData: this.props.folderData,isProcessing: this.props.isProcessing}
         this.subscriptions.push(sub1);
          
     }
 
     componentWillReceiveProps(nextProps)
     {
-        this.setState({folderData: nextProps.folderData})
+        this.setState({folderData: nextProps.folderData,isProcessing: nextProps.isProcessing})
 
     }
 
@@ -62,7 +62,7 @@ export default class MoreLikeThisComponent extends Component {
 
         return (
 <div className="moreLikeThisComponent">
-    <ImageSelectorComponent showFolderInfo={true} postalChannel={'moreLikeThis.channel'} imageLoader={me.moreLikeThisImageLoader} />
+    <ImageSelectorComponent showFolderInfo={true} isProcessing={this.state.isProcessing} postalChannel={'moreLikeThis.channel'}  imageLoader={me.moreLikeThisImageLoader} />
 </div>
 
 
