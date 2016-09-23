@@ -158,15 +158,7 @@ export default class MorgueFoldersPage extends Component {
       return null;
   }
   
-//  renderMoreLikeThis()
-//  {
-//      if (this.state.doingMoreLikeThis)
-//      {
-//          return "";
-//      }
-//      return "<ImageSelectorComponent isProcessing={this.state.isProcessing} imageLoader={this.folderImageLoader} />"
-//  }
-  
+
   getCSSForTabs(type)
   {
       let css = "tabItem ";

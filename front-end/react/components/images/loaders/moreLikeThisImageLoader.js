@@ -79,7 +79,7 @@ export default class MoreLikeThisImageLoader extends AbstractImageLoader
                let zeroData = {hasMore: false, listData: [], hasLess: false, offset: 0};
                
                 me.pushFunction(zeroData);
-               console.log("got a folder switch in more like this "+JSON.stringify(data));
+             //  console.log("got a folder switch in more like this "+JSON.stringify(data));
 
             }
         });
