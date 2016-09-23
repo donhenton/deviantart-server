@@ -56,11 +56,17 @@ export default class ImageSelectorComponent extends Component
       this.setState({isProcessing: false,  imagePageData: data,hasMore: data.hasMore, hasLess: data.hasLess, offset: data.nextOffset})
   }
   
+   componentWillReceiveProps(nextProps)
+  {
+      this.setState({isProcessing: nextProps.isProcessing});
+  }
+  
   componentWillMount()
   {
        
       
       this.state = this.props.imageLoader.getStoredState();
+      this.state.isProcessing = this.props.isProcessing;
       
       //this forces a refresh folder-image-change comes from storageService
       //of its current collection of images
@@ -159,7 +165,7 @@ export default class ImageSelectorComponent extends Component
   
   renderImageList()
   {
-      return  <ImageList isProcessing={this.state.isProcessing} showFolderInfo={this.props.showFolderInfo} imagePageData={this.state.imagePageData} />
+      return  <ImageList postalChannel={this.props.postalChannel} isProcessing={this.state.isProcessing} showFolderInfo={this.props.showFolderInfo} imagePageData={this.state.imagePageData} />
   }
         
   render() {

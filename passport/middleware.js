@@ -3,10 +3,12 @@ function authenticationMiddleware () {
     if (req.isAuthenticated()) {
       return next()
     }
-        res.render('/', {
-            title: 'Login page'
+        res.render('index', {
+            title: 'Login'
         });
   }
 }
 
 module.exports = authenticationMiddleware;
+
+ 

@@ -3,7 +3,7 @@
 
 // Set the 'NODE_ENV' variable
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-console.log("env is "+process.env.NODE_ENV)
+//console.log("env is "+process.env.NODE_ENV)
 // Load the 'express' module
 var express = require('./config/express');
 var config = require('./config/config');

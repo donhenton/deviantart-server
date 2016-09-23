@@ -64,7 +64,7 @@ module.exports = function () {
    //require('auth/initPassport')();
    
    /* set up security */
-   console.log("set up security")
+ //  console.log("set up security")
    var initPassport =  require('../passport/initPassport');
    initPassport(passport);
     app.use(passport.initialize());

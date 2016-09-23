@@ -97,9 +97,14 @@ export default class ImageList extends Component
   
   clickOnImage(imageData)
   {
-      
+      let channel = 'deviant-system';
+      if (this.props.postalChannel)
+      {
+         channel = this.props.postalChannel;   
+      }
+      console.log("channel is "+channel)
       postal.publish({
-               channel: "deviant-system",
+               channel: channel,
                 topic: "select-image" ,
                data:  imageData
             });
@@ -141,6 +146,7 @@ export default class ImageList extends Component
             {
              idx++;
              let containingFolder = storageService.getFolderDeviation(imgData.deviationid);
+            // console.log("containingFolder "+containingFolder);
              let clickAction = me.clickOnImage.bind(me,imgData)
              var css = me.computeImageCSS(imgData)
             return ( 
