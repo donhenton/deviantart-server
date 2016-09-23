@@ -14,3 +14,6 @@ logappend=true
 dbpath=/Users/dhenton/mongo_data/db
 
 
+empty data set: {user:<id as number>, data: {"key":"/0","name":"root","children":[]}}
+
+

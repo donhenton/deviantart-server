@@ -88,9 +88,15 @@ module.exports = function (config) {
                         deferredResult.resolve(items[0].data);
                     } else
                     {
-                        var m = "no data found for user id '" + userId + "'";
-
-                        deferredResult.resolve({"message": m});
+                       
+                       //nothing found so create it this is the definition of a brand new set
+                       
+                       var newData = {user:userId, data: {"key":"/0","name":"root","children":[]}};
+                       col.insert(newData);
+                       deferredResult.resolve(newData.data);
+                       
+                       
+                       
                     }
                 }
 

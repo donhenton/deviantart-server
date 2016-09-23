@@ -18,13 +18,13 @@ var createHash = function (password) {
 
 
 var user100Data = {
-    "_id": "aa23f8b01470e40673287e3f",
-    "userId": 100,
-    "username": "user",
-    "password": createHash("your-password-here"),
-    "email": "user@user.com",
-    "firstName": "First",
-    "lastName": "Last"
+    "_id": "be23f8b01470e3217328ae3f",
+    "userId": 200,
+    "username": "bozo",
+    "password": createHash("bozo"),
+    "email": "bozo@bozo.com",
+    "firstName": "Bozo",
+    "lastName": "Bozo"
 }
 
 var user100 = new User(user100Data);
