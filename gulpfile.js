@@ -14,12 +14,14 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var reactify = require('reactify');
-
+var argv = require('yargs').argv;
 var notify = require("./build_utils/build_utils").notify;
 var targetLocation = './public_html/'
 var appDependencies = require('./package.json').dependencies;
 var REACT_FILES = [ './front-end/react/**/*.js'];
 var SASS_FILES = [ './sass/**/*.scss']; 
+var gulpif = require('gulp-if');
+var uglify = require('gulp-uglify');
  
 
 /* livereload loads this page you only get one  
@@ -40,16 +42,13 @@ var sassProcess =
             .pipe(concat('style.css'))
             // .pipe(uglifycss())
             .pipe(gulp.dest('./public_html/css/'))
-            .on('finish', function ( ) {
-                gutil.log("processing change in css");
-                   livereload.reload(pageURL);
-            });
+            
 
 }
          
 
-gulp.task('sass', function () {
-    sassProcess();
+gulp.task('sass-build', function () {
+    sassProcess() ;
 
 });
 
@@ -74,19 +73,23 @@ gulp.task('sass', function () {
             .on('error', notify);
 }
 
-gulp.task('react-build', function () {
+gulp.task('react-build-watch', function () {
     Bundle()
-            .pipe(source('bundle.js'))
-        //    .pipe(gulpif(argv.production, streamify(uglify())))
-       //     .pipe(gulpif(argv.production, rename({suffix: '.min'})))
-            .pipe(gulp.dest(targetLocation+'/js/'))
-            .on('finish', function ( ) {
+           .pipe(source('bundle.js'))
+           .pipe(gulp.dest(targetLocation+'/js/'))
+           .on('finish', function ( ) {
                 gutil.log("build bundle end");
                  livereload.reload(pageURL);
             });
     ;
 });
 
+gulp.task('react-build', function () {
+    Bundle()
+           .pipe(source('bundle.js'))
+           .pipe(streamify(uglify()))
+           .pipe(gulp.dest(targetLocation+'/js/'));
+});
 
 
 /////////
@@ -163,7 +166,7 @@ gulp.task('frontend-watch', function () {
 
     watch(REACT_FILES, function (events, done) {
 
-        gulp.start('react-build');
+        gulp.start('react-build-watch');
     });
 
     
@@ -173,6 +176,7 @@ gulp.task('frontend-watch', function () {
 });
 
 gulp.task('default', ['backend', 'frontend-watch']);
+gulp.task('release', ['sass-build', 'react-build']); // run as gulp release --production=true for compression
 
 /* end fronend task ---------------------------------------- */
 

@@ -25,4 +25,9 @@ must be manually entered
 
 * start gulp default
 
+### Preparing For Heroku release
+
+* run gulp release
+* the bundle.js under public_html/js/bundle.js will be compressed and will be expanded when development starts again
+
 
