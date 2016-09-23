@@ -8,9 +8,9 @@ import ExploreFoldersPage from './../pages/exploreFoldersPage';
 
 export const createRoutes = () => (
   <Route path="/main" component={Main} >
-    <IndexRoute component={SearchImagesPage} />
+    <IndexRoute component={ExploreFoldersPage} />
     <Route path="/main/maintainFolders" component={MaintainFoldersPage} />  
-    <Route path="/main/exploreFolders" component={ExploreFoldersPage} /> 
+    <Route path="/main/searchImages" component={ SearchImagesPage} /> 
   </Route>
 );
 
