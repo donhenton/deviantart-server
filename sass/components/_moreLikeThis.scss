@@ -1,12 +1,12 @@
 .moreLikeThisComponent
 {
-    
+
     //width: 525px;
     //height: 600px;
-    //position: relative;
+    position: relative;
     //border: thin solid  $red-color;
-    margin-right: 20px;
-    
+    //margin-right: 20px;
+
     .imageExpander
     {
         .moreLikeThisOverlay
@@ -23,5 +23,7 @@
                 padding-top: 10px;
             }
         }
-    
+
+    }
+
 }
