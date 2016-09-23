@@ -22,6 +22,8 @@ var REACT_FILES = [ './front-end/react/**/*.js'];
 var SASS_FILES = [ './sass/**/*.scss']; 
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
+var envify = require('envify');
+var fs = require('fs')
  
 
 /* livereload loads this page you only get one  
@@ -85,10 +87,30 @@ gulp.task('react-build-watch', function () {
 });
 
 gulp.task('react-build', function () {
-    Bundle()
-           .pipe(source('bundle.js'))
-           .pipe(streamify(uglify()))
-           .pipe(gulp.dest(targetLocation+'/js/'));
+
+
+    function prodBundle()
+    {
+        var prodBundler = browserify({
+            entries: './front-end/react/index.js',
+            transform: [["babelify", {"presets": ["es2015", "react"]}], ["envify", {NODE_ENV: 'production', 'global': true, '_': 'purge', }]],
+            extensions: ['.js'],
+            debug: true,
+            cache: {},
+            packageCache: {},
+            fullPaths: false
+        });
+        return prodBundler
+                .bundle()
+                .on('error', notify);
+
+    }
+
+
+    prodBundle()
+            .pipe(source('bundle.js'))
+            .pipe(streamify(uglify()))
+            .pipe(gulp.dest(targetLocation + '/js/'));
 });
 
 

@@ -29,5 +29,6 @@ must be manually entered
 
 * run gulp release
 * the bundle.js under public_html/js/bundle.js will be compressed and will be expanded when development starts again
+* node server.js to see it running outside of dev mode
 
 
