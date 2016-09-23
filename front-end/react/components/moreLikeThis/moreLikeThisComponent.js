@@ -27,25 +27,28 @@ export default class MoreLikeThisComponent extends Component {
             topic: "select-image",
             callback: function (data, envelope) {
 
-               
-               // console.log("selectedFolder "+JSON.stringify(me.state.folderData))
-                
-                 storageService.insertIntoFolder(data, me.state.folderData);
-                 let sv = !me.state.refresh;
-                 me.setState({refresh: sv})
 
+                let retVal = window.confirm("Do you want to add this image to '"+me.state.folderData.name+"'?");
+
+                if (retVal)
+                {
+
+                    storageService.insertIntoFolder(data, me.state.folderData);
+                    let sv = !me.state.refresh;
+                    me.setState({refresh: sv, isProcessing: false})
+                }
             }
         });
-         
 
-        this.state = {refresh: false, folderData: this.props.folderData,isProcessing: this.props.isProcessing}
+
+        this.state = {refresh: false, folderData: this.props.folderData, isProcessing: this.props.isProcessing}
         this.subscriptions.push(sub1);
-         
+
     }
 
     componentWillReceiveProps(nextProps)
     {
-        this.setState({folderData: nextProps.folderData,isProcessing: nextProps.isProcessing})
+        this.setState({folderData: nextProps.folderData, isProcessing: nextProps.isProcessing})
 
     }
 
