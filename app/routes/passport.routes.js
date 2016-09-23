@@ -16,7 +16,8 @@ module.exports = function (app, passport) {
         // the secured app page
         res.render('deviantapp', {
             title: 'DeviantArt Application',
-            userId: 100
+            userId: 100,
+            user: req.user
         });
 
     };
