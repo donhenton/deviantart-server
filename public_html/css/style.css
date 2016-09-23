@@ -764,6 +764,25 @@ section#pageContainer {
       margin: auto;
       padding-top: 10px; }
 
+.categoryDemo .categoryTree {
+  overflow: auto;
+  height: 300px;
+  border: #16174f double;
+  width: 100%; }
+
+.categoryDemo .categoryDemoList {
+  padding: 20px;
+  overflow: auto;
+  height: 300px;
+  width: 100%;
+  border: thin solid #667467; }
+  .categoryDemo .categoryDemoList ul {
+    list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle fill="#963019" cx="5" cy="5" r="4"/></svg>');
+    color: #16174f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 10px; }
+
 body {
   z-index: 0; }
 
@@ -772,12 +791,6 @@ body {
   margin: auto;
   margin-left: auto;
   margin-right: auto; }
-
-.categoryTree {
-  overflow: auto;
-  height: 300px;
-  border: #16174f double;
-  width: 100%; }
 
 .searchContainer table.imageSelectorComponent td.imageComponentTableCell {
   width: 525px; }

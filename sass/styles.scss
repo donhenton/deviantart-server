@@ -10,6 +10,7 @@
 @import "components/targetFolder";
 @import "components/tabContainer";
 @import "components/moreLikeThis";
+@import "components/categoryDemo";
 
 
 body {
@@ -33,15 +34,7 @@ body {
 
 $box-width: 500px;
 
-.categoryTree
-{
 
-    overflow: auto;
-    height: 300px;
-    border: $blue-color double;
-    width: 100%;
-
-}
 
 
 .searchContainer

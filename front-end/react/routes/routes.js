@@ -5,12 +5,14 @@ import Main from './../components/main';
 import SearchImagesPage from './../pages/searchImagesPage'; 
 import MaintainFoldersPage from './../pages/maintainFoldersPage';
 import ExploreFoldersPage from './../pages/exploreFoldersPage';
+import CategoryDemoPage from './../pages/categoryDemoPage';
 
 export const createRoutes = () => (
   <Route path="/main" component={Main} >
     <IndexRoute component={ExploreFoldersPage} />
     <Route path="/main/maintainFolders" component={MaintainFoldersPage} />  
     <Route path="/main/searchImages" component={ SearchImagesPage} /> 
+    <Route path="/main/categoryDemo" component={ CategoryDemoPage} /> 
   </Route>
 );
 
