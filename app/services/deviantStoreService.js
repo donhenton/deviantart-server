@@ -10,7 +10,7 @@ module.exports = function (config) {
     {
         var deferredDbConnection = Q.defer();
 
-        mongoClient.connect(config.deviantStorageDB.url, function (err, database) {
+        mongoClient.connect(config.deviantStorageDB, function (err, database) {
             if (err) {
                 deferredDbConnection.reject(err);
                 return;

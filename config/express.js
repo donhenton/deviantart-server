@@ -39,7 +39,7 @@ module.exports = function () {
     // Use the 'body-parser' and 'method-override' middleware functions
     var mongoose = require('mongoose');
 // Connect to DB
-    mongoose.connect(config.deviantStorageDB.url); 
+    mongoose.connect(config.deviantStorageDB); 
     
     app.use(bodyParser.urlencoded({
         extended: true
@@ -54,7 +54,7 @@ module.exports = function () {
         resave: true,
         saveUninitialized: true,        
         store: new MongoStore({
-            url: config.deviantStorageDB.url
+            url: config.deviantStorageDB
         })
     }));
     
