@@ -8,7 +8,7 @@
 module.exports = {
 	 client_id: deviant id,
          client_secret: deviant secret,
-         deviantStorageDB: {url: 'mongodb://localhost/deviantart'},
+         deviantStorageDB:  'mongodb://localhost/deviantart',
          sessionSecret: "somesession secret"
 };
 */
