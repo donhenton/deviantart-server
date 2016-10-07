@@ -40,7 +40,19 @@ export default class SingleImageDisplay extends Component
                         {
                             $("div.imageWrapper")[0].scrollTop = 0;
                         }
-                        me.setState({'imageData': data, isProcessing: true});
+                        
+                        let currentId = null;
+                        if (me.state.imageData)
+                        {
+                            currentId = me.state.imageData["deviationid"];
+                        }
+                        
+                        if (currentId != data["deviationid"])    
+                        {
+                           // console.log("got a change!!!!")
+                            me.setState({'imageData': data, isProcessing: true});
+                        }
+                        
 
                 }
                });

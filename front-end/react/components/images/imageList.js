@@ -102,7 +102,7 @@ export default class ImageList extends Component
       {
          channel = this.props.postalChannel;   
       }
-      console.log("channel is "+channel)
+     // console.log("channel is "+channel)
       postal.publish({
                channel: channel,
                 topic: "select-image" ,
