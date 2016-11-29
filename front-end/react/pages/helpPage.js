@@ -1,9 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import storageService from './../services/storageService'
-import MorgueFolderTree from './../components/morgueFolder/morgueFolderTree'
-import postal from 'postal'
+
 
 export default class MorgueFoldersPage extends Component {
         
