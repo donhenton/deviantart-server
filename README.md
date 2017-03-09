@@ -2,7 +2,7 @@
 
 This application uses the DeviantArt API to explore images by tags, create folders
 to save those images, and explore the 'More Like This Functionality' available in the API. It is deployed at
-https://donhenton-deviant-server.herokuapp.com/.
+http://donhenton-deviant-server.herokuapp.com/.
 
 
 ### Running Locally
